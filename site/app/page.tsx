@@ -270,16 +270,24 @@ export default function HomePage() {
       </section>
 
       {/* EMR Logos */}
-      <section className="bg-[#F8F5F2] py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[#26303A] font-bold text-xl mb-3">Works With Any EMR System</p>
-          <p className="text-center text-gray-500 text-sm mb-10">No platform conversion required. No integration fees. Ever.</p>
-          <div className="flex flex-wrap justify-center gap-8 items-center">
-            {emrLogos.map((emr) => (
-              <div key={emr.name} className="flex items-center justify-center h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+      <section className="bg-[#F8F5F2] py-16 overflow-hidden">
+        <p className="text-center text-[#26303A] font-bold text-xl mb-3">Works With Any EMR System</p>
+        <p className="text-center text-gray-500 text-sm mb-10">No platform conversion required. No integration fees. Ever.</p>
+        <div className="relative">
+          {/* Edge fades */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F8F5F2] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F8F5F2] to-transparent" />
+          {/* Scrolling track — logos duplicated for seamless loop */}
+          <div className="flex items-center gap-12 marquee-track w-max">
+            {[...emrLogos, ...emrLogos].map((emr, i) => (
+              <div
+                key={`${emr.name}-${i}`}
+                className="flex items-center justify-center h-12 flex-shrink-0 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all"
+                aria-hidden={i >= emrLogos.length ? "true" : undefined}
+              >
                 <Image
                   src={emr.file}
-                  alt={emr.name}
+                  alt={i < emrLogos.length ? emr.name : ""}
                   width={120}
                   height={48}
                   className="h-10 w-auto object-contain"
