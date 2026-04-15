@@ -54,7 +54,7 @@ export default function AboutPage() {
             Post-Acute Billing Specialists Since Day One
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            Advanced RevCycle was founded over a decade ago with a single biller and a mission to serve post-acute care agencies the right way. Today, 50+ U.S.-based billers have collected over $5 billion for hospice, home health, and palliative care agencies nationwide.
+            Advanced RevCycle started over a decade ago with one biller and one mission. Today, 50+ U.S.-based billers have collected over $5 billion for hospice, home health, and palliative care agencies nationwide. The focus has never changed.
           </p>
         </div>
       </section>
@@ -68,13 +68,13 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-[#26303A] mb-6">Built From the Ground Up in Post-Acute Care</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Advanced RevCycle began as Advanced Hospice Management, focused entirely on hospice billing from the very first day. Unlike billing companies that expanded into hospice as an afterthought, ARC was built from the ground up to serve this specific line of care.
+                  Advanced RevCycle started as Advanced Hospice Management, one biller and one line of care. Where other billing companies eventually drifted into hospice from the outside, ARC was built from inside it.
                 </p>
                 <p>
-                  In November 2025, ARC rebranded after acquiring Rapid Coding and OASIS Review (RCO), adding specialized coding and OASIS review services to the platform. The acquisition also brought a strategic investment from Kolos Partners to accelerate AI innovation across ARC's revenue cycle operations.
+                  In November 2025, ARC acquired Rapid Coding and OASIS Review (RCO) and rebranded. The move added specialized coding and OASIS review services to the platform. A strategic investment from Kolos Partners came alongside it, focused on accelerating AI-driven automation across the revenue cycle.
                 </p>
                 <p>
-                  Today, with 50+ billers distributed across the U.S. and operations serving agencies in all 50 states, ARC has maintained its founding commitment: we only work in post-acute care, and we only win when you collect.
+                  Today, 50+ billers work remotely across the U.S. and serve agencies in all 50 states. The founding commitment has not changed. We work only in post-acute care, and we earn only when you collect.
                 </p>
               </div>
             </div>

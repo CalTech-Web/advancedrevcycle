@@ -12,7 +12,7 @@ export default function AuthorizationAndEligibilityPage() {
     <ServicePage
       badge="Billing Support"
       title="Authorization and Eligibility Management From Start to Finish"
-      intro="Authorization and eligibility errors are a leading cause of claim denials. ARC's authorization and eligibility team verifies coverage, manages the full authorization lifecycle, and handles every appeal so your billing team never has to chase approvals."
+      intro="The fastest route to a denial is skipping eligibility verification before services begin. A close second is a lapsed authorization mid-episode. ARC's team verifies coverage upfront, manages the full lifecycle through re-authorizations, and handles appeals when payers push back. Your billers should be working claims, not chasing approvals."
       features={[
         {
           title: "Patient Eligibility Verification",
@@ -37,7 +37,7 @@ export default function AuthorizationAndEligibilityPage() {
           "Proactive verification before service delivery eliminates most avoidable denials at the source",
           "Full lifecycle management means no authorization lapses that could interrupt reimbursement",
           "Appeals expertise recovers revenue from denials that most agencies write off",
-          "Works alongside ARC's billing team for seamless coordination across the revenue cycle",
+          "Integrated directly with ARC's billing team so nothing falls through between authorization and claims",
           "Available to hospice, home health, and palliative care agencies of all sizes",
         ],
       }}

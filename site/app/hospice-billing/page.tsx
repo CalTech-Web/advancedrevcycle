@@ -12,7 +12,7 @@ export default function HospiceBillingPage() {
     <ServicePage
       badge="Hospice Billing"
       title="Expert Hospice Billing That Collects What You Have Earned"
-      intro="Advanced RevCycle provides complete hospice billing services for Medicare, Medicaid, VA, and commercial payers. With 99%+ collection rates and $5B+ collected, our dedicated hospice billers handle every claim from submission through payment."
+      intro="Most billing companies call themselves specialists. Hospice is our only line of care. Our billers know every MAC quirk, every Notice of Election deadline, and every regulatory shift that can stall your AR. We work on contingency, so the 99%+ collection rate matters to us as much as it does to you."
       features={[
         {
           title: "NOE, NOC, and NOTR Filing",
@@ -43,7 +43,7 @@ export default function HospiceBillingPage() {
         title: "Why Hospice Agencies Choose ARC",
         points: [
           "Dedicated hospice billing specialists, not generalist billers assigned to your account",
-          "Knowledge of every Medicare Administrative Contractor: Palmetto GBA, CGS, and National Government Services",
+          "Deep knowledge of all three Medicare Administrative Contractors, Palmetto GBA, CGS, and National Government Services",
           "Experience with all hospice EMR platforms including Netsmart, MatrixCare, Mumms, and more",
           "100% contingency pricing, no flat fees or retainers, you pay only when you collect",
           "U.S.-based team that clients describe as feeling just like an in-house billing department",

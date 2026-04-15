@@ -61,7 +61,7 @@ export default function CodingAndOasisReviewPage() {
             ICD-10 Coding and OASIS Review Built for Home Health
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            Through the acquisition of Rapid Coding and OASIS Review (RCO), Advanced RevCycle offers four levels of coding and OASIS review services designed specifically for home health agencies operating under PDGM.
+            The primary diagnosis code does not just describe the patient. Under PDGM, it determines the clinical grouping and the payment rate. ARC acquired Rapid Coding and OASIS Review (RCO) in November 2025 to bring expert coding and OASIS review into the billing platform, across four levels of review depth.
           </p>
         </div>
       </section>
@@ -105,13 +105,13 @@ export default function CodingAndOasisReviewPage() {
           <h2 className="text-3xl font-bold text-[#26303A] mb-8">Why Accurate Coding Matters Under PDGM</h2>
           <div className="space-y-4 text-gray-600 leading-relaxed">
             <p>
-              Under the Patient-Driven Groupings Model, the primary diagnosis code directly determines your agency&apos;s clinical grouping and reimbursement rate. An incorrect or suboptimal code is not just a compliance risk, it is lost revenue on every episode.
+              Under PDGM, the primary diagnosis code is the variable that sets your clinical grouping and payment rate. An incorrect code is not just a documentation problem, it is lost revenue on every episode.
             </p>
             <p>
-              ARC&apos;s coding team works from CMS conventions and PDGM payment logic to select the primary diagnosis that accurately reflects the patient&apos;s clinical picture while maximizing your legitimate reimbursement. This is not upcoding. It is ensuring every clinically appropriate code is captured.
+              ARC&apos;s coding team works from CMS conventions and PDGM payment logic to select the primary diagnosis that accurately reflects the patient&apos;s condition. This is not upcoding. It is capturing every code that is clinically supported and legitimately earned.
             </p>
             <p>
-              Our OASIS review layers add assessment accuracy validation, Plan of Care alignment, and homebound status verification to protect your agency from audit risk while ensuring documentation supports the full scope of care delivered.
+              The OASIS review layers add assessment accuracy validation, Plan of Care alignment, and homebound status verification. Each layer reduces audit exposure while confirming your documentation reflects what your clinical team actually delivered.
             </p>
           </div>
         </div>

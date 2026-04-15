@@ -11,19 +11,19 @@ export const metadata: Metadata = {
 const values = [
   {
     title: "Exclusive Focus",
-    desc: "We work exclusively in post-acute care. Every team member becomes a genuine expert in hospice, home health, and palliative billing, not a generalist handling dozens of specialties.",
+    desc: "We work only in post-acute care. Every biller becomes a genuine expert in hospice, home health, or palliative billing, not a generalist cycling through dozens of specialties.",
   },
   {
     title: "Remote-First",
-    desc: "Our team is fully remote and distributed across the U.S., giving billing professionals the flexibility to work from anywhere while serving agencies nationwide.",
+    desc: "The team is fully remote and distributed across the U.S. Billing professionals work from wherever they are while serving agencies in every state.",
   },
   {
     title: "High Standards",
-    desc: "We hire 1 biller for every 50 applicants. Our standards are high because our clients depend on it. Joining ARC means joining a team that takes their craft seriously.",
+    desc: "We hire 1 biller for every 50 applicants. The agencies we serve cannot afford billing mistakes, and neither can we. Joining ARC means working with people who take this craft seriously.",
   },
   {
     title: "Mission-Driven",
-    desc: "Many ARC team members have personal connections to hospice and palliative care. The work is not just a job. It funds compassionate end-of-life care for patients and families.",
+    desc: "Many ARC team members have personal connections to hospice and palliative care. The work is not just a job. Every claim filed and every dollar collected funds care for patients and families at the end of life.",
   },
 ];
 
@@ -45,7 +45,7 @@ export default function CareersPage() {
             Careers at Advanced RevCycle
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            ARC hires 1 biller for every 50 applicants. If you are exceptional at post-acute billing and want to work with a team that sets the standard, we want to hear from you.
+            ARC hires 1 biller for every 50 applicants. The bar is intentional. Every agency we serve depends on our billers being the best people available for this work. If that sounds like your standard too, keep reading.
           </p>
         </div>
       </section>

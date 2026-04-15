@@ -76,7 +76,7 @@ export default function CaseStudiesPage() {
             Real Results for Post-Acute Agencies
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            From startups to established non-profits, ARC has improved collections, reduced AR, and enabled growth for agencies across the country. Here are some of the stories.
+            A non-profit in Savannah was writing off 10% of AR annually, roughly $1 million. A western hospice had claims stalled during a state billing system transition. These are not outliers. This is what billing looks like when it falls behind regulation, and what the numbers looked like after ARC took over.
           </p>
         </div>
       </section>

@@ -12,7 +12,7 @@ export default function HomeHealthBillingPage() {
     <ServicePage
       badge="Home Health Billing"
       title="Complete Home Health Billing From Admission Through Payment"
-      intro="Advanced RevCycle handles every aspect of home health billing, from Notice of Admission filing through final payment posting. Our dedicated home health billers know every payer rule, every MAC, and every compliance requirement specific to home health."
+      intro="Home health billing under PDGM means the primary diagnosis code sets your payment grouping before the first claim is filed. Our home health billers know that dependency. They handle NOA filing, all-payer claims, and follow every episode through disputes and reconsiderations until payment clears."
       features={[
         {
           title: "Notice of Admission (NOA) Filing",

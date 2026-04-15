@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: "What lines of care does Advanced RevCycle serve?",
-    a: "Advanced RevCycle exclusively serves post-acute care agencies: hospice, home health, and palliative care. This focused specialization means the team understands every payer rule, compliance requirement, and regulatory nuance specific to these lines of care.",
+    a: "Advanced RevCycle exclusively serves hospice, home health, and palliative care agencies. The team is not adapted from a generalist billing firm. Every billing rule, compliance requirement, and payer quirk we know comes from working only in these three lines of care.",
   },
   {
     q: "Do I have to switch my EMR system to work with ARC?",
@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "How does your pricing work?",
-    a: "Advanced RevCycle operates on a 100% contingency basis. Fees are a percentage of what is collected. There are no flat monthly fees or retainers. The company only earns when your agency collects.",
+    a: "Advanced RevCycle runs on 100% contingency. Fees are a percentage of what is collected. There are no flat monthly fees or retainers. ARC earns only when your agency does.",
   },
   {
     q: "What collection rate can I expect?",
@@ -44,7 +44,7 @@ export default function ContactPage() {
             Contact Advanced RevCycle
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            Ready to improve your agency&apos;s collections? Our team responds quickly and will help you understand what transitioning billing to ARC looks like for your specific situation.
+            Most agencies that contact ARC have a billing problem they have been trying to solve on their own. Our team responds quickly and will tell you honestly whether we are the right fit.
           </p>
         </div>
       </section>

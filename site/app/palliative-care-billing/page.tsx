@@ -12,7 +12,7 @@ export default function PalliativeCareBillingPage() {
     <ServicePage
       badge="Palliative Care Billing"
       title="Palliative Care Billing That Navigates Every Payer Complexity"
-      intro="Palliative care billing spans multiple payer types and requires expertise that most billing companies simply do not have. ARC's dedicated palliative care billers manage every claim from submission through secondary billing and patient statements."
+      intro="Palliative care sits at a payer crossroads. Medicare, Medicaid, Medicare Advantage, VA, and commercial plans all show up, sometimes on the same patient. Our billers handle primary claims, secondary billing, and patient statements without losing track of any layer."
       features={[
         {
           title: "All-Payer Claims Submission",
@@ -46,7 +46,7 @@ export default function PalliativeCareBillingPage() {
           "Secondary billing and patient statement management handled as part of the full billing cycle",
           "Same 99%+ collection rate and 100% contingency model as our hospice and home health services",
           "Dedicated billing team that communicates immediately when payer issues arise",
-          "No platform disruption, ARC works with any EMR your palliative care program already uses",
+          "Works with any EMR your palliative care program already uses, no conversion, no disruption",
         ],
       }}
       ctaTitle="Let ARC Handle Your Palliative Care Billing"

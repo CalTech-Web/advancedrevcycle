@@ -94,11 +94,11 @@ const services = [
 
 const process = [
   { phase: "Onboarding", title: "EMR Immersion", desc: "Deep dive into your EMR system from day one, accelerating for familiar platforms or rapidly building proficiency with new ones." },
-  { phase: "Daily", title: "Proactive Monitoring", desc: "Run daily 60-day payer reports, check overnight patient status changes, and identify problems before they become issues." },
+  { phase: "Daily", title: "Proactive Monitoring", desc: "Run daily 60-day payer reports, catch overnight status changes, and flag problems before they stall collections." },
   { phase: "Ongoing", title: "Clean Claim Submission", desc: "File all required notices and submit clean claims for every payer with verification at each step." },
   { phase: "Ongoing", title: "Payment Posting", desc: "Post payments electronically or manually with thorough reconciliation and live AR reporting in your EMR." },
   { phase: "Ongoing", title: "Claims Follow-Up", desc: "Proactively follow every claim through disputes, appeals, and reconsiderations until it is paid." },
-  { phase: "Ongoing", title: "Client Communication", desc: "Immediate notification of coverage changes or payer issues. Never let anything sit idle." },
+  { phase: "Ongoing", title: "Client Communication", desc: "Immediate notification of coverage changes or payer issues, with a follow-up call if email goes unanswered. Nothing sits idle." },
 ];
 
 const testimonials = [
@@ -155,7 +155,7 @@ export default function HomePage() {
             Tech-Enabled.<br />Human-Driven.<br />Revenue Optimized.
           </h1>
           <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
-            Advanced RevCycle exclusively serves hospice, home health, and palliative care agencies nationwide. With 50+ seasoned billers and $5B+ collected, we treat your revenue like our own.
+            We work in one corner of healthcare, hospice, home health, and palliative care. That focus is not a limitation. It is why our 50+ billers have collected over $5 billion for agencies of all sizes, and why every one of them earns only when you do.
           </p>
           <div className="hero-fade-4 flex flex-col sm:flex-row gap-4">
             <Link
@@ -315,7 +315,7 @@ export default function HomePage() {
           <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get Started</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Collect What You Have Earned?</h2>
           <p className="text-teal-100 text-lg mb-10">
-            Join hospice, home health, and palliative care agencies across all 50 states. ARC only earns when you collect.
+            ARC serves agencies in all 50 states, Puerto Rico, Hawaii, and the U.S. Virgin Islands. The fee is a percentage of collections, nothing else.
           </p>
           <Link
             href="/contact"

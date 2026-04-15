@@ -12,7 +12,7 @@ export default function ContractingAndCredentialingPage() {
     <ServicePage
       badge="Billing Support"
       title="Contracting and Credentialing That Opens Every Payer Door"
-      intro="Before you can bill a payer, you have to be contracted and credentialed with them. ARC's contracting and credentialing team handles the entire process so your clinical team can focus on patient care while your billing team focuses on claims."
+      intro="You cannot bill a payer you are not credentialed with. Simple as that. ARC handles the full contracting and credentialing process so there is never a gap between your care delivery and your ability to bill for it. New agency, new state, or just behind on renewals, we have been through it before."
       features={[
         {
           title: "Contract Negotiation Assistance",
@@ -38,7 +38,7 @@ export default function ContractingAndCredentialingPage() {
       whySection={{
         title: "Why Agencies Use ARC for Contracting and Credentialing",
         points: [
-          "Credentialing errors and delays are a common cause of billing interruptions, ARC prevents them",
+          "Credentialing delays cause billing gaps. ARC prevents them.",
           "Payer relations expertise built through years of working with every major MAC and commercial insurer",
           "Handles startup credentialing for new agencies and expansion credentialing for growing ones",
           "Coordinates with the billing team so credentialing status never creates a claims gap",
