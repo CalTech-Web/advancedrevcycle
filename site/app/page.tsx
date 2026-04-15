@@ -149,14 +149,14 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-[#26303A]/75" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">Post-Acute Billing Specialists</p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
+          <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">Post-Acute Billing Specialists</p>
+          <h1 className="hero-fade-2 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
             Tech-Enabled.<br />Human-Driven.<br />Revenue Optimized.
           </h1>
-          <p className="text-gray-200 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
+          <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
             Advanced RevCycle exclusively serves hospice, home health, and palliative care agencies nationwide. With 50+ seasoned billers and $5B+ collected, we treat your revenue like our own.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="hero-fade-4 flex flex-col sm:flex-row gap-4">
             <Link
               href="/contact"
               className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors text-center"
