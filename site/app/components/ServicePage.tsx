@@ -1,0 +1,107 @@
+import Link from "next/link";
+
+interface ServiceFeature {
+  title?: string;
+  desc: string;
+}
+
+interface ServicePageProps {
+  badge: string;
+  title: string;
+  intro: string;
+  features: ServiceFeature[];
+  whySection?: {
+    title: string;
+    points: string[];
+  };
+  ctaTitle?: string;
+}
+
+export default function ServicePage({ badge, title, intro, features, whySection, ctaTitle }: ServicePageProps) {
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-[#26303A] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">{badge}</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">{title}</h1>
+          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">{intro}</p>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="bg-[#F8F5F2] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((f, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="w-8 h-8 bg-[#0B7A84] rounded-full flex items-center justify-center mb-4">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                {f.title && <h3 className="font-bold text-[#26303A] mb-2">{f.title}</h3>}
+                <p className="text-gray-600 text-sm leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why ARC */}
+      {whySection && (
+        <section className="bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold text-[#26303A] mb-8">{whySection.title}</h2>
+              <ul className="space-y-4">
+                {whySection.points.map((p, i) => (
+                  <li key={i} className="flex gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 bg-[#B8EE40] rounded-full flex items-center justify-center mt-0.5">
+                      <svg className="w-3 h-3 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-600 leading-relaxed">{p}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Stats */}
+      <section className="bg-[#0B7A84] py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "99%+", label: "Collection Rate" },
+              { value: "$5B+", label: "Collected for Agencies" },
+              { value: "50+", label: "U.S.-Based Billers" },
+              { value: "100%", label: "Contingency Pricing" },
+            ].map((s) => (
+              <div key={s.label}>
+                <p className="text-4xl font-bold text-white mb-1">{s.value}</p>
+                <p className="text-[#B8EE40] text-sm font-medium">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-[#F8F5F2] py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-[#26303A] mb-5">
+            {ctaTitle || "Ready to Improve Your Collections?"}
+          </h2>
+          <p className="text-gray-600 mb-8">Contact ARC today. No flat fees, no retainers. We only earn when you collect.</p>
+          <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
+            Contact Us
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

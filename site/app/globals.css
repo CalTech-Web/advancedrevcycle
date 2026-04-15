@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --teal: #0B7A84;
+  --orange: #FF5B04;
+  --lime: #B8EE40;
+  --stone: #F8F5F2;
+  --gunmetal: #26303A;
+}
+
+@theme inline {
+  --color-teal: var(--teal);
+  --color-orange: var(--orange);
+  --color-lime: var(--lime);
+  --color-stone: var(--stone);
+  --color-gunmetal: var(--gunmetal);
+}
+
+body {
+  background: #ffffff;
+  color: #26303A;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,154 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Advanced RevCycle is a New Orleans-based, tech-enabled revenue cycle management company exclusively serving hospice, palliative care, and home health agencies nationwide.",
+};
+
+const leadership = [
+  {
+    name: "Delaine Henry",
+    title: "Chief Executive Officer",
+    bio: "Delaine founded what is now Advanced RevCycle over a decade ago, starting with a single biller and growing to 50+ billing professionals across the U.S. Her personal mission drives every aspect of the company.",
+    quote: "At ARCM, our mission to serve you is truly personal.",
+    image: null,
+  },
+  {
+    name: "Matt Timmins",
+    title: "President",
+    bio: "Matt brings 18+ years of revenue growth expertise and 15+ years in post-acute healthcare, EMR systems, and technology. Based in Traverse City, MI, he leads ARC's growth and client strategy.",
+    quote: null,
+    image: null,
+  },
+  {
+    name: "Nicolas (Nic) Perkin",
+    title: "Chairman",
+    bio: "Nic is Chairman and CEO of Perkin Industries, the majority owner of Advanced RevCycle, with headquarters in New Orleans and operations in New York and the Bay Area.",
+    quote: null,
+    image: null,
+  },
+];
+
+const differentiators = [
+  "Exclusive post-acute focus: only hospice, home health, and palliative care",
+  "99%+ collection rate and $5B+ collected for agencies of all sizes",
+  "100% contingency pricing, fees scale with your collections",
+  "U.S.-based billing team only, 1 hired for every 50 applicants",
+  "20+ years average experience per biller",
+  "Works with any EMR, no conversion or integration fees",
+  "Serves all 50 states, U.S. territories, Puerto Rico, and Hawaii",
+  "Tech-enabled with AI, automation, and proprietary workflow technology",
+];
+
+export default function AboutPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-[#26303A] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Our Story</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
+            Post-Acute Billing Specialists Since Day One
+          </h1>
+          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
+            Advanced RevCycle was founded over a decade ago with a single biller and a mission to serve post-acute care agencies the right way. Today, 50+ U.S.-based billers have collected over $5 billion for hospice, home health, and palliative care agencies nationwide.
+          </p>
+        </div>
+      </section>
+
+      {/* Story */}
+      <section className="bg-[#F8F5F2] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <div>
+              <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">How We Got Here</p>
+              <h2 className="text-3xl font-bold text-[#26303A] mb-6">Built From the Ground Up in Post-Acute Care</h2>
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                <p>
+                  Advanced RevCycle began as Advanced Hospice Management, focused entirely on hospice billing from the very first day. Unlike billing companies that expanded into hospice as an afterthought, ARC was built from the ground up to serve this specific line of care.
+                </p>
+                <p>
+                  In November 2025, ARC rebranded after acquiring Rapid Coding and OASIS Review (RCO), adding specialized coding and OASIS review services to the platform. The acquisition also brought a strategic investment from Kolos Partners to accelerate AI innovation across ARC's revenue cycle operations.
+                </p>
+                <p>
+                  Today, with 50+ billers distributed across the U.S. and operations serving agencies in all 50 states, ARC has maintained its founding commitment: we only work in post-acute care, and we only win when you collect.
+                </p>
+              </div>
+            </div>
+            <div className="relative">
+              <Image
+                src="/assets/gallery/about-team.png"
+                alt="Advanced RevCycle team"
+                width={600}
+                height={450}
+                className="rounded-2xl w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Differentiators */}
+      <section className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">Why ARC</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#26303A]">What Makes Us Different</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {differentiators.map((d, i) => (
+              <div key={i} className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100">
+                <div className="w-8 h-8 bg-[#B8EE40] rounded-full flex items-center justify-center mb-4">
+                  <svg className="w-4 h-4 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#26303A] leading-relaxed font-medium">{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership */}
+      <section className="bg-[#F8F5F2] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">Our Team</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#26303A]">Leadership</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {leadership.map((leader) => (
+              <div key={leader.name} className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 text-center">
+                <div className="w-20 h-20 bg-[#0B7A84] rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-5">
+                  {leader.name.charAt(0)}
+                </div>
+                <h3 className="text-lg font-bold text-[#26303A] mb-1">{leader.name}</h3>
+                <p className="text-[#0B7A84] text-sm font-semibold mb-4">{leader.title}</p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">{leader.bio}</p>
+                {leader.quote && (
+                  <blockquote className="border-l-2 border-[#B8EE40] pl-4 text-left mt-4">
+                    <p className="text-sm text-gray-600 italic">&ldquo;{leader.quote}&rdquo;</p>
+                  </blockquote>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-[#0B7A84] py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-5">Ready to See What ARC Can Do for Your Agency?</h2>
+          <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
+            Contact Us
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
