@@ -8,42 +8,85 @@ const stats = [
   { value: "20+", label: "Years Avg Experience" },
 ];
 
+const ServiceIcons: Record<string, React.FC<{ className?: string }>> = {
+  hospice: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
+      <path d="M9 21V12h6v9" />
+      <path d="M12 7v4m-2-2h4" />
+    </svg>
+  ),
+  homehealth: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 12l9-9 9 9" />
+      <path d="M9 21V12h6v9" />
+      <circle cx="12" cy="9" r="1" fill="currentColor" stroke="none" />
+      <path d="M5 21h14" />
+    </svg>
+  ),
+  palliative: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+    </svg>
+  ),
+  auth: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  ),
+  contracting: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
+    </svg>
+  ),
+  coding: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    </svg>
+  ),
+};
+
 const services = [
   {
     title: "Hospice Billing",
     desc: "Full-cycle billing for Medicare, Medicaid, VA, and commercial payers with proactive claims follow-up.",
     href: "/hospice-billing",
-    icon: "🏥",
+    iconKey: "hospice",
   },
   {
     title: "Home Health Billing",
     desc: "All-payer billing with electronic and manual payment posting, reconciliation, and on-demand AR reporting.",
     href: "/home-health-billing",
-    icon: "🏠",
+    iconKey: "homehealth",
   },
   {
     title: "Palliative Care Billing",
     desc: "Comprehensive claims creation, secondary payer billing, and full appeals management.",
     href: "/palliative-care-billing",
-    icon: "💙",
+    iconKey: "palliative",
   },
   {
     title: "Authorization and Eligibility",
     desc: "Patient eligibility verification, prior authorization support, and appeals management.",
     href: "/authorization-and-eligibility",
-    icon: "✅",
+    iconKey: "auth",
   },
   {
     title: "Contracting and Credentialing",
     desc: "Contract negotiation, credentialing, provider enrollment, and payer relations.",
     href: "/contracting-and-credentialing",
-    icon: "📋",
+    iconKey: "contracting",
   },
   {
     title: "Coding and OASIS Review",
     desc: "ICD-10 coding, PDGM-aligned diagnosis selection, and four levels of OASIS review.",
     href: "/coding-and-oasis-review",
-    icon: "🔍",
+    iconKey: "coding",
   },
 ];
 
@@ -154,18 +197,23 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s) => (
-              <Link
-                key={s.href}
-                href={s.href}
-                className="bg-white rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group"
-              >
-                <div className="text-3xl mb-4">{s.icon}</div>
-                <h3 className="text-lg font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
-                <p className="mt-4 text-[#0B7A84] text-sm font-semibold">Learn more &rarr;</p>
-              </Link>
-            ))}
+            {services.map((s) => {
+              const Icon = ServiceIcons[s.iconKey];
+              return (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="bg-white rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-[#0B7A84]/10 flex items-center justify-center mb-4 group-hover:bg-[#0B7A84]/20 transition-colors">
+                    <Icon className="w-6 h-6 text-[#0B7A84]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+                  <p className="mt-4 text-[#0B7A84] text-sm font-semibold">Learn more &rarr;</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
