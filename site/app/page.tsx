@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import StatsCounter from "./components/StatsCounter";
 
 const stats = [
   { value: "99%+", label: "Collection Rate" },
@@ -175,14 +176,7 @@ export default function HomePage() {
       {/* Stats Bar */}
       <section className="bg-[#0B7A84] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p className="text-4xl font-bold text-white mb-1">{s.value}</p>
-                <p className="text-[#B8EE40] text-sm font-medium">{s.label}</p>
-              </div>
-            ))}
-          </div>
+          <StatsCounter stats={stats} />
         </div>
       </section>
 
