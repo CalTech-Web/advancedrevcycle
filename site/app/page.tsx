@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import StatsCounter from "./components/StatsCounter";
+import ScrollReveal from "./components/ScrollReveal";
 
 const stats = [
   { value: "99%+", label: "Collection Rate" },
@@ -191,21 +192,22 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s) => {
+            {services.map((s, i) => {
               const Icon = ServiceIcons[s.iconKey];
               return (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="bg-white rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-[#0B7A84]/10 flex items-center justify-center mb-4 group-hover:bg-[#0B7A84]/20 transition-colors">
-                    <Icon className="w-6 h-6 text-[#0B7A84]" />
-                  </div>
-                  <h3 className="text-lg font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
-                  <p className="mt-4 text-[#0B7A84] text-sm font-semibold">Learn more &rarr;</p>
-                </Link>
+                <ScrollReveal key={s.href} delay={i * 75}>
+                  <Link
+                    href={s.href}
+                    className="block h-full bg-white rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-[#0B7A84]/10 flex items-center justify-center mb-4 group-hover:bg-[#0B7A84]/20 transition-colors">
+                      <Icon className="w-6 h-6 text-[#0B7A84]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+                    <p className="mt-4 text-[#0B7A84] text-sm font-semibold">Learn more &rarr;</p>
+                  </Link>
+                </ScrollReveal>
               );
             })}
           </div>
@@ -260,10 +262,19 @@ export default function HomePage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-6">
-                <p className="text-gray-300 text-sm leading-relaxed mb-5 italic">&ldquo;{t.quote}&rdquo;</p>
-                <p className="text-[#B8EE40] text-xs font-semibold">{t.role}</p>
-              </div>
+              <ScrollReveal key={i} delay={i * 80}>
+                <div className="relative overflow-hidden bg-white/5 border-l-4 border-[#B8EE40] border-t border-r border-b border-t-white/10 border-r-white/10 border-b-white/10 rounded-xl p-6 h-full">
+                  {/* Decorative quote watermark */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -top-4 -right-2 text-[120px] leading-none text-white/5 font-serif select-none"
+                  >
+                    &ldquo;
+                  </span>
+                  <p className="relative text-gray-300 text-sm leading-relaxed mb-5 italic">&ldquo;{t.quote}&rdquo;</p>
+                  <p className="relative text-[#B8EE40] text-xs font-semibold">{t.role}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
