@@ -187,7 +187,7 @@ export default function HomePage() {
             {/* Left: Copy */}
             <div>
               <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">
-                Hospice &middot; Home Health &middot; Palliative Care Billing
+                Hospice &middot; Home Health &middot; Palliative Care
               </p>
               <h1 className="hero-fade-2 text-4xl sm:text-5xl lg:text-4xl font-bold text-white leading-tight mb-5">
                 Specialists Collect More. Period.

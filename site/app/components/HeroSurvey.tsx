@@ -140,7 +140,7 @@ export default function HeroSurvey() {
       {/* Header */}
       <div className="bg-[#0B7A84] px-7 py-5">
         <p className="text-[#B8EE40] text-xs font-bold uppercase tracking-widest mb-1.5">
-          Free Revenue Recovery Calculator
+          Revenue Recovery Calculator
         </p>
         <p className="text-white font-bold text-lg leading-snug">
           See exactly how much your agency is leaving uncollected.
