@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Billing Resources",
@@ -69,22 +70,23 @@ export default function ResourcesPage() {
               <div key={cat.category}>
                 <h2 className="text-2xl font-bold text-[#26303A] mb-8">{cat.category}</h2>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {cat.items.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.url}
-                      target={item.url.startsWith("http") ? "_blank" : undefined}
-                      rel={item.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group"
-                    >
-                      <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">
-                        {item.label}
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.desc}</p>
-                      <p className="text-[#0B7A84] text-sm font-semibold">
-                        {item.url.startsWith("http") ? "Visit site" : "View"} &rarr;
-                      </p>
-                    </a>
+                  {cat.items.map((item, i) => (
+                    <ScrollReveal key={item.label} delay={i * 70}>
+                      <a
+                        href={item.url}
+                        target={item.url.startsWith("http") ? "_blank" : undefined}
+                        rel={item.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="block bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group h-full"
+                      >
+                        <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">
+                          {item.label}
+                        </h3>
+                        <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.desc}</p>
+                        <p className="text-[#0B7A84] text-sm font-semibold">
+                          {item.url.startsWith("http") ? "Visit site" : "View"} &rarr;
+                        </p>
+                      </a>
+                    </ScrollReveal>
                   ))}
                 </div>
               </div>

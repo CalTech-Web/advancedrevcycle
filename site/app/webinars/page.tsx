@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Post-Acute Billing Webinars",
@@ -136,17 +137,19 @@ export default function WebinarsPage() {
 
           {/* Upcoming Topics */}
           <div className="grid md:grid-cols-2 gap-6">
-            {upcomingTopics.map((topic) => (
-              <div key={topic.title} className="bg-white rounded-xl p-7 shadow-sm border border-gray-100">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-semibold text-[#0B7A84] bg-[#0B7A84]/10 px-3 py-1 rounded-full">
-                    {topic.category}
-                  </span>
-                  <span className="text-xs text-[#FF5B04] font-semibold">Coming Soon</span>
+            {upcomingTopics.map((topic, i) => (
+              <ScrollReveal key={topic.title} delay={i * 80}>
+                <div className="bg-white rounded-xl p-7 shadow-sm border border-gray-100 h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-xs font-semibold text-[#0B7A84] bg-[#0B7A84]/10 px-3 py-1 rounded-full">
+                      {topic.category}
+                    </span>
+                    <span className="text-xs text-[#FF5B04] font-semibold">Coming Soon</span>
+                  </div>
+                  <h3 className="font-bold text-[#26303A] mb-3 leading-snug">{topic.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{topic.desc}</p>
                 </div>
-                <h3 className="font-bold text-[#26303A] mb-3 leading-snug">{topic.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{topic.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

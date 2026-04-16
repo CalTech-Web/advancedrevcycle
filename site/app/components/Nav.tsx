@@ -55,57 +55,51 @@ export default function Nav() {
             <div className="relative" onMouseEnter={() => setBillingOpen(true)} onMouseLeave={() => setBillingOpen(false)}>
               <button className="text-sm font-medium text-[#26303A] hover:text-[#0B7A84] transition-colors flex items-center gap-1">
                 Billing Solutions
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-4 h-4 transition-transform duration-200 ${billingOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {billingOpen && (
-                <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-56 z-50 border border-gray-100">
-                  {billingDropdown.map((item) => (
-                    <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm text-[#26303A] hover:bg-[#F8F5F2] hover:text-[#0B7A84]">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <div className={`absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-56 z-50 border border-gray-100 transition-all duration-200 origin-top ${billingOpen ? "opacity-100 scale-y-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"}`}>
+                {billingDropdown.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm text-[#26303A] hover:bg-[#F8F5F2] hover:text-[#0B7A84] transition-colors">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Billing Support */}
             <div className="relative" onMouseEnter={() => setSupportOpen(true)} onMouseLeave={() => setSupportOpen(false)}>
               <button className="text-sm font-medium text-[#26303A] hover:text-[#0B7A84] transition-colors flex items-center gap-1">
                 Billing Support
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-4 h-4 transition-transform duration-200 ${supportOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {supportOpen && (
-                <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-64 z-50 border border-gray-100">
-                  {supportDropdown.map((item) => (
-                    <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm text-[#26303A] hover:bg-[#F8F5F2] hover:text-[#0B7A84]">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <div className={`absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-64 z-50 border border-gray-100 transition-all duration-200 origin-top ${supportOpen ? "opacity-100 scale-y-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"}`}>
+                {supportDropdown.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm text-[#26303A] hover:bg-[#F8F5F2] hover:text-[#0B7A84] transition-colors">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Resources */}
             <div className="relative" onMouseEnter={() => setResourcesOpen(true)} onMouseLeave={() => setResourcesOpen(false)}>
               <button className="text-sm font-medium text-[#26303A] hover:text-[#0B7A84] transition-colors flex items-center gap-1">
                 Resources
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-4 h-4 transition-transform duration-200 ${resourcesOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {resourcesOpen && (
-                <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 z-50 border border-gray-100">
-                  {resourcesDropdown.map((item) => (
-                    <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm text-[#26303A] hover:bg-[#F8F5F2] hover:text-[#0B7A84]">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <div className={`absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 z-50 border border-gray-100 transition-all duration-200 origin-top ${resourcesOpen ? "opacity-100 scale-y-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"}`}>
+                {resourcesDropdown.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm text-[#26303A] hover:bg-[#F8F5F2] hover:text-[#0B7A84] transition-colors">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
             <Link href="/careers" className="text-sm font-medium text-[#26303A] hover:text-[#0B7A84] transition-colors">
