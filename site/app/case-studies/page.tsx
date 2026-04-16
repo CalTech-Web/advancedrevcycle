@@ -68,9 +68,33 @@ const caseStudies = [
   },
 ];
 
+const caseStudySchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Advanced RevCycle Client Case Studies",
+  description:
+    "Real results from hospice, home health, and palliative care agencies that partnered with Advanced RevCycle for revenue cycle management.",
+  url: "https://advancedrevcycle.com/case-studies",
+  itemListElement: caseStudies.map((cs, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Article",
+      name: cs.industry,
+      description: `Challenge: ${cs.challenge} Result: ${cs.result}`,
+      url: "https://advancedrevcycle.com/case-studies",
+      publisher: { "@id": "https://advancedrevcycle.com/#organization" },
+    },
+  })),
+};
+
 export default function CaseStudiesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      />
       {/* Hero */}
       <section className="bg-[#26303A] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -46,9 +46,40 @@ const differentiators = [
   "Tech-enabled with AI, automation, and proprietary workflow technology",
 ];
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://advancedrevcycle.com/about/#delaine-henry",
+      name: "Delaine Henry",
+      jobTitle: "Chief Executive Officer",
+      worksFor: { "@id": "https://advancedrevcycle.com/#organization" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://advancedrevcycle.com/about/#matt-timmins",
+      name: "Matt Timmins",
+      jobTitle: "President",
+      worksFor: { "@id": "https://advancedrevcycle.com/#organization" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://advancedrevcycle.com/about/#nicolas-perkin",
+      name: "Nicolas Perkin",
+      jobTitle: "Chairman",
+      worksFor: { "@id": "https://advancedrevcycle.com/#organization" },
+    },
+  ],
+};
+
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       {/* Hero */}
       <section className="bg-[#26303A] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

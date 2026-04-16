@@ -4,6 +4,7 @@ export interface BlogPost {
   category: string;
   excerpt: string;
   date: string;
+  dateISO: string;
   image: string;
   content: string;
   relatedService?: { title: string; href: string };
@@ -14,6 +15,7 @@ export const posts: BlogPost[] = [
     slug: "noe-timing-five-day-window",
     title: "NOE Timing: The Five-Day Window That Protects Your First Payment",
     category: "Compliance",
+    dateISO: "2026-04-01",
     excerpt:
       "A late Notice of Election does not trigger a warning. It triggers an automatic denial. Medicare requires the NOE to be filed within five days of a hospice patient's admission, and agencies that miss that window face a non-billable period starting from day one. The day count starts on the admission date, not on the day someone finds the paperwork. Filing on admission day removes the risk entirely.",
     date: "April 2026",
@@ -83,6 +85,7 @@ ARC's billing team files NOEs on the day of admission as standard practice. For 
     slug: "2025-hospice-wage-index-changes",
     title: "Understanding the 2025 Hospice Wage Index Changes",
     category: "Regulatory Update",
+    dateISO: "2026-03-01",
     excerpt:
       "The 2025 Medicare hospice wage index update moved reimbursement rates for agencies in dozens of geographic areas. Agencies that missed the adjustment discovered the gap when claims came back short. The changes are not complicated, but they require action before the next billing period.",
     date: "March 2026",
@@ -160,6 +163,7 @@ ARC's team monitors every CMS final rule and MAC bulletin that affects hospice r
     slug: "pdgm-primary-diagnosis-selection",
     title: "Why PDGM Primary Diagnosis Selection Matters More Than Ever",
     category: "Coding",
+    dateISO: "2026-02-01",
     excerpt:
       "Under the Patient-Driven Groupings Model, the primary diagnosis determines your clinical grouping and reimbursement rate. A suboptimal selection is not a minor issue, it is lost revenue on every episode. A coding review from a PDGM-specialized team before the first claim of an episode is the fastest way to close that gap.",
     date: "February 2026",
@@ -223,6 +227,7 @@ ARC's coding team, built through the RCO acquisition, conducts PDGM-aligned codi
     slug: "outsourced-billing-transition",
     title: "Transitioning from In-House to Outsourced Billing: What to Expect",
     category: "Operations",
+    dateISO: "2026-01-01",
     excerpt:
       "The decision to outsource billing is one of the easier ones. The handoff is where agencies get into trouble. A poorly timed transition can stall AR for months. Getting the timing and the steps right keeps collections intact from day one.",
     date: "January 2026",
@@ -302,6 +307,160 @@ By 90 days post-transition, the engagement should be fully operational. The indi
 The transition from in-house to outsourced billing is a well-trodden path in post-acute care. Most agencies that do it with proper planning maintain collections continuity from day one. Most agencies that do it without proper planning spend the next six months recovering.
 
 ARC has completed billing transitions in under 30 days and has onboarded agencies that had no billing infrastructure at all, starting from licensure. The key variable in every successful transition is the pre-transition groundwork, not the billing team's general competence once they are up and running.
+    `.trim(),
+  },
+  {
+    slug: "home-health-noa-five-day-rule",
+    title: "Home Health NOA Filing: How the Five-Day Rule Affects Your First Payment",
+    category: "Compliance",
+    dateISO: "2025-12-15",
+    excerpt:
+      "The Notice of Admission triggers a home health patient's Medicare coverage period. File it late and Medicare calculates a permanent non-billable period starting from day one of care. The five-day window runs on calendar days, not business days, and missing it by a single day costs revenue that cannot be recovered.",
+    date: "December 2025",
+    image: "/assets/gallery/careers-eligibility.jpg",
+    relatedService: { title: "Home Health Billing", href: "/home-health-billing" },
+    content: `
+The Notice of Admission is the document that initiates a home health patient's coverage period with Medicare. Without it, there is no billable period. File it late, and Medicare calculates a non-billable period for every day from the start of care through the day before the NOA was accepted. The dollar impact is immediate and permanent.
+
+## What the Five-Day Rule Requires
+
+Medicare requires home health agencies to file the Notice of Admission within five calendar days of the start of care date. The start of care date is the first day the agency provides a skilled service in the patient's home. That is the date the five-day window begins, not the date the order was received, the date the patient was referred, or the date the agency accepted the referral.
+
+If the NOA is not accepted by the Medicare Administrative Contractor within five days of the start of care, the claim for the first 30-day payment period will be reduced. The reduction equals the number of days from the start of care through the day before the NOA was accepted. A patient whose care began on the first of the month and whose NOA was not accepted until the seventh will have the first six days excluded from payment. Those days are not recoverable.
+
+## The Compliance History Behind the Rule
+
+CMS implemented the NOA requirement in the Calendar Year 2021 Home Health Prospective Payment System Final Rule. Before the NOA, home health agencies were not required to file any pre-claim document for the initial episode. The NOA replaced the Request for Anticipated Payment, which was phased out as part of the same regulatory update.
+
+The rule change was designed to give CMS and MACs earlier visibility into the home health benefit, consistent with the hospice Notice of Election requirement. The financial penalty for late filing is intentional. CMS designed it to ensure agencies treat the NOA as an operational priority rather than a documentation formality.
+
+## Why Agencies Miss the Window
+
+Most late NOA filings are not the result of ignorance. The most common causes are operational:
+
+**Referral intake and start of care are handled by different teams.** When the clinical team makes the first home visit and the administrative team does not learn about it until a chart transfer or morning report, the NOA is already delayed. In well-run agencies, the billing team knows about the first skilled visit on the day it happens.
+
+**Agencies wait for physician orders before initiating the NOA.** The physician's plan of care is a separate document with its own deadline. Waiting for the signed order before submitting the NOA is a common and costly mistake. CMS requires only that verbal orders be in place before the start of care. The NOA can be filed on verbal orders alone.
+
+**Weekend and holiday start of care visits.** A skilled nurse visit on a Friday afternoon may not be entered into the EMR billing module until Monday morning. By Monday, two or three days of the five-day window have already elapsed. Agencies that admit patients seven days a week need NOA processing available seven days a week.
+
+**EMR workflow disconnects.** In some systems, the clinical and billing workflows operate in separate modules. A completed visit note does not automatically create a billing notification. If the billing team depends on a report to know about new admissions, the report frequency determines how quickly the NOA gets filed.
+
+## The Dollar Impact
+
+Under the current PDGM payment structure, a 30-day payment period reimburses between approximately $2,000 and $3,500 depending on the clinical grouping, timing, and functional impairment level. Each excluded day in a non-billable period represents a proportional reduction to that total.
+
+For an early episode in the Musculoskeletal Rehabilitation clinical group with moderate functional impairment, the daily rate is roughly $100 to $120. A five-day non-billable period represents $500 to $600 lost on a single patient. An agency with 100 admissions per month experiencing even a 10% late NOA rate across a full year is losing $60,000 to $70,000 annually in permanently excluded revenue.
+
+For agencies with higher episode volumes, the compounding effect is more significant. Late NOA filings that go undetected until the remittance advice are often treated as one-time errors. They rarely are.
+
+## Connecting NOA Timing to Clean Claim Submission
+
+The NOA is the first step in the PDGM billing sequence. It must be accepted by the MAC before the first 30-day claim can be processed. An outstanding or rejected NOA creates a claims submission problem that delays the entire billing cycle.
+
+Agencies that file NOAs same-day as start of care create clean billing pipelines. The MAC has early visibility into the episode, the NOA is not a variable in the claims submission process, and the billing team does not have to track NOA status alongside active claim management.
+
+Agencies that allow the NOA to become a catch-up task rather than a same-day process introduce a persistent source of payment delays and permanent revenue loss.
+
+## Building a Same-Day NOA Protocol
+
+The operational requirements for same-day NOA filing parallel those for hospice NOE compliance:
+
+**A direct notification link between clinical and billing.** The billing team must know about every skilled visit on the day it occurs, not when reports are run or charts are transferred. This typically requires a defined communication protocol between the clinician making the first visit and the billing lead.
+
+**Clear separation of NOA from plan of care signing.** The NOA can be submitted on verbal orders. Agencies that tie NOA submission to the signed plan of care are creating unnecessary delay for every new patient.
+
+**Seven-day coverage.** Start of care visits happen on any day. NOA processing must be available on any day. For smaller agencies, this may mean having a single billing team member on call for weekend admissions. For larger agencies, it requires a structured coverage rotation.
+
+**MAC portal access and electronic submission.** All three Medicare Administrative Contractors, Palmetto GBA, CGS, and National Government Services, accept electronic NOA submission. Paper or batch submissions do not reliably meet the five-day window.
+
+## What to Do After a Late NOA
+
+When a MAC processes an NOA that was filed after the five-day window, it will calculate the non-billable period and reduce the subsequent claim payment. The agency will see this reflected on the remittance advice as a per-day reduction.
+
+There is no corrected claim mechanism to recover a non-billable period. The reduction is permanent. The productive response is an internal process review to identify why the NOA was late and a documented protocol change to prevent recurrence.
+
+Agencies that identify a pattern of late NOA filings should conduct a look-back audit to quantify the revenue impact. Knowing the total dollar amount of non-billable days over a given period is often the trigger that drives the operational changes that prevent further losses.
+
+ARC's home health billing team files NOAs on the start of care date as standard practice. For agencies that have experienced non-billable periods or are uncertain about their current NOA compliance, the starting point is a review of how the clinical team and billing team communicate when the first skilled visit occurs.
+    `.trim(),
+  },
+  {
+    slug: "authorization-eligibility-denial-prevention",
+    title: "Authorization and Eligibility Verification: Preventing Denials Before Claims Are Filed",
+    category: "Operations",
+    dateISO: "2025-11-15",
+    excerpt:
+      "Most denials are preventable. Eligibility verification confirms the patient is covered before care begins. Prior authorization confirms the payer has agreed to pay. When either step fails, the agency delivers care without a guarantee of payment. The appeal process for these denials is more limited than for almost any other denial type.",
+    date: "November 2025",
+    image: "/assets/gallery/careers-2.jpg",
+    relatedService: { title: "Authorization and Eligibility", href: "/authorization-and-eligibility" },
+    content: `
+Authorization and eligibility verification is the billing function that happens before the first claim is ever submitted. When it works correctly, the payer knows the patient is covered, the agency has permission to provide the service, and the claim can be processed without a coverage dispute. When it fails, the first sign of the problem is a denial on a claim for care that has already been delivered.
+
+## Why Eligibility Verification Is Not Optional
+
+A patient who presents for home health, hospice, or palliative care services may be enrolled in a plan that covers those services, or may not. The enrollment status may have changed since the last time the agency verified it. Secondary coverage that was active at admission may have lapsed. A Medicare Advantage plan may have specific network requirements that were not checked at intake.
+
+Eligibility verification is the process that answers these questions before care begins. Done correctly, it confirms the payer, the coverage type, the effective dates, the deductibles and co-pays, and any coverage limitations that affect how and whether the service will be billed and paid.
+
+A verification that misses a change in enrollment, a plan switch, or a coverage limit creates a claim that will be denied on payment. At that point, the service has been delivered. The denial has to be worked, appealed, or written off. The billing team is now resolving a problem that verification was supposed to prevent.
+
+## The Most Common Eligibility Gaps
+
+Eligibility verification failures cluster around several patterns:
+
+**Point-in-time verification that is not re-checked.** A verification completed at admission is accurate as of that date. Patients whose insurance changes during the course of care, such as those aging into Medicare, losing employer coverage, or switching Medicare Advantage plans, will trigger denials if the billing team is not re-verifying eligibility at defined intervals.
+
+**Medicare Advantage enrollment not identified.** Medicare Advantage plans require prior authorization and network participation that traditional Medicare fee-for-service does not. Agencies that verify Medicare eligibility without distinguishing between traditional Medicare and Medicare Advantage will submit claims to the wrong payer, receive denials, and face timely filing problems while the correct payer is identified.
+
+**Medicaid coverage without managed care identification.** Many Medicaid programs are administered through managed care organizations. A patient enrolled in Medicaid may be covered through a specific MCO that has its own billing requirements and authorization process. Billing directly to Medicaid when an MCO is the primary payer results in denials.
+
+**Verification without benefit exhaustion check.** Medicare hospice has a defined benefit period structure. Patients who have used their hospice benefit and elected to continue, or who have revoked and re-elected, have specific billing implications. Eligibility verification must include a benefit period check to identify patients approaching or in an election with prior benefit usage.
+
+## Prior Authorization: The Second Layer
+
+Eligibility verification establishes that a patient is covered. Prior authorization establishes that the specific services the agency intends to provide are approved by the payer before those services begin.
+
+Authorization requirements vary by payer and by line of care. Traditional Medicare does not require prior authorization for hospice or home health services. Medicare Advantage plans frequently do, with requirements that include medical necessity documentation, clinical notes, and plan-specific forms. Commercial insurance and Medicaid managed care plans each have their own authorization requirements.
+
+An agency that begins services without obtaining required authorization, or that provides services beyond an authorized scope, has delivered care that the payer has not agreed to pay for. The claim will be denied, and the appeal process for non-authorized services is more limited than the appeal process for other denial types.
+
+## Managing the Authorization Lifecycle
+
+Initial authorization is not the end of the process. Many authorizations are time-limited. A home health authorization issued for a 60-day episode must be renewed if services continue beyond that period. A palliative care authorization may require re-authorization at each billing cycle.
+
+Re-authorization failures are a common source of claims denials that compound over time. An agency that obtains initial authorization but does not track re-authorization deadlines will have claims denied for services delivered after the authorization expired. Unlike many other denial types, expired authorization denials often cannot be reversed on appeal because the payer's process required the agency to request re-authorization in advance.
+
+The authorization lifecycle requires:
+
+**Tracking every active authorization with its expiration date.** Authorizations that expire without a completed re-authorization request should be flagged in advance, not discovered after a denial.
+
+**Documentation that supports re-authorization.** Payers that issue time-limited authorizations typically require updated clinical documentation showing continued medical necessity. The billing team needs access to current clinical documentation to support the re-authorization request before the deadline.
+
+**A defined protocol for plan-specific requirements.** Each payer has its own authorization process, timeline, and documentation requirements. An authorization team working across multiple payers needs a system that tracks payer-specific requirements rather than treating all authorizations as the same process.
+
+## Eligibility Disputes and Authorization Appeals
+
+When a claim is denied based on eligibility or authorization, the response depends on the denial type.
+
+Eligibility disputes, where the agency believes the patient was eligible but the claim was denied for a coverage reason, typically require documentation of enrollment status, explanation of benefits from the patient's prior insurer if a plan switch is involved, or coordination of benefits clarification.
+
+Authorization denials for services provided without prior authorization are generally harder to appeal. Many plans limit the circumstances under which retrospective authorization will be considered. The stronger position is to have obtained authorization before services began.
+
+Authorization denials for services provided after an authorization expired are similarly limited. Some plans will consider an administrative exception if the re-authorization request was submitted on time but not processed before the authorization expired. Plans that do not allow exceptions require the agency to accept the denial or to seek direct payment from the patient under specific circumstances.
+
+The goal of authorization and eligibility management is not to have a good denial appeal process. It is to prevent the denial in the first place.
+
+## Why Dedicated Authorization Management Improves Collections
+
+Agencies that assign authorization and eligibility management to billers who are also responsible for claims submission are asking those billers to handle two functions with different timelines and different skill requirements. Claims follow-up is reactive. Authorization management is proactive.
+
+A dedicated authorization function, or a team that specializes in payer-specific requirements across lines of care, produces fewer denials, catches re-authorization deadlines before they lapse, and maintains the documentation needed to support both initial authorizations and re-authorizations.
+
+For agencies whose denial rates are driven by authorization and eligibility issues, separating these functions from general billing often produces measurable improvement in first-pass claim acceptance rates within 90 days.
+
+ARC manages the full authorization lifecycle as part of its authorization and eligibility service, including initial verification, prior authorization submission, re-authorization tracking, and appeals management for denials that result from eligibility or authorization issues.
     `.trim(),
   },
 ];

@@ -43,6 +43,8 @@ function buildSchema(post: (typeof posts)[0]) {
         description: post.excerpt.slice(0, 160),
         url: `https://advancedrevcycle.com/blog/${post.slug}`,
         image: `https://advancedrevcycle.com${post.image}`,
+        datePublished: post.dateISO,
+        dateModified: post.dateISO,
         author: {
           "@type": "Organization",
           "@id": "https://advancedrevcycle.com/#organization",

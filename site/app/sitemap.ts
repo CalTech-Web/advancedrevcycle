@@ -1,8 +1,16 @@
 import type { MetadataRoute } from "next";
+import { posts } from "./blog/data";
 
 const base = "https://advancedrevcycle.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${base}/blog/${post.slug}`,
+    lastModified: new Date(post.dateISO),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   return [
     {
       url: base,
@@ -94,5 +102,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...blogEntries,
   ];
 }

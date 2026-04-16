@@ -144,9 +144,27 @@ const emrLogos = [
   { name: "Delta Health Tech", file: "/assets/products/emr-deltahealthtech.jpg" },
 ];
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How Advanced RevCycle Manages Post-Acute Billing",
+  description:
+    "The six-step process ARC uses to manage hospice, home health, and palliative care revenue cycles, from EMR onboarding through proactive claims follow-up.",
+  step: process.map((step, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: step.title,
+    text: step.desc,
+  })),
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center" id="hero">
         <div className="absolute inset-0 z-0">
