@@ -4,6 +4,7 @@ import Link from "next/link";
 import StatsCounter from "./components/StatsCounter";
 import ScrollReveal from "./components/ScrollReveal";
 import HeroSurvey from "./components/HeroSurvey";
+import TestimonialsCarousel from "./components/TestimonialsCarousel";
 
 export const metadata: Metadata = {
   title: "Advanced RevCycle | Post-Acute Revenue Cycle Management",
@@ -323,23 +324,7 @@ export default function HomePage() {
             <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Client Voices</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">What Our Clients Say</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((t, i) => (
-              <ScrollReveal key={i} delay={i * 80}>
-                <div className="relative overflow-hidden bg-white/5 border-l-4 border-[#B8EE40] border-t border-r border-b border-t-white/10 border-r-white/10 border-b-white/10 rounded-xl p-6 h-full">
-                  {/* Decorative quote watermark */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -top-4 -right-2 text-[120px] leading-none text-white/5 font-serif select-none"
-                  >
-                    &ldquo;
-                  </span>
-                  <p className="relative text-gray-300 text-sm leading-relaxed mb-5 italic">&ldquo;{t.quote}&rdquo;</p>
-                  <p className="relative text-[#B8EE40] text-xs font-semibold">{t.role}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} />
         </div>
       </section>
 
