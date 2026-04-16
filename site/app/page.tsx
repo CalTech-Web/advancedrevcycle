@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import StatsCounter from "./components/StatsCounter";
 import ScrollReveal from "./components/ScrollReveal";
+import HeroSurvey from "./components/HeroSurvey";
 
 export const metadata: Metadata = {
   title: "Advanced RevCycle | Post-Acute Revenue Cycle Management",
@@ -180,99 +181,56 @@ export default function HomePage() {
             <rect width="100%" height="100%" fill="url(#hex)"/>
           </svg>
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
-          <div className="max-w-4xl">
-            <p className="hero-fade-1 inline-flex items-center gap-2 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#B8EE40]" aria-hidden="true" />
-              Exclusively Post-Acute: Hospice, Home Health &amp; Palliative Care
-            </p>
-            <h1 className="hero-fade-2 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-4">
-              Your Agency Is Losing<br />Revenue It Already Earned
-            </h1>
-            <p className="hero-fade-2 text-[#B8EE40] font-semibold text-base sm:text-lg mb-6">
-              ARC has a 100% track record of reducing AR for every post-acute agency we serve.
-            </p>
-            <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-7 leading-relaxed">
-              Every day claims age in AR, your agency loses money it has already earned. ARC&apos;s 50+ U.S.-based billers work exclusively in hospice, home health, and palliative care, have collected over $5 billion for agencies nationwide, and follow every claim until it is paid. You pay nothing until we collect.
-            </p>
-            {/* Inline stat cluster */}
-            <div className="hero-fade-3 flex flex-wrap items-center gap-x-6 gap-y-4 mb-8 bg-white/5 border border-white/10 rounded-xl px-5 py-4">
-              <div>
-                <p className="text-2xl font-bold text-white leading-none">99%+</p>
-                <p className="text-xs text-gray-400 mt-0.5">Collection Rate</p>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: Copy */}
+            <div>
+              <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">
+                Billing &amp; Revenue Management Built for Your Lines of Care
+              </p>
+              <h1 className="hero-fade-2 text-4xl sm:text-5xl font-bold text-white leading-tight mb-5">
+                Is your billing process working for you?
+              </h1>
+              <p className="hero-fade-3 text-gray-200 text-lg max-w-xl mb-4 leading-relaxed">
+                Advanced RevCycle offers top-tier hospice, home health, and palliative care billing services. Our dedicated team of 50+ U.S.-based billers has collected over $5 billion for agencies of all sizes, and we follow every claim until it is paid. You pay nothing until we collect.
+              </p>
+              <p className="hero-fade-3 text-white/60 italic text-sm mb-8">
+                Tech-Enabled. Human-Driven. Revenue Optimized.
+              </p>
+              <div className="hero-fade-4 flex flex-col sm:flex-row gap-4 mb-8">
+                <a
+                  href="#howWeDo"
+                  className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-7 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center"
+                >
+                  How We Do It
+                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-7 py-3 rounded-lg hover:bg-white/20 transition-colors text-center"
+                >
+                  Contact Us
+                </Link>
               </div>
-              <div className="w-px h-8 bg-white/15 hidden sm:block" aria-hidden="true" />
-              <div>
-                <p className="text-2xl font-bold text-white leading-none">$5B+</p>
-                <p className="text-xs text-gray-400 mt-0.5">Collected for Agencies</p>
-              </div>
-              <div className="w-px h-8 bg-white/15 hidden sm:block" aria-hidden="true" />
-              <div>
-                <p className="text-2xl font-bold text-white leading-none">100%</p>
-                <p className="text-xs text-gray-400 mt-0.5">Contingency Pricing</p>
-              </div>
-              <div className="w-px h-8 bg-white/15 hidden sm:block" aria-hidden="true" />
-              <div>
-                <p className="text-2xl font-bold text-white leading-none">20+</p>
-                <p className="text-xs text-gray-400 mt-0.5">Yrs Avg. Biller Exp.</p>
-              </div>
-            </div>
-            <div className="hero-fade-4 flex flex-col sm:flex-row items-start gap-4 mb-6">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center w-full sm:w-auto"
-              >
-                Get a Free AR Review
-              </Link>
-              <a
-                href="#howWeDo"
-                className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/20 transition-colors text-center w-full sm:w-auto"
-              >
-                See How We Work
-              </a>
-            </div>
-            <div className="hero-fade-4 max-w-xl bg-white/10 border border-white/15 rounded-xl p-5 flex gap-4 items-start mb-5">
-              <svg className="w-8 h-8 text-[#B8EE40] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
-              </svg>
-              <div>
-                <p className="text-gray-200 text-sm leading-relaxed italic mb-2">
-                  &ldquo;When ARC took over it was a complete 180. A breath of fresh air. Everything they said was proven with our collections.&rdquo;
-                </p>
-                <p className="text-[#B8EE40] text-xs font-semibold">Hospice CEO, Western U.S.</p>
+              <div className="hero-fade-4 flex flex-wrap gap-x-6 gap-y-2">
+                {[
+                  "Trusted in all 50 states",
+                  "100% contingency pricing",
+                  "U.S.-based billers only",
+                  "No EMR conversion required",
+                ].map((badge) => (
+                  <span key={badge} className="flex items-center gap-1.5 text-white/60 text-xs font-medium">
+                    <svg className="w-3.5 h-3.5 text-[#B8EE40] flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    {badge}
+                  </span>
+                ))}
               </div>
             </div>
-            <p className="hero-fade-4 text-xs text-white/40 mb-2">
-              No flat fees. No retainers. You pay only when we collect. Transition in as few as 30 days.
-            </p>
-            <p className="hero-fade-4 text-xs text-white/50 mb-6">
-              Prefer to call?{" "}
-              <a href="tel:+18887373585" className="text-white/70 hover:text-white font-medium transition-colors">
-                (888) 737-3585
-              </a>
-            </p>
-            <p className="hero-fade-4 text-sm text-gray-400 mb-10">
-              Not ready to talk?{" "}
-              <a href="#surveyForm" className="text-[#B8EE40] hover:underline font-medium">
-                Take our 2-minute billing survey
-              </a>{" "}
-              and we&apos;ll identify where your revenue is slipping.
-            </p>
-          </div>
-          <div className="hero-fade-4 mt-10 flex flex-wrap gap-x-8 gap-y-2">
-            {[
-              "Trusted in all 50 states",
-              "100% contingency pricing",
-              "U.S.-based billers only",
-              "No EMR conversion required",
-            ].map((badge) => (
-              <span key={badge} className="flex items-center gap-1.5 text-white/60 text-xs font-medium">
-                <svg className="w-3.5 h-3.5 text-[#B8EE40] flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                {badge}
-              </span>
-            ))}
+            {/* Right: Survey */}
+            <div className="hero-fade-4 flex justify-center lg:justify-end">
+              <HeroSurvey />
+            </div>
           </div>
         </div>
       </section>
