@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const billingDropdown = [
   { label: "Hospice Billing", href: "/hospice-billing" },
@@ -28,11 +28,18 @@ export default function Nav() {
   const [billingOpen, setBillingOpen] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-white shadow-sm"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "h-16" : "h-20"}`}>
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
@@ -132,7 +139,7 @@ export default function Nav() {
 
         {/* Mobile Nav */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-gray-100 py-4 space-y-2">
+          <div className="lg:hidden mobile-menu-enter border-t border-gray-100 py-4 space-y-2">
             <Link href="/about" className="block px-4 py-2 text-sm font-medium text-[#26303A] hover:text-[#0B7A84]" onClick={() => setMobileOpen(false)}>About</Link>
 
             <div className="px-4 py-2">
