@@ -85,12 +85,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${base}/webinars`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
       url: `${base}/careers`,
       lastModified: new Date(),
       changeFrequency: "monthly",

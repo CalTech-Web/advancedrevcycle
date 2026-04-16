@@ -86,7 +86,6 @@ export default function Footer() {
               {[
                 { label: "Important Links", href: "/resources" },
                 { label: "Case Studies", href: "/case-studies" },
-                { label: "Webinars", href: "/webinars" },
                 { label: "Blog", href: "/blog" },
                 { label: "Careers", href: "/careers" },
                 { label: "Contact Us", href: "/contact" },

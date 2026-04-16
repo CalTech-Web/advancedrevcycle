@@ -19,7 +19,6 @@ const supportDropdown = [
 
 const resourcesDropdown = [
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Webinars", href: "/webinars" },
   { label: "Blog", href: "/blog" },
 ];
 

@@ -5,7 +5,7 @@ import ScrollReveal from "../components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Billing Resources",
   description:
-    "Billing resources, regulatory links, case studies, webinars, and more for hospice, home health, and palliative care agencies.",
+    "Billing resources, regulatory links, case studies, and more for hospice, home health, and palliative care agencies.",
   alternates: {
     canonical: "https://advancedrevcycle.com/resources",
   },
@@ -27,7 +27,6 @@ const resourceLinks = [
     category: "ARC Resources",
     items: [
       { label: "Case Studies", url: "/case-studies", desc: "Real results for hospice, home health, and palliative care agencies" },
-      { label: "Webinars", url: "/webinars", desc: "Educational content on billing, coding, and compliance" },
       { label: "Blog", url: "/blog", desc: "Industry insights, regulatory updates, and billing best practices" },
     ],
   },
