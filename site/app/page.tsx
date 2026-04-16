@@ -180,27 +180,65 @@ export default function HomePage() {
             <rect width="100%" height="100%" fill="url(#hex)"/>
           </svg>
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">Post-Acute Billing Specialists</p>
-          <h1 className="hero-fade-2 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
-            Tech-Enabled.<br />Human-Driven.<br />Revenue Optimized.
-          </h1>
-          <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
-            We work in one corner of healthcare, hospice, home health, and palliative care. That focus is not a limitation. It is why our 50+ billers have collected over $5 billion for agencies of all sizes, and why every one of them earns only when you do.
-          </p>
-          <div className="hero-fade-4 flex flex-col sm:flex-row items-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center w-full sm:w-auto"
-            >
-              Contact Us
-            </Link>
-            <a
-              href="#howWeDo"
-              className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/20 transition-colors text-center w-full sm:w-auto"
-            >
-              How We Do It
-            </a>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+          <div className="max-w-4xl">
+            <p className="hero-fade-1 inline-flex items-center gap-2 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#B8EE40]" aria-hidden="true" />
+              Exclusively Post-Acute: Hospice, Home Health &amp; Palliative Care
+            </p>
+            <h1 className="hero-fade-2 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
+              Your Agency Is Owed<br />More Than It&apos;s Collecting
+            </h1>
+            <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-8 leading-relaxed">
+              ARC&apos;s 50+ U.S.-based billers have collected over $5 billion for post-acute agencies nationwide, with a 99%+ collection rate. We follow every claim until it is paid, and we only earn when you do.
+            </p>
+            <div className="hero-fade-4 flex flex-col sm:flex-row items-start gap-4 mb-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center w-full sm:w-auto"
+              >
+                Get a Free AR Review
+              </Link>
+              <a
+                href="#howWeDo"
+                className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/20 transition-colors text-center w-full sm:w-auto"
+              >
+                See How We Work
+              </a>
+            </div>
+            <p className="hero-fade-4 text-sm text-gray-400 mb-10">
+              Not ready to talk?{" "}
+              <a href="#surveyForm" className="text-[#B8EE40] hover:underline font-medium">
+                Take our 2-minute billing survey
+              </a>{" "}
+              and we&apos;ll identify where your revenue is slipping.
+            </p>
+            <div className="hero-fade-4 max-w-xl bg-white/10 border border-white/15 rounded-xl p-5 flex gap-4 items-start">
+              <svg className="w-8 h-8 text-[#B8EE40] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
+              </svg>
+              <div>
+                <p className="text-gray-200 text-sm leading-relaxed italic mb-2">
+                  &ldquo;When ARC took over it was a complete 180. A breath of fresh air. Everything they said was proven with our collections.&rdquo;
+                </p>
+                <p className="text-[#B8EE40] text-xs font-semibold">Hospice CEO, Western U.S.</p>
+              </div>
+            </div>
+          </div>
+          <div className="hero-fade-4 mt-10 flex flex-wrap gap-x-8 gap-y-2">
+            {[
+              "Trusted in all 50 states",
+              "100% contingency pricing",
+              "U.S.-based billers only",
+              "No EMR conversion required",
+            ].map((badge) => (
+              <span key={badge} className="flex items-center gap-1.5 text-white/60 text-xs font-medium">
+                <svg className="w-3.5 h-3.5 text-[#B8EE40] flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                {badge}
+              </span>
+            ))}
           </div>
         </div>
       </section>
