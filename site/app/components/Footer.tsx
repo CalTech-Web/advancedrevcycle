@@ -122,7 +122,7 @@ export default function Footer() {
           <div className="flex gap-6 text-sm text-gray-500">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
-            <a href="https://caltechweb.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Powered by Caltechweb</a>
+            <a href="https://caltechweb.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Powered by CalTech Web</a>
           </div>
         </div>
       </div>
