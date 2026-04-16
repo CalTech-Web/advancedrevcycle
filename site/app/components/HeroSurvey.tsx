@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function formatCurrency(n: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -8,6 +8,14 @@ function formatCurrency(n: number): string {
     currency: "USD",
     maximumFractionDigits: 0,
   }).format(n);
+}
+
+function getRateContext(rate: number): { label: string; color: string } {
+  if (rate <= 79) return { label: "Well below average", color: "text-red-500" };
+  if (rate <= 84) return { label: "Below average", color: "text-orange-500" };
+  if (rate <= 91) return { label: "Industry average", color: "text-amber-600" };
+  if (rate <= 95) return { label: "Above average", color: "text-[#0B7A84]" };
+  return { label: "Top performer", color: "text-[#0B7A84]" };
 }
 
 const linesOfCare = [
@@ -30,11 +38,34 @@ export default function HeroSurvey() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
+  // Count-up animation state — starts at 0 so it counts up on mount
+  const [displayedMonthly, setDisplayedMonthly] = useState(0);
+  const prevRef = useRef(0);
+  const animRef = useRef<number | null>(null);
+
   const volume = parseFloat(rawVolume.replace(/,/g, "")) || 0;
   const hasResult = volume > 0;
   const annualVolume = volume * 12;
   const annualGap = annualVolume * ((99 - collectionRate) / 100);
   const monthlyGap = annualGap / 12;
+  const rateContext = getRateContext(collectionRate);
+
+  useEffect(() => {
+    const from = prevRef.current;
+    const to = monthlyGap;
+    prevRef.current = to;
+    if (animRef.current) cancelAnimationFrame(animRef.current);
+    const startTime = performance.now();
+    const duration = 650;
+    function step(now: number) {
+      const t = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setDisplayedMonthly(Math.round(from + (to - from) * eased));
+      if (t < 1) animRef.current = requestAnimationFrame(step);
+    }
+    animRef.current = requestAnimationFrame(step);
+    return () => { if (animRef.current) cancelAnimationFrame(animRef.current); };
+  }, [monthlyGap]);
 
   function handleVolumeChange(e: React.ChangeEvent<HTMLInputElement>) {
     const digits = e.target.value.replace(/[^0-9]/g, "");
@@ -96,7 +127,8 @@ export default function HeroSurvey() {
           <p className="text-[#26303A] font-bold text-xl mb-2">You&apos;re on our list.</p>
           <p className="text-gray-500 text-sm leading-relaxed">
             Our team will call or email within one business day to walk through recovering{" "}
-            <span className="font-semibold text-[#FF5B04]">{formatCurrency(annualGap)}</span> in annual collections. No pressure, no sales pitch.
+            <span className="font-semibold text-[#FF5B04]">{formatCurrency(annualGap)}</span> in
+            annual collections. No pressure, no sales pitch.
           </p>
         </div>
       </div>
@@ -156,38 +188,52 @@ export default function HeroSurvey() {
             onChange={(e) => setCollectionRate(Number(e.target.value))}
             className="w-full accent-[#0B7A84] cursor-pointer h-1.5"
           />
-          <div className="flex justify-between text-xs mt-1.5">
+          {/* Dynamic context label replaces static right label */}
+          <div className="flex justify-between items-center text-xs mt-1.5">
             <span className="text-gray-400">50% (industry low)</span>
-            <span className="text-[#0B7A84] font-semibold">ARC average: 99%+</span>
+            <span className={`font-semibold ${rateContext.color}`}>{rateContext.label}</span>
           </div>
         </div>
 
         {/* Result */}
         {hasResult ? (
-          <div className="rounded-xl overflow-hidden border border-[#FF5B04]/25">
-            <div className="bg-[#FFF8F5] px-5 py-4">
-              <p className="text-xs text-gray-500 font-medium mb-1">
-                Your agency may be leaving uncollected
-              </p>
-              <p className="text-4xl font-bold text-[#FF5B04] tabular-nums leading-none">
-                {formatCurrency(annualGap)}
-              </p>
-              <p className="text-sm font-semibold text-[#26303A] mt-1.5">
-                per year{" "}
-                <span className="text-gray-400 font-normal text-xs">
-                  &nbsp;&middot;&nbsp; {formatCurrency(monthlyGap)}/month
-                </span>
-              </p>
+          <>
+            <div className="rounded-xl overflow-hidden border border-[#FF5B04]/25">
+              <div className="bg-[#FFF8F5] px-5 py-4">
+                {/* Monthly as primary — more immediate and urgent */}
+                <p className="text-xs text-gray-500 font-medium mb-1">
+                  Left uncollected this month
+                </p>
+                <p className="text-4xl font-bold text-[#FF5B04] tabular-nums leading-none">
+                  {formatCurrency(displayedMonthly)}
+                </p>
+                <p className="text-sm text-gray-500 mt-1.5">
+                  That&apos;s{" "}
+                  <span className="font-semibold text-[#26303A]">{formatCurrency(annualGap)}</span>{" "}
+                  per year
+                </p>
+              </div>
+              <div className="bg-[#0B7A84]/[0.07] px-5 py-2.5 flex items-center gap-2">
+                <svg className="w-3.5 h-3.5 text-[#0B7A84] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-xs text-[#0B7A84] font-medium">
+                  Closing the gap from {collectionRate}% to ARC&apos;s 99%+ rate
+                </p>
+              </div>
             </div>
-            <div className="bg-[#0B7A84]/8 px-5 py-2.5 flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 text-[#0B7A84] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+
+            {/* Testimonial — social proof at point of impact */}
+            <div className="bg-[#F8F5F2] rounded-xl px-5 py-4">
+              <svg className="w-5 h-5 text-[#0B7A84]/30 mb-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
-              <p className="text-xs text-[#0B7A84] font-medium">
-                Calculated by closing your gap from {collectionRate}% to ARC&apos;s 99%+ rate
+              <p className="text-sm text-[#26303A] leading-relaxed italic">
+                &ldquo;Working with ARCM is one of the easiest decisions I have ever made in my life.&rdquo;
               </p>
+              <p className="text-xs text-gray-400 mt-2 font-medium">CFO, Non-Profit Hospice</p>
             </div>
-          </div>
+          </>
         ) : (
           <div className="rounded-xl border border-dashed border-gray-200 px-5 py-6 text-center">
             <p className="text-sm font-semibold text-[#26303A] mb-1">Enter your billing volume above</p>
@@ -215,8 +261,7 @@ export default function HeroSurvey() {
         {/* Expanded contact form */}
         {hasResult && showForm && (
           <form onSubmit={handleSubmit} className="space-y-3 pt-2 border-t border-gray-100">
-            {/* Recovery amount reminder above form */}
-            <div className="flex items-center justify-between bg-[#FFF8F5] rounded-lg px-4 py-2.5 mb-1">
+            <div className="flex items-center justify-between bg-[#FFF8F5] rounded-lg px-4 py-2.5">
               <p className="text-xs text-gray-500">Potential annual recovery</p>
               <p className="text-base font-bold text-[#FF5B04] tabular-nums">{formatCurrency(annualGap)}</p>
             </div>
@@ -274,7 +319,6 @@ export default function HeroSurvey() {
             >
               {submitStatus === "submitting" ? "Sending..." : "Get My Free Recovery Plan →"}
             </button>
-            {/* Trust signals */}
             <div className="flex items-start gap-3 pt-1">
               <div className="flex items-center gap-1.5 text-xs text-gray-400">
                 <svg className="w-3.5 h-3.5 text-[#0B7A84] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
