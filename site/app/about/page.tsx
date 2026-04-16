@@ -17,7 +17,7 @@ const leadership = [
     name: "Delaine Henry",
     title: "Chief Executive Officer",
     bio: "Delaine founded what is now Advanced RevCycle over a decade ago, starting with a single biller in New Orleans and building to 50+ billing professionals across the U.S. She is still in every conversation that matters.",
-    quote: "At ARCM, our mission to serve you is truly personal.",
+    quote: "At Advanced RevCycle, our mission to serve you is truly personal.",
     image: null,
   },
   {

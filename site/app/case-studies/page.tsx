@@ -33,7 +33,7 @@ const caseStudies = [
     timeline: "2.5 years",
     badge: "Hospice",
     quote:
-      "Working with ARCM is one of the easiest decisions I have ever made in my life.",
+      "Working with Advanced RevCycle is one of the easiest decisions I have ever made in my life.",
     metric: { value: "10 hrs → 1 hr", label: "Weekly Billing Time" },
   },
   {
