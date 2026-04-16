@@ -248,8 +248,8 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-0.5">Live in Under 30 Days</p>
-                    <p className="text-white/55 text-xs leading-relaxed">Full billing takeovers completed in less than a month. Revenue starts fast.</p>
+                    <p className="text-white font-semibold text-sm mb-0.5">Onboarding in as Little as 30 Days</p>
+                    <p className="text-white/55 text-xs leading-relaxed">Billing takeovers completed in as little as 30 days. Revenue starts fast.</p>
                   </div>
                 </div>
               </div>

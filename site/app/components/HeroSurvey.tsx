@@ -34,7 +34,7 @@ export default function HeroSurvey() {
       email: data.get("email") as string,
       phone: "",
       message: [
-        "Source: Hero CTA — Free Billing Analysis Request",
+        "Source: Hero CTA — Free Consultation Request",
         data.get("agencyName") ? `Agency: ${data.get("agencyName")}` : "",
         data.get("lineOfCare") ? `Line of Care: ${data.get("lineOfCare")}` : "",
       ]
@@ -85,7 +85,7 @@ export default function HeroSurvey() {
       {/* Header */}
       <div className="bg-[#0B7A84] px-8 py-6">
         <p className="text-[#B8EE40] text-xs font-bold uppercase tracking-widest mb-2">
-          Free Billing Analysis
+          Free Consultation
         </p>
         <p className="text-white font-bold text-xl leading-snug">
           See what you could be collecting.
@@ -179,7 +179,7 @@ export default function HeroSurvey() {
           disabled={status === "submitting"}
           className="w-full bg-[#FF5B04] text-white font-bold py-3.5 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-60 text-sm tracking-wide"
         >
-          {status === "submitting" ? "Submitting..." : "Request Free Analysis"}
+          {status === "submitting" ? "Submitting..." : "Request Free Consultation"}
         </button>
 
         <div className="pt-2 border-t border-gray-100 space-y-1.5">
