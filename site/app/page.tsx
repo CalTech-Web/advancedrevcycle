@@ -282,13 +282,15 @@ export default function HomePage() {
             <div>
               <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">Our Process</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#26303A] mb-6">How We Do It</h2>
-              <div className="space-y-6">
+              <div className="relative space-y-6">
+                  {/* Vertical connector line through the numbered circles */}
+                  <div className="absolute left-5 top-5 bottom-5 w-px bg-gradient-to-b from-[#0B7A84] via-[#0B7A84]/60 to-[#0B7A84]/10" aria-hidden="true" />
                 {process.map((step, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-[#0B7A84] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    <div className="relative z-10 flex-shrink-0 w-10 h-10 bg-[#0B7A84] rounded-full flex items-center justify-center text-white font-bold text-sm ring-4 ring-white shadow-sm">
                       {i + 1}
                     </div>
-                    <div>
+                    <div className="pt-1.5">
                       <p className="text-xs text-[#FF5B04] font-semibold uppercase tracking-wide mb-0.5">{step.phase}</p>
                       <h3 className="font-bold text-[#26303A] mb-1">{step.title}</h3>
                       <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
