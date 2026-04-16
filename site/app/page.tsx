@@ -56,37 +56,37 @@ const ServiceIcons: Record<string, React.FC<{ className?: string }>> = {
 const services = [
   {
     title: "Hospice Billing",
-    desc: "Full-cycle billing for Medicare, Medicaid, VA, and commercial payers with proactive claims follow-up.",
+    desc: "The only line of care we work in. Every NOE, every MAC jurisdiction, and every claim followed until paid.",
     href: "/hospice-billing",
     iconKey: "hospice",
   },
   {
     title: "Home Health Billing",
-    desc: "All-payer billing with electronic and manual payment posting, reconciliation, and on-demand AR reporting.",
+    desc: "PDGM-aware billing from NOA filing through final payment. Every episode tracked, every discrepancy resolved.",
     href: "/home-health-billing",
     iconKey: "homehealth",
   },
   {
     title: "Palliative Care Billing",
-    desc: "Comprehensive claims creation, secondary payer billing, and full appeals management.",
+    desc: "Medicare, Medicaid, VA, and commercial plans on the same patient. We manage primary, secondary, and patient billing without losing track of any layer.",
     href: "/palliative-care-billing",
     iconKey: "palliative",
   },
   {
     title: "Authorization and Eligibility",
-    desc: "Patient eligibility verification, prior authorization support, and appeals management.",
+    desc: "Most denials start before services begin. ARC verifies eligibility upfront and manages every authorization through re-approval.",
     href: "/authorization-and-eligibility",
     iconKey: "auth",
   },
   {
     title: "Contracting and Credentialing",
-    desc: "Contract negotiation, credentialing, provider enrollment, and payer relations.",
+    desc: "You cannot bill a payer you are not credentialed with. ARC handles applications, renewals, and escalations.",
     href: "/contracting-and-credentialing",
     iconKey: "contracting",
   },
   {
     title: "Coding and OASIS Review",
-    desc: "ICD-10 coding, PDGM-aligned diagnosis selection, and four levels of OASIS review.",
+    desc: "Under PDGM, the primary diagnosis sets your payment rate. ARC selects codes to CMS conventions across four levels of OASIS review.",
     href: "/coding-and-oasis-review",
     iconKey: "coding",
   },

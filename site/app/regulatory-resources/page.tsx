@@ -72,7 +72,7 @@ export default function RegulatoryResourcesPage() {
             Regulatory Resources for Post-Acute Billing
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            Important links to Medicare Administrative Contractors, CMS guidance manuals, billing codes, and tools for hospice and home health agencies.
+            Three MACs cover all of Medicare. CMS publishes the rules. Here are the pages that matter for hospice and home health billing, without the search.
           </p>
         </div>
       </section>
@@ -140,9 +140,9 @@ export default function RegulatoryResourcesPage() {
       {/* CTA */}
       <section className="bg-[#0B7A84] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-5">Have a Regulatory or Billing Question?</h2>
+          <h2 className="text-3xl font-bold text-white mb-5">Your Next Billing Question</h2>
           <p className="text-teal-100 mb-8">
-            ARC&apos;s billing team stays current on every CMS update, MAC bulletin, and payer policy change. Contact us any time.
+            ARC&apos;s billers do not use these links to look things up. They know what they say. Call or message when you need someone who already has the answer.
           </p>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Contact Us

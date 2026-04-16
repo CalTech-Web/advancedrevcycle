@@ -80,9 +80,9 @@ export default function ResourcesPage() {
       {/* Regulatory Resources CTA */}
       <section className="bg-white py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-[#26303A] mb-5">Need Specific Regulatory Guidance?</h2>
+          <h2 className="text-3xl font-bold text-[#26303A] mb-5">These Links Are a Starting Point</h2>
           <p className="text-gray-600 mb-8">
-            ARC&apos;s team stays current on every CMS update and MAC bulletin. Contact us for specific billing and compliance questions.
+            ARC&apos;s billers already know what these documents say. When a government manual cannot answer your question fast enough, that is why we exist.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/regulatory-resources" className="inline-block bg-[#0B7A84] text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-700 transition-colors">

@@ -25,11 +25,11 @@ const faqs = [
   },
   {
     q: "How long does the onboarding process take?",
-    a: "Transition timelines vary by agency size and complexity, but ARC has completed billing takeovers in under 30 days. The team handles all claims from day one while simultaneously learning your EMR system.",
+    a: "ARC has completed billing takeovers in under 30 days. For larger agencies the timeline extends, but claims coverage starts from day one while the team learns your EMR in parallel. Revenue does not wait during a transition.",
   },
   {
     q: "Can ARC support our agency as we grow into new states?",
-    a: "Yes. Advanced RevCycle serves agencies of all sizes across all 50 states, U.S. territories, Puerto Rico, and Hawaii. Clients have grown from single-location startups to multi-state operations.",
+    a: "Yes. ARC serves agencies in all 50 states, Puerto Rico, Hawaii, and the U.S. Virgin Islands. One hospice startup expanded to four states across Arizona, Utah, California, and Texas without switching billing teams or disrupting operations.",
   },
 ];
 

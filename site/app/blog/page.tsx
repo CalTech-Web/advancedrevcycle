@@ -29,7 +29,7 @@ const posts = [
     title: "Transitioning from In-House to Outsourced Billing: What to Expect",
     category: "Operations",
     excerpt:
-      "The decision to outsource billing is significant. Agencies that plan the transition carefully maintain clean AR throughout. Those that do not often face revenue gaps that can take months to resolve.",
+      "The decision to outsource billing is one of the easier ones. The handoff is where agencies get into trouble. A poorly timed transition can stall AR for months. Getting the timing and the steps right keeps collections intact from day one.",
     date: "January 2026",
     image: "/assets/gallery/about-team.png",
   },
@@ -84,9 +84,9 @@ export default function BlogPage() {
       {/* CTA */}
       <section className="bg-[#0B7A84] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-5">Stay Current on Post-Acute Billing</h2>
+          <h2 className="text-3xl font-bold text-white mb-5">The Rules Change. The Collections Do Not Have To.</h2>
           <p className="text-teal-100 mb-8">
-            Contact ARC to discuss how regulatory changes affect your agency&apos;s billing and collections.
+            CMS and the MACs move fast. ARC tracks every update that affects reimbursement. Contact us when a change has you uncertain.
           </p>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Contact Us
