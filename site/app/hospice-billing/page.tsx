@@ -99,6 +99,23 @@ export default function HospiceBillingPage() {
             desc: "Eligibility verification and prior authorization management to prevent denials before they happen.",
           },
         ]}
+        relatedPosts={[
+          {
+            title: "NOE Timing: The Five-Day Window That Protects Your First Payment",
+            href: "/blog/noe-timing-five-day-window",
+            category: "Compliance",
+          },
+          {
+            title: "Understanding the 2025 Hospice Wage Index Changes",
+            href: "/blog/2025-hospice-wage-index-changes",
+            category: "Regulatory Update",
+          },
+          {
+            title: "Transitioning from In-House to Outsourced Billing: What to Expect",
+            href: "/blog/outsourced-billing-transition",
+            category: "Operations",
+          },
+        ]}
         ctaTitle="Start Collecting Every Hospice Dollar You Have Earned"
       />
     </>

@@ -91,6 +91,23 @@ export default function AuthorizationAndEligibilityPage() {
             desc: "Contract negotiation, credentialing, and provider enrollment so your agency can bill every payer.",
           },
         ]}
+        relatedPosts={[
+          {
+            title: "Authorization and Eligibility Verification: Preventing Denials Before Claims Are Filed",
+            href: "/blog/authorization-eligibility-denial-prevention",
+            category: "Operations",
+          },
+          {
+            title: "NOE Timing: The Five-Day Window That Protects Your First Payment",
+            href: "/blog/noe-timing-five-day-window",
+            category: "Compliance",
+          },
+          {
+            title: "Home Health NOA Filing: How the Five-Day Rule Affects Your First Payment",
+            href: "/blog/home-health-noa-five-day-rule",
+            category: "Compliance",
+          },
+        ]}
         ctaTitle="Stop Losing Revenue to Authorization Denials"
       />
     </>

@@ -95,6 +95,23 @@ export default function ContractingAndCredentialingPage() {
             desc: "Eligibility verification and prior authorization management to prevent denials before they happen.",
           },
         ]}
+        relatedPosts={[
+          {
+            title: "Credentialing for Post-Acute Agencies: Avoiding the Gaps That Stall Your First Claim",
+            href: "/blog/post-acute-credentialing-gaps",
+            category: "Operations",
+          },
+          {
+            title: "Authorization and Eligibility Verification: Preventing Denials Before Claims Are Filed",
+            href: "/blog/authorization-eligibility-denial-prevention",
+            category: "Operations",
+          },
+          {
+            title: "Transitioning from In-House to Outsourced Billing: What to Expect",
+            href: "/blog/outsourced-billing-transition",
+            category: "Operations",
+          },
+        ]}
         ctaTitle="Open Every Payer Door Before Your First Claim"
       />
     </>

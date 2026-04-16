@@ -204,6 +204,46 @@ export default function CodingAndOasisReviewPage() {
         </div>
       </section>
 
+      {/* From Our Blog */}
+      <section className="bg-[#F8F5F2] py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-[#26303A] mb-8">From Our Blog</h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Why PDGM Primary Diagnosis Selection Matters More Than Ever",
+                href: "/blog/pdgm-primary-diagnosis-selection",
+                category: "Coding",
+              },
+              {
+                title: "Home Health NOA Filing: How the Five-Day Rule Affects Your First Payment",
+                href: "/blog/home-health-noa-five-day-rule",
+                category: "Compliance",
+              },
+              {
+                title: "Transitioning from In-House to Outsourced Billing: What to Expect",
+                href: "/blog/outsourced-billing-transition",
+                category: "Operations",
+              },
+            ].map((p) => (
+              <Link
+                key={p.href}
+                href={p.href}
+                className="group bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
+              >
+                <span className="text-xs font-semibold text-[#0B7A84] bg-[#0B7A84]/10 px-3 py-1 rounded-full">
+                  {p.category}
+                </span>
+                <h3 className="font-bold text-[#26303A] mt-4 leading-snug group-hover:text-[#0B7A84] transition-colors">
+                  {p.title}
+                </h3>
+                <p className="text-[#0B7A84] text-sm font-semibold mt-3">Read article &rarr;</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-[#F8F5F2] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

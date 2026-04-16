@@ -99,6 +99,23 @@ export default function HomeHealthBillingPage() {
             desc: "Eligibility verification and prior authorization management to prevent denials before they happen.",
           },
         ]}
+        relatedPosts={[
+          {
+            title: "Home Health NOA Filing: How the Five-Day Rule Affects Your First Payment",
+            href: "/blog/home-health-noa-five-day-rule",
+            category: "Compliance",
+          },
+          {
+            title: "Why PDGM Primary Diagnosis Selection Matters More Than Ever",
+            href: "/blog/pdgm-primary-diagnosis-selection",
+            category: "Coding",
+          },
+          {
+            title: "Transitioning from In-House to Outsourced Billing: What to Expect",
+            href: "/blog/outsourced-billing-transition",
+            category: "Operations",
+          },
+        ]}
         ctaTitle="Get Every Home Health Dollar You Have Earned"
       />
     </>

@@ -89,3 +89,35 @@ Changes made:
 | Person schema (About page) | Delaine Henry, Matt Timmins, Nicolas Perkin linked to Organization — supports E-E-A-T scoring |
 | ItemList schema (Case Studies) | 5 case studies structured as a list — eligible for carousel-style rich results |
 | HowTo schema (Home page) | 6-step process eligible for rich result display on process/how-to queries |
+SEO Run #3 complete. Here's what shipped to `main`:
+
+| Change | Impact |
+|---|---|
+| **2 new blog posts** | Home Health NOA (Dec 2025) and Authorization/Eligibility (Nov 2025) — 1,000+ words each, targeting key service page keywords, with BlogPosting schema and related service callouts |
+| **datePublished + dateModified** in BlogPosting schema | All 6 posts now have ISO 8601 dates — freshness signal for Google article indexing |
+| **Sitemap — 6 blog post entries** | Dynamically generated from posts array; all blog URLs now discoverable by crawlers with accurate per-post lastModified dates |
+| **Person schema** (About page) | Delaine Henry, Matt Timmins, Nicolas Perkin linked to the Organization entity — E-E-A-T authority signals |
+| **ItemList schema** (Case Studies) | 5 case studies structured as a list — eligible for rich result display |
+| **HowTo schema** (Home page) | 6-step billing process eligible for rich result display on how-to and process queries |
+[2026-04-15 17:43:44] Run #3 finished
+[2026-04-15 17:43:49] Run #4 starting (model: sonnet)
+[2026-04-15] SEO Run #4 complete.
+Changes made:
+- sitemap.ts: Added /privacy-policy and /terms-of-service (priority 0.5, monthly) — sitemap now covers all 18 pages + 8 blog posts
+- blog/page.tsx: Added CollectionPage JSON-LD schema listing all 8 posts with title, URL, datePublished, and description — crawlers now understand the page as a structured article collection
+- webinars/page.tsx: Added Event JSON-LD schema for all 4 upcoming webinar topics (EventScheduled, OnlineEventAttendanceMode) — eligible for Event rich results
+- blog/data.ts: Added 2 new 1,000+ word blog posts (8 total):
+  - "Palliative Care Billing: How the Multi-Payer Complexity Requires Specialized Billing" (October 2025, Operations, relatedService: Palliative Care Billing)
+  - "Credentialing for Post-Acute Agencies: Avoiding the Gaps That Stall Your First Claim" (September 2025, Operations, relatedService: Contracting and Credentialing)
+- ServicePage.tsx: Added optional relatedPosts prop and "From Our Blog" section rendered before CTA
+- All 5 ServicePage-based service pages: Added relatedPosts with 3 relevant blog post links per page (hospice-billing, home-health-billing, palliative-care-billing, authorization-and-eligibility, contracting-and-credentialing)
+- coding-and-oasis-review/page.tsx: Added inline "From Our Blog" section with 3 relevant blog post links
+- TypeScript typecheck: passes (exit 0)
+
+| Change | Impact |
+|---|---|
+| 2 new blog posts (8 total) | Palliative care and credentialing topics target two previously uncovered service pages; each 1,000+ words with BlogPosting schema and relatedService links |
+| sitemap — 2 missing pages added | /privacy-policy and /terms-of-service now discoverable by crawlers |
+| CollectionPage schema (blog listing) | Google understands /blog as a structured article collection — improves blog indexing signals |
+| Event schema (webinars — 4 events) | 4 upcoming webinar topics eligible for Event rich results in SERPs |
+| "From Our Blog" sections (6 service pages) | 18 new internal links from service pages to blog posts — improves crawl depth and topical authority signals |

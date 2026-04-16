@@ -12,9 +12,31 @@ export const metadata: Metadata = {
   },
 };
 
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://advancedrevcycle.com/blog",
+  name: "Post-Acute Billing Blog",
+  description:
+    "Billing insights, regulatory updates, and compliance guidance for hospice, home health, and palliative care agencies from Advanced RevCycle's team of billing specialists.",
+  url: "https://advancedrevcycle.com/blog",
+  publisher: { "@id": "https://advancedrevcycle.com/#organization" },
+  hasPart: posts.map((post) => ({
+    "@type": "Article",
+    name: post.title,
+    url: `https://advancedrevcycle.com/blog/${post.slug}`,
+    datePublished: post.dateISO,
+    description: post.excerpt,
+  })),
+};
+
 export default function BlogPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       {/* Hero */}
       <section className="bg-[#26303A] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

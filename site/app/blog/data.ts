@@ -386,6 +386,152 @@ ARC's home health billing team files NOAs on the start of care date as standard 
     `.trim(),
   },
   {
+    slug: "palliative-care-billing-multi-payer",
+    title: "Palliative Care Billing: How the Multi-Payer Complexity Requires Specialized Billing",
+    category: "Operations",
+    dateISO: "2025-10-15",
+    excerpt:
+      "Palliative care billing routinely involves Medicare, Medicaid, Medicare Advantage, and commercial payers on the same patient roster. When secondary billing and patient statements are added, generalist billers lose track. The payer complexity of palliative care is manageable with the right team, but it is consistently underestimated by agencies that treat it like any other specialty.",
+    date: "October 2025",
+    image: "/assets/gallery/careers-3.jpg",
+    relatedService: { title: "Palliative Care Billing", href: "/palliative-care-billing" },
+    content: `
+Palliative care billing sits at a payer intersection that no other post-acute specialty matches. A single patient may carry Medicare as primary, a Medicare Advantage plan as secondary, a commercial supplemental policy, and a co-pay obligation from the patient. Filing all four correctly, in the right order, with the right documentation attached to each claim, is not something a generalist billing team handles well.
+
+## Why Palliative Care Billing Is Categorically Different
+
+Most billing discussions in post-acute care focus on hospice or home health. Both have clear reimbursement frameworks: hospice pays per diem by level of care, home health pays in 30-day periods under PDGM. Palliative care does not have a single federal reimbursement model. Reimbursement depends on which payer is involved, what the patient's coverage includes, and which CPT codes are used to capture the services provided.
+
+A palliative care visit billed to Medicare Part B under the Evaluation and Management code structure is processed differently than the same visit billed to a Medicare Advantage plan, which may require prior authorization, network verification, and plan-specific claim format. Adding a secondary payer introduces a coordination of benefits process. Adding a commercial policy with its own billing rules creates another layer.
+
+The billing team that manages this well is one that understands payer-by-payer rules, not one that learns them by trial and denial.
+
+## The Primary Payer Sequencing Problem
+
+Every palliative care claim starts with a primary payer determination. For patients who are Medicare-eligible but enrolled in a Medicare Advantage plan, the correct primary payer is the Medicare Advantage plan, not traditional Medicare. Filing to traditional Medicare when a Medicare Advantage plan is primary results in a denial that must be corrected and resubmitted, with timely filing implications if the correction takes too long.
+
+For patients with dual eligibility for Medicare and Medicaid, the sequencing is determined by coordination of benefits rules. Medicare is primary. Medicaid is secondary. Filing them out of order, or failing to coordinate the secondary Medicaid claim correctly from the primary remittance, results in claim errors or missed recovery.
+
+For patients with commercial insurance alongside Medicare, the commercial plan may be primary depending on the patient's employment status and the plan's coordination of benefits language. Determining which payer is primary for a commercial-and-Medicare combination requires checking the patient's specific plan language, not assuming Medicare is always primary.
+
+A billing team that identifies the correct primary payer for every patient before the first claim is submitted eliminates the most common source of palliative care billing delays.
+
+## Secondary Billing and Coordination of Benefits
+
+Once the primary claim is adjudicated, secondary billing begins. Secondary billing requires the primary payer's explanation of benefits or remittance advice before the secondary claim is submitted. The secondary claim typically must reference the primary payment amount, the patient liability amount, and any adjustments applied.
+
+The timing of secondary claims is where many agencies lose revenue. Secondary claims have their own timely filing limits, which vary by payer. If the billing team waits too long after primary adjudication to submit the secondary claim, or if the remittance from the primary payer is not being monitored, the secondary filing window can close.
+
+For patients with three payers, the process extends: primary adjudication, secondary claim with primary remittance attached, tertiary claim with both prior remittances. Each step has its own deadline and documentation requirement.
+
+## Patient Statements and the Balance After Insurance
+
+After primary and secondary payers have adjudicated, the remaining patient liability must be calculated accurately and billed correctly. Palliative care patient populations often include elderly patients, seriously ill patients, or patients with limited financial resources. Patient statements that are unclear, inaccurate, or poorly timed create administrative burden, patient relations problems, and uncollected balances.
+
+The patient statement process should:
+
+**Reflect the accurate patient liability.** The balance owed after all payer adjustments, contractual write-offs, and secondary payments must be calculated correctly before the statement is generated. Overstating the balance damages trust and creates disputes. Understating it leaves money uncollected.
+
+**Be sent at the right time.** Statements generated before all payers have processed create confusion. The patient receives a bill and then receives another notification when a secondary payment reduces the balance. Waiting until all payers have adjudicated before generating the patient statement produces a cleaner experience and fewer inbound calls.
+
+**Be followed up on.** A statement sent once and never followed up on is a receivable that ages without action. Patient balance follow-up, including payment reminders and hardship review, is part of the billing cycle.
+
+## Medicare Advantage Plan Variability
+
+Medicare Advantage plans present a particular challenge in palliative care because plan requirements vary significantly by insurer. A Humana plan and a UnitedHealthcare plan covering the same palliative care services may have different prior authorization requirements, different claim form requirements, and different timely filing windows.
+
+Billing a Medicare Advantage plan correctly requires knowing that plan's specific requirements. Generalist billers who have not built up experience with the major Medicare Advantage plans in the markets they serve will encounter a higher denial rate from these plans, and a longer resolution cycle when denials occur.
+
+Payers that require prior authorization for palliative care services will deny claims submitted without authorization, and the appeal process for non-authorized services is more limited than for other denial types. Identifying which Medicare Advantage plans require authorization for the specific CPT codes being billed, and obtaining that authorization before services are provided, is the only way to avoid this class of denial.
+
+## The Case for Dedicated Palliative Care Billing
+
+The payer complexity of palliative care does not resolve itself as an agency grows. It compounds. More patients means more payer combinations, more secondary claims, more Medicare Advantage plans with different requirements, more patient balance follow-up.
+
+Agencies that attempt to bill palliative care through the same workflow as a simpler specialty billing process, or that assign palliative care billing to staff who also handle other lines of care, tend to see specific problems: secondary claims that lag behind primary adjudication, Medicare Advantage denials that age without follow-up, patient balances that are calculated incorrectly, and coordination of benefits errors that create claim rejections.
+
+A billing team that specializes in palliative care billing, and that has built payer-specific knowledge across the primary plans used by palliative care patients in the markets it serves, produces fewer first-submission denials, faster secondary billing, and more accurate patient statements.
+
+ARC's palliative care billing team handles all-payer claims, secondary billing, patient statements, and full appeals management as part of a single integrated billing cycle. The goal is that every dollar earned from palliative care services is collected, regardless of which payer or combination of payers is involved.
+    `.trim(),
+  },
+  {
+    slug: "post-acute-credentialing-gaps",
+    title: "Credentialing for Post-Acute Agencies: Avoiding the Gaps That Stall Your First Claim",
+    category: "Operations",
+    dateISO: "2025-09-01",
+    excerpt:
+      "Credentialing is the permission structure behind every claim. An agency that has not completed credentialing with a payer cannot bill that payer, even if the patient is covered and the services were delivered. The gaps that stall the first claim are almost always preventable with the right credentialing process in place before the agency begins service.",
+    date: "September 2025",
+    image: "/assets/gallery/careers-4.jpg",
+    relatedService: { title: "Contracting and Credentialing", href: "/contracting-and-credentialing" },
+    content: `
+Credentialing is the administrative process by which a payer verifies an agency's qualifications, licensure, and compliance status before agreeing to pay for services. Without completed credentialing, there is no payer relationship. Without a payer relationship, claims cannot be submitted. Services that have already been delivered sit unbilled until credentialing is resolved.
+
+The timing of credentialing matters because it determines when billing can begin. An agency that starts patient care before credentialing is complete will deliver services without the ability to bill for them. Some payers allow retroactive billing once credentialing is approved. Others do not, meaning services provided during the credentialing gap may never be reimbursable.
+
+## What Credentialing Covers
+
+Credentialing is not a single transaction. It is a layered process that varies by payer type and may include several distinct components:
+
+**Medicare enrollment.** Participation in Medicare as a hospice, home health, or palliative care provider requires enrollment through the CMS Provider Enrollment, Chain, and Ownership System. The enrollment process includes submission of the application, supporting documentation, and payment of any applicable application fees. CMS processes applications on a timeline that can range from weeks to months depending on application volume and completeness.
+
+**Medicaid enrollment.** Each state's Medicaid program has its own enrollment process. An agency serving patients in multiple states must complete enrollment in each state separately. State Medicaid enrollment timelines vary significantly.
+
+**Medicare Advantage plan credentialing.** Medicare Advantage plans maintain their own provider networks. Inclusion in a plan's network requires a separate credentialing process with that plan. An agency that is enrolled with traditional Medicare is not automatically included in any Medicare Advantage plan's network.
+
+**Commercial insurance credentialing.** Commercial payers each maintain their own credentialing requirements and processes. Credentialing with a commercial plan typically includes verification of the agency's state licensure, accreditation, liability insurance, and tax identification information.
+
+**State licensure verification.** Many payers verify state licensure as part of the credentialing process. An agency operating without current licensure in every state where it provides services will encounter credentialing failures.
+
+## The Timeline Problem
+
+Credentialing takes time. Medicare enrollment can take 90 to 180 days for new applicants in some circumstances. Medicare Advantage plans typically require 60 to 120 days to complete the credentialing and network participation process. Commercial plans vary.
+
+Agencies that start the credentialing process after they have begun recruiting patients or have already started providing services are working against their own timeline. Patients are being seen, services are being delivered, and none of it is billable until credentialing is resolved.
+
+The credentialing timeline should be started before the agency begins operations, not after. For an agency planning to accept Medicare and three Medicare Advantage plans, credentialing work should begin the day the agency is licensed, not the day the first patient is referred.
+
+## Common Gaps That Delay First Claims
+
+Most credentialing delays fall into predictable categories:
+
+**Missing or incomplete documentation.** Credentialing applications require specific supporting documents: state licensure, accreditation certificates, liability insurance certificates, ownership and control disclosures, and tax identification documentation. Applications submitted without required documents are returned for completion, which restarts the processing timeline.
+
+**Outdated licensure.** An agency's state license is time-limited. Credentialing processes that check licensure against state databases will flag an expired or near-expiring license. Maintaining current licensure in every state where services are provided is a prerequisite for successful credentialing.
+
+**Payer enrollment that was not initiated for a new plan.** As an agency adds services or expands into new payer types, credentialing with each new payer must be initiated separately. An agency that has been billing Medicare for years and begins accepting Medicare Advantage patients for the first time must complete network participation credentialing with each Medicare Advantage plan separately. Assuming that existing Medicare enrollment covers Medicare Advantage participation is a common and costly error.
+
+**Re-credentialing lapses.** Most payers require periodic re-credentialing to maintain network participation. Re-credentialing timelines vary by payer but are typically every two to three years. An agency that does not track re-credentialing deadlines and initiate the process in advance of the expiration date will find its network participation lapsed. Claims submitted after lapsed re-credentialing are denied.
+
+**Multi-state expansion without corresponding Medicaid enrollment.** An agency that expands into a new state must complete Medicaid enrollment in that state before billing Medicaid for patients in that state. Enrollment that covers one state does not transfer to another.
+
+## Contracting Alongside Credentialing
+
+Credentialing establishes whether a payer will include an agency in its network. Contracting establishes the terms under which the payer will reimburse the agency. Both are necessary before claims can be submitted and paid.
+
+For commercial and Medicare Advantage payers, credentialing and contracting often occur in parallel but are separate processes. An agency that completes credentialing without also completing the contract review and execution may find itself credentialed but lacking an effective contract, which means claims will be paid at a default rate rather than a negotiated rate, or may not be processed at all.
+
+Contract terms for post-acute care services vary by payer and by service type. Negotiating favorable reimbursement rates requires understanding the market rates for the specific services provided, the payer's typical contract language, and the leverage an agency has based on its geography, size, and accreditation status.
+
+## Ongoing Credentialing Management
+
+Credentialing is not a one-time project. It requires ongoing maintenance:
+
+- Tracking and renewing state licenses before they expire
+- Initiating re-credentialing with each payer before the deadline
+- Updating payer enrollment records when ownership, address, or key personnel change
+- Adding credentialing for new payers as the agency's payer mix changes
+- Managing credentialing for new locations when an agency expands
+
+An agency that maintains a current credentialing file, tracks all renewal dates, and initiates re-credentialing processes 90 days before each expiration will have continuous, uninterrupted billing capability with every payer.
+
+An agency that treats credentialing as an administrative task to address when problems arise will periodically encounter claim denials, delayed billing starts, and revenue gaps that are entirely preventable.
+
+ARC manages the full contracting and credentialing lifecycle as part of its support services, including initial credentialing for new agencies, expansion credentialing when agencies enter new states or add payer types, re-credentialing tracking and submission, and payer relations support for disputes and escalations.
+    `.trim(),
+  },
+  {
     slug: "authorization-eligibility-denial-prevention",
     title: "Authorization and Eligibility Verification: Preventing Denials Before Claims Are Filed",
     category: "Operations",

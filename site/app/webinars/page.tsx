@@ -10,6 +10,56 @@ export const metadata: Metadata = {
   },
 };
 
+const webinarsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Event",
+      name: "NOE Timing and the Five-Day Window",
+      description:
+        "Why late Notice of Election filings result in permanent non-billable periods, how to identify the root causes in your current workflow, and the operational changes that prevent future losses.",
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+      url: "https://advancedrevcycle.com/webinars",
+      organizer: { "@id": "https://advancedrevcycle.com/#organization" },
+      location: { "@type": "VirtualLocation", url: "https://advancedrevcycle.com/webinars" },
+    },
+    {
+      "@type": "Event",
+      name: "PDGM Primary Diagnosis Selection for Home Health",
+      description:
+        "How the Patient-Driven Groupings Model turns primary diagnosis selection into a payment calculation. Clinical groupings, LUPA thresholds, and how to conduct an episode-level coding review.",
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+      url: "https://advancedrevcycle.com/webinars",
+      organizer: { "@id": "https://advancedrevcycle.com/#organization" },
+      location: { "@type": "VirtualLocation", url: "https://advancedrevcycle.com/webinars" },
+    },
+    {
+      "@type": "Event",
+      name: "Navigating MAC-Specific Billing Requirements",
+      description:
+        "Palmetto GBA, CGS, and National Government Services each publish guidance that goes beyond the CMS base rules. This session covers the MAC-specific requirements that most commonly affect hospice and home health billing.",
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+      url: "https://advancedrevcycle.com/webinars",
+      organizer: { "@id": "https://advancedrevcycle.com/#organization" },
+      location: { "@type": "VirtualLocation", url: "https://advancedrevcycle.com/webinars" },
+    },
+    {
+      "@type": "Event",
+      name: "Transitioning from In-House to Outsourced Billing",
+      description:
+        "How to structure a billing handoff that keeps collections intact from day one, what the pre-transition audit should cover, and how to measure whether the transition succeeded.",
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+      url: "https://advancedrevcycle.com/webinars",
+      organizer: { "@id": "https://advancedrevcycle.com/#organization" },
+      location: { "@type": "VirtualLocation", url: "https://advancedrevcycle.com/webinars" },
+    },
+  ],
+};
+
 const upcomingTopics = [
   {
     title: "NOE Timing and the Five-Day Window",
@@ -36,6 +86,10 @@ const upcomingTopics = [
 export default function WebinarsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webinarsSchema) }}
+      />
       {/* Hero */}
       <section className="bg-[#26303A] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

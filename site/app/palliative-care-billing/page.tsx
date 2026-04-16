@@ -99,6 +99,23 @@ export default function PalliativeCareBillingPage() {
             desc: "Eligibility verification and prior authorization management to prevent denials before they happen.",
           },
         ]}
+        relatedPosts={[
+          {
+            title: "Palliative Care Billing: How the Multi-Payer Complexity Requires Specialized Billing",
+            href: "/blog/palliative-care-billing-multi-payer",
+            category: "Operations",
+          },
+          {
+            title: "Authorization and Eligibility Verification: Preventing Denials Before Claims Are Filed",
+            href: "/blog/authorization-eligibility-denial-prevention",
+            category: "Operations",
+          },
+          {
+            title: "Transitioning from In-House to Outsourced Billing: What to Expect",
+            href: "/blog/outsourced-billing-transition",
+            category: "Operations",
+          },
+        ]}
         ctaTitle="ARC Handles the Payer Complexity. You Handle the Care."
       />
     </>

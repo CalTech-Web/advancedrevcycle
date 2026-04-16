@@ -11,6 +11,12 @@ interface RelatedService {
   desc: string;
 }
 
+interface RelatedPost {
+  title: string;
+  href: string;
+  category: string;
+}
+
 interface ServicePageProps {
   badge: string;
   title: string;
@@ -22,9 +28,10 @@ interface ServicePageProps {
   };
   ctaTitle?: string;
   relatedServices?: RelatedService[];
+  relatedPosts?: RelatedPost[];
 }
 
-export default function ServicePage({ badge, title, intro, features, whySection, ctaTitle, relatedServices }: ServicePageProps) {
+export default function ServicePage({ badge, title, intro, features, whySection, ctaTitle, relatedServices, relatedPosts }: ServicePageProps) {
   return (
     <>
       {/* Hero */}
@@ -111,6 +118,32 @@ export default function ServicePage({ badge, title, intro, features, whySection,
                 >
                   <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* From Our Blog */}
+      {relatedPosts && relatedPosts.length > 0 && (
+        <section className="bg-[#F8F5F2] py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-[#26303A] mb-8">From Our Blog</h2>
+            <div className="grid sm:grid-cols-3 gap-6">
+              {relatedPosts.map((p) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className="group bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
+                >
+                  <span className="text-xs font-semibold text-[#0B7A84] bg-[#0B7A84]/10 px-3 py-1 rounded-full">
+                    {p.category}
+                  </span>
+                  <h3 className="font-bold text-[#26303A] mt-4 leading-snug group-hover:text-[#0B7A84] transition-colors">
+                    {p.title}
+                  </h3>
+                  <p className="text-[#0B7A84] text-sm font-semibold mt-3">Read article &rarr;</p>
                 </Link>
               ))}
             </div>
