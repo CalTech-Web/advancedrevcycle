@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import StatsCounter from "./components/StatsCounter";
 import ScrollReveal from "./components/ScrollReveal";
+
+export const metadata: Metadata = {
+  title: "Advanced RevCycle | Post-Acute Revenue Cycle Management",
+  description:
+    "Tech-Enabled. Human-Driven. Revenue Optimized. Advanced RevCycle exclusively serves hospice, home health, and palliative care agencies with a 99%+ collection rate and $5B+ collected.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com",
+  },
+};
 
 const stats = [
   { value: "99%+", label: "Collection Rate" },

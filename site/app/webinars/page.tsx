@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Webinars",
   description:
     "Educational webinars on hospice and home health billing, coding, and regulatory compliance from Advanced RevCycle.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/webinars",
+  },
 };
 
 export default function WebinarsPage() {

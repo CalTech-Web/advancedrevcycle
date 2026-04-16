@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Regulatory Resources",
   description:
     "Important links and regulatory resources for hospice and home health agencies, including Medicare Administrative Contractors, CMS manuals, billing codes, and payment rate calculators.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/regulatory-resources",
+  },
 };
 
 const macResources = [

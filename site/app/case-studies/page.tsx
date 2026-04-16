@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Case Studies",
   description:
     "Real results from hospice, home health, and palliative care agencies that partnered with Advanced RevCycle. See how ARC improved collections, reduced AR, and enabled rapid growth.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/case-studies",
+  },
 };
 
 const caseStudies = [

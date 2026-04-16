@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Contracting and Credentialing",
   description:
     "Contract negotiation assistance, credentialing, provider enrollment, and payer relations liaison services for hospice, home health, and palliative care agencies.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/contracting-and-credentialing",
+  },
 };
 
 export default function ContractingAndCredentialingPage() {

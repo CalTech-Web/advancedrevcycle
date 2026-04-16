@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact Us",
   description:
     "Contact Advanced RevCycle to learn how our post-acute billing specialists can improve your hospice, home health, or palliative care agency's collections.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/contact",
+  },
 };
 
 const faqs = [
@@ -37,9 +40,26 @@ const faqs = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero */}
       <section className="bg-[#26303A] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

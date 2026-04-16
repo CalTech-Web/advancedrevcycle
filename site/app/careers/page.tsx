@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Careers",
   description:
     "Join the Advanced RevCycle team. We hire 1 biller for every 50 applicants. Our remote, U.S.-based team of 50+ billing professionals serves hospice, home health, and palliative care agencies nationwide.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/careers",
+  },
 };
 
 const values = [

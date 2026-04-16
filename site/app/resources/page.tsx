@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Resources",
+  title: "Billing Resources",
   description:
     "Billing resources, regulatory links, case studies, webinars, and more for hospice, home health, and palliative care agencies.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/resources",
+  },
 };
 
 const resourceLinks = [

@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Coding and OASIS Review",
   description:
     "ICD-10 coding, PDGM-aligned diagnosis selection, and four levels of OASIS review for home health agencies. Acquired through the RCO (Rapid Coding and OASIS Review) acquisition.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/coding-and-oasis-review",
+  },
 };
 
 const levels = [

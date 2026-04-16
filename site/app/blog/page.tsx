@@ -3,9 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Post-Acute Billing Blog",
   description:
     "Billing insights, regulatory updates, and best practices for hospice, home health, and palliative care agencies from Advanced RevCycle.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/blog",
+  },
 };
 
 const posts = [

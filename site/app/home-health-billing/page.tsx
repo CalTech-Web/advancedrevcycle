@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Home Health Billing",
   description:
     "Complete home health billing services for Medicare, Medicaid, Medicare Advantage, VA, and commercial payers. ARC files all NOAs with proactive follow-up and on-demand AR reporting.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/home-health-billing",
+  },
 };
 
 export default function HomeHealthBillingPage() {

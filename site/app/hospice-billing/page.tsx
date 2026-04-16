@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Hospice Billing",
   description:
     "Full-cycle hospice billing for Medicare, Medicaid, VA, and commercial payers. ARC files all NOEs, NOCs, and NOTRs with proactive claims follow-up and 99%+ collection rate.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/hospice-billing",
+  },
 };
 
 export default function HospiceBillingPage() {

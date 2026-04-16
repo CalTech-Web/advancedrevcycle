@@ -3,9 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Advanced RevCycle",
   description:
     "Advanced RevCycle is a New Orleans-based, tech-enabled revenue cycle management company exclusively serving hospice, palliative care, and home health agencies nationwide.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/about",
+  },
 };
 
 const leadership = [

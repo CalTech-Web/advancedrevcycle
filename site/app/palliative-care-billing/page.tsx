@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Palliative Care Billing",
   description:
     "Comprehensive palliative care billing for Medicare, Medicaid, Medicare Advantage, VA, and commercial payers. ARC handles secondary payer claims, patient statements, and full appeals management.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/palliative-care-billing",
+  },
 };
 
 export default function PalliativeCareBillingPage() {

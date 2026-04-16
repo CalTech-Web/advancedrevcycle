@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Authorization and Eligibility",
   description:
     "Patient eligibility verification, prior authorization support, complete authorization lifecycle management, and appeals management for hospice, home health, and palliative care agencies.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/authorization-and-eligibility",
+  },
 };
 
 export default function AuthorizationAndEligibilityPage() {
