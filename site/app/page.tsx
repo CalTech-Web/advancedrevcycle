@@ -187,13 +187,13 @@ export default function HomePage() {
             {/* Left: Copy */}
             <div>
               <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">
-                Hospice &middot; Home Health &middot; Palliative Care
+                Hospice &middot; Home Health &middot; Palliative Care Billing
               </p>
               <h1 className="hero-fade-2 text-4xl sm:text-5xl font-bold text-white leading-tight mb-5">
-                Are you collecting everything you&apos;re owed?
+                Specialists Collect More. Period.
               </h1>
               <p className="hero-fade-3 text-gray-300 text-base max-w-xl mb-7 leading-relaxed">
-                Advanced RevCycle bills exclusively for post-acute care agencies. Our 50+ U.S.-based specialists have collected over $5 billion and follow every claim until it is paid.
+                ARC&apos;s billers work only in hospice, home health, and palliative care. That focus is why we maintain a 99%+ collection rate and have collected over $5 billion for agencies of all sizes.
               </p>
 
               {/* Pain-point grid */}
