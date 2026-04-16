@@ -242,7 +242,7 @@ export default function RegulatoryResourcesPage() {
               {[
                 { stat: "99%+", label: "Collection Rate" },
                 { stat: "$5B+", label: "Collected for Agencies" },
-                { stat: "100%", label: "Contingency Pricing" },
+                { stat: "100%", label: "Aligned Incentives" },
                 { stat: "50+", label: "U.S.-Based Billers" },
               ].map((item) => (
                 <div key={item.label} className="bg-white/5 border border-white/10 rounded-xl p-5">

@@ -45,7 +45,7 @@ export default function HospiceBillingPage() {
       <ServicePage
         badge="Hospice Billing"
         title="Expert Hospice Billing That Collects What You Have Earned"
-        intro="Most billing companies call themselves specialists. Hospice is our only line of care. Our billers know every MAC quirk, every Notice of Election deadline, and every regulatory shift that can stall your AR. We work on contingency, so the 99%+ collection rate matters to us as much as it does to you."
+        intro="Most billing companies call themselves specialists. Hospice is our only line of care. Our billers know every MAC quirk, every Notice of Election deadline, and every regulatory shift that can stall your AR. Our fee is a percentage of what we collect, so every appeal and reconsideration is in our interest as much as it is in yours."
         features={[
           {
             title: "NOE, NOC, and NOTR Filing",
@@ -78,8 +78,8 @@ export default function HospiceBillingPage() {
             "Dedicated hospice billing specialists, not generalist billers assigned to your account",
             "Deep knowledge of all three Medicare Administrative Contractors, Palmetto GBA, CGS, and National Government Services",
             "Experience with all hospice EMR platforms including Netsmart, MatrixCare, Mumms, and more",
-            "100% contingency pricing, no flat fees or retainers, you pay only when you collect",
-            "U.S.-based team that clients describe as feeling just like an in-house billing department",
+            "100% contingency pricing, our fee is a percentage of what we collect, so we have every incentive to chase down difficult claims and pursue every appeal",
+            "U.S.-based billers only, with the depth and compliance knowledge that post-acute billing demands",
           ],
         }}
         relatedServices={[

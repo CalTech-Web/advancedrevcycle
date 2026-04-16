@@ -188,7 +188,7 @@ export default function ServicePage({ badge, title, intro, features, whySection,
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5">
                 {ctaTitle || "Ready to Improve Your Collections?"}
               </h2>
-              <p className="text-gray-400 mb-8">No flat fees. No retainers. ARC earns only when you collect.</p>
+              <p className="text-gray-400 mb-8">No flat fees. No retainers. Our fee is a percentage of what we collect, which means we have the same interest in your collections that you do.</p>
               <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
                 Contact Us
               </Link>
@@ -197,7 +197,7 @@ export default function ServicePage({ badge, title, intro, features, whySection,
               {[
                 { stat: "99%+", label: "Collection Rate" },
                 { stat: "$5B+", label: "Collected for Agencies" },
-                { stat: "100%", label: "Contingency Pricing" },
+                { stat: "100%", label: "Aligned Incentives" },
                 { stat: "50+", label: "U.S.-Based Billers" },
               ].map((item) => (
                 <div key={item.label} className="bg-white/5 border border-white/10 rounded-xl p-5">

@@ -171,7 +171,7 @@ export default function CodingAndOasisReviewPage() {
               { value: "4", label: "Levels of Review" },
               { value: "CMS", label: "Convention Aligned" },
               { value: "PDGM", label: "Expertise" },
-              { value: "100%", label: "Contingency Model" },
+              { value: "100%", label: "Aligned Incentives" },
             ].map((s) => (
               <div key={s.label}>
                 <p className="text-4xl font-bold text-white mb-1">{s.value}</p>

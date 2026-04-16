@@ -220,8 +220,8 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-0.5">No Upfront Cost</p>
-                    <p className="text-white/55 text-xs leading-relaxed">100% contingency. You pay nothing until we collect for you.</p>
+                    <p className="text-white font-semibold text-sm mb-0.5">We Win When You Win</p>
+                    <p className="text-white/55 text-xs leading-relaxed">Our fee is a percentage of what we collect. We only earn when you do, so we fight for every claim, every appeal, and every reconsideration.</p>
                   </div>
                 </div>
 
@@ -374,7 +374,7 @@ export default function HomePage() {
       {/* EMR Logos */}
       <section className="bg-[#F8F5F2] py-16 overflow-hidden">
         <p className="text-center text-[#26303A] font-bold text-xl mb-3">Works With Any EMR System</p>
-        <p className="text-center text-gray-500 text-sm mb-10">No platform conversion required. No integration fees. Ever.</p>
+        <p className="text-center text-gray-500 text-sm mb-10">We train to your existing platform. No conversion, no integration fees, no disruption to your operations.</p>
         <div className="relative">
           {/* Edge fades */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F8F5F2] to-transparent" />
@@ -420,7 +420,7 @@ export default function HomePage() {
               <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get Started</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Collect What You Have Already Earned</h2>
               <p className="text-gray-400 text-lg mb-10">
-                ARC serves agencies in all 50 states, Puerto Rico, Hawaii, and the U.S. Virgin Islands. The fee is a percentage of collections, nothing else.
+                ARC serves agencies in all 50 states, Puerto Rico, Hawaii, and the U.S. Virgin Islands. Our fee is a percentage of what we collect, which means our incentives are perfectly aligned with yours.
               </p>
               <Link
                 href="/contact"
@@ -433,7 +433,7 @@ export default function HomePage() {
               {[
                 { stat: "99%+", label: "Collection Rate" },
                 { stat: "$5B+", label: "Collected for Agencies" },
-                { stat: "100%", label: "Contingency Pricing" },
+                { stat: "100%", label: "Aligned Incentives" },
                 { stat: "50+", label: "U.S.-Based Billers" },
               ].map((item) => (
                 <div key={item.label} className="bg-white/5 border border-white/10 rounded-xl p-5">

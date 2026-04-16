@@ -39,10 +39,10 @@ const leadership = [
 const differentiators = [
   "Exclusive post-acute focus, only hospice, home health, and palliative care",
   "99%+ collection rate and $5B+ collected for agencies of all sizes",
-  "100% contingency pricing, fees scale with your collections",
-  "U.S.-based billing team only, 1 hired for every 50 applicants",
+  "100% contingency pricing, we only earn when you collect, so every appeal and reconsideration gets our full effort",
+  "U.S.-based billing team only, 1 hired for every 50 applicants, because compliance and expertise cannot be offshored",
   "20+ years average experience per biller",
-  "Works with any EMR, no conversion or integration fees",
+  "Works with any EMR, no conversion, no integration fees, and no disruption to your team's workflow",
   "Serves all 50 states, U.S. territories, Puerto Rico, and Hawaii",
   "Tech-enabled with AI, automation, and proprietary workflow technology",
 ];
@@ -153,7 +153,7 @@ export default function AboutPage() {
                   In November 2025, ARC acquired Rapid Coding and OASIS Review (RCO) and rebranded. The move added specialized coding and OASIS review services to the platform. A strategic investment from Kolos Partners came alongside it, focused on accelerating AI-driven automation across the revenue cycle.
                 </p>
                 <p>
-                  Today, 50+ billers work remotely across the U.S. and serve agencies in all 50 states. The founding commitment has not changed. We work only in post-acute care, and we earn only when you collect.
+                  Today, 50+ billers work remotely across the U.S. and serve agencies in all 50 states. The founding commitment has not changed. We work only in post-acute care, and our fee is a percentage of what we collect, which means our incentives are exactly aligned with yours.
                 </p>
               </div>
             </div>
@@ -271,7 +271,7 @@ export default function AboutPage() {
               <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get Started</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5">Tell Us Where Your AR Stands</h2>
               <p className="text-gray-400 mb-8">
-                ARC charges nothing until you collect. Tell us your line of care, your current AR position, and what has been falling through the cracks. We will be direct about whether we can help.
+                Our fee is a percentage of what we collect. There is no cost until your agency collects. Tell us your line of care, your current AR position, and what has been falling through the cracks. We will be direct about whether we can help.
               </p>
               <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
                 Contact Us
@@ -281,7 +281,7 @@ export default function AboutPage() {
               {[
                 { stat: "99%+", label: "Collection Rate" },
                 { stat: "$5B+", label: "Collected for Agencies" },
-                { stat: "100%", label: "Contingency Pricing" },
+                { stat: "100%", label: "Aligned Incentives" },
                 { stat: "50+", label: "U.S.-Based Billers" },
               ].map((item) => (
                 <div key={item.label} className="bg-white/5 border border-white/10 rounded-xl p-5">

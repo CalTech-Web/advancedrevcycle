@@ -77,9 +77,9 @@ export default function PalliativeCareBillingPage() {
           points: [
             "Palliative care billing expertise that understands the unique payer mix and documentation requirements",
             "Secondary billing and patient statement management handled as part of the full billing cycle",
-            "Same 99%+ collection rate and 100% contingency model as our hospice and home health services",
+            "Same 99%+ collection rate, and because our fee is contingency-based, we pursue every denial and every appeal until the claim is paid",
             "Dedicated billing team that communicates immediately when payer issues arise",
-            "Works with any EMR your palliative care program already uses, no conversion, no disruption",
+            "Works with any EMR your palliative care program already uses, no conversion, no integration fees, no disruption",
           ],
         }}
         relatedServices={[

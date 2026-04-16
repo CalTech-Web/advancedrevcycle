@@ -180,7 +180,7 @@ export default async function BlogPostPage({
             <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">Related Service</p>
             <h3 className="text-xl font-bold text-[#26303A] mb-3">{post.relatedService.title}</h3>
             <p className="text-gray-600 text-sm mb-5 leading-relaxed">
-              Advanced RevCycle provides dedicated {post.relatedService.title.toLowerCase()} to hospice, home health, and palliative care agencies nationwide. 100% contingency pricing, no flat fees.
+              Advanced RevCycle provides dedicated {post.relatedService.title.toLowerCase()} to hospice, home health, and palliative care agencies nationwide. Our fee is a percentage of what we collect, so we fight for every claim the same way you do.
             </p>
             <Link
               href={post.relatedService.href}

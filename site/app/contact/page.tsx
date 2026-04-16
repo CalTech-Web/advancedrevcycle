@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "How does your pricing work?",
-    a: "Advanced RevCycle runs on 100% contingency. Fees are a percentage of what is collected. There are no flat monthly fees or retainers. ARC earns only when your agency does.",
+    a: "Advanced RevCycle runs on 100% contingency. Fees are a percentage of what is collected. There are no flat monthly fees or retainers. A flat-fee billing company gets paid regardless of what they collect for you. ARC earns only when your agency does, which means we have every incentive to chase difficult claims, file appeals, and push every reconsideration.",
   },
   {
     q: "What collection rate can I expect?",
@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: "How is ARC different from an in-house billing team?",
-    a: "An in-house biller knows your system, your state, and your payer mix. That knowledge has limits. ARC's 50+ billers work simultaneously across every MAC, all 50 states, and every major EMR platform. They have seen the edge cases your in-house team is encountering for the first time. And because fees are contingency-based, there are no salaries, benefits, turnover costs, or training gaps.",
+    a: "An in-house biller knows your system, your state, and your payer mix. That knowledge has limits. ARC's 50+ U.S.-based billers work simultaneously across every MAC, all 50 states, and every major EMR platform. They have seen the edge cases your in-house team is encountering for the first time. And because fees are contingency-based, there are no salaries, benefits, turnover costs, or training gaps, and every dollar we do not collect for you is a dollar we do not earn.",
   },
 ];
 
@@ -133,7 +133,7 @@ export default function ContactPage() {
                   {[
                     { stat: "99%+", label: "Collection Rate" },
                     { stat: "$5B+", label: "Collected for Agencies" },
-                    { stat: "100%", label: "Contingency, No Flat Fees" },
+                    { stat: "100%", label: "Aligned Incentives, No Flat Fees" },
                     { stat: "50+", label: "U.S.-Based Billers" },
                   ].map((item) => (
                     <div key={item.label} className="flex justify-between items-center border-b border-white/10 pb-3">

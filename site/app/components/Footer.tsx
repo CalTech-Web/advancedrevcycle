@@ -104,7 +104,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-[#B8EE40] mb-4">Ready to Get Started?</h3>
             <p className="text-gray-300 text-sm mb-5 leading-relaxed">
-              Over $5 billion collected for post-acute agencies nationwide. Our fee is a percentage of collections, nothing more.
+              Over $5 billion collected for post-acute agencies nationwide. Our fee is a percentage of what we collect, so we fight for every dollar you have earned.
             </p>
             <Link
               href="/contact"

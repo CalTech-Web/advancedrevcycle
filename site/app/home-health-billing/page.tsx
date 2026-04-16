@@ -76,10 +76,10 @@ export default function HomeHealthBillingPage() {
           title: "Why Home Health Agencies Choose ARC",
           points: [
             "Home health billing specialists with deep PDGM knowledge and experience across all payer types",
-            "Works with your existing EMR system, no conversion required and no integration fees",
+            "Works with your existing EMR system, no conversion, no integration fees, and no disruption to your team's workflow",
             "Proactive daily monitoring to catch issues before they become collections problems",
-            "All 50 states, U.S. territories, Puerto Rico, and Hawaii served by our distributed U.S. team",
-            "100% contingency pricing aligned with your agency's financial success",
+            "All 50 states, U.S. territories, Puerto Rico, and Hawaii served by our distributed U.S.-based team",
+            "100% contingency pricing, our fee is a percentage of what we collect, so we fight for every claim the same way you do",
           ],
         }}
         relatedServices={[
