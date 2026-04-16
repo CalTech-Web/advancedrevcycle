@@ -187,18 +187,74 @@ export default function HomePage() {
             {/* Left: Copy */}
             <div>
               <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">
-                Billing &amp; Revenue Management Built for Your Lines of Care
+                Hospice &middot; Home Health &middot; Palliative Care
               </p>
               <h1 className="hero-fade-2 text-4xl sm:text-5xl font-bold text-white leading-tight mb-5">
-                Is your billing process working for you?
+                Are you collecting everything you&apos;re owed?
               </h1>
-              <p className="hero-fade-3 text-gray-200 text-lg max-w-xl mb-4 leading-relaxed">
-                Advanced RevCycle offers top-tier hospice, home health, and palliative care billing services. Our dedicated team of 50+ U.S.-based billers has collected over $5 billion for agencies of all sizes, and we follow every claim until it is paid. You pay nothing until we collect.
+              <p className="hero-fade-3 text-gray-300 text-base max-w-xl mb-7 leading-relaxed">
+                Advanced RevCycle bills exclusively for post-acute care agencies. Our 50+ U.S.-based specialists have collected over $5 billion and follow every claim until it is paid.
               </p>
-              <p className="hero-fade-3 text-white/60 italic text-sm mb-8">
-                Tech-Enabled. Human-Driven. Revenue Optimized.
-              </p>
-              <div className="hero-fade-4 flex flex-col sm:flex-row gap-4 mb-8">
+
+              {/* Pain-point grid */}
+              <div className="hero-fade-3 grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                {/* Specialization */}
+                <div className="flex gap-3 bg-white/[0.07] border border-white/10 rounded-xl p-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#B8EE40]/20 flex items-center justify-center mt-0.5">
+                    <svg className="w-4 h-4 text-[#B8EE40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">Post-Acute Only</p>
+                    <p className="text-white/55 text-xs leading-relaxed">We bill exclusively for your line of care, not a generalist shop.</p>
+                  </div>
+                </div>
+
+                {/* Contingency */}
+                <div className="flex gap-3 bg-white/[0.07] border border-white/10 rounded-xl p-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#B8EE40]/20 flex items-center justify-center mt-0.5">
+                    <svg className="w-4 h-4 text-[#B8EE40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="1" x2="12" y2="23" />
+                      <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">No Upfront Cost</p>
+                    <p className="text-white/55 text-xs leading-relaxed">100% contingency. You pay nothing until we collect for you.</p>
+                  </div>
+                </div>
+
+                {/* EMR */}
+                <div className="flex gap-3 bg-white/[0.07] border border-white/10 rounded-xl p-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#B8EE40]/20 flex items-center justify-center mt-0.5">
+                    <svg className="w-4 h-4 text-[#B8EE40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2" />
+                      <path d="M8 21h8M12 17v4" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">No EMR Conversion</p>
+                    <p className="text-white/55 text-xs leading-relaxed">We train to your existing system. Zero disruption to your operations.</p>
+                  </div>
+                </div>
+
+                {/* Speed */}
+                <div className="flex gap-3 bg-white/[0.07] border border-white/10 rounded-xl p-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#B8EE40]/20 flex items-center justify-center mt-0.5">
+                    <svg className="w-4 h-4 text-[#B8EE40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">Live in Under 30 Days</p>
+                    <p className="text-white/55 text-xs leading-relaxed">Full billing takeovers completed in less than a month. Revenue starts fast.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="hero-fade-4 flex flex-col sm:flex-row gap-4">
                 <a
                   href="#howWeDo"
                   className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-7 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center"
@@ -206,26 +262,11 @@ export default function HomePage() {
                   How We Do It
                 </a>
                 <Link
-                  href="/contact"
+                  href="/case-studies"
                   className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-7 py-3 rounded-lg hover:bg-white/20 transition-colors text-center"
                 >
-                  Contact Us
+                  See Case Studies
                 </Link>
-              </div>
-              <div className="hero-fade-4 flex flex-wrap gap-x-6 gap-y-2">
-                {[
-                  "Trusted in all 50 states",
-                  "100% contingency pricing",
-                  "U.S.-based billers only",
-                  "No EMR conversion required",
-                ].map((badge) => (
-                  <span key={badge} className="flex items-center gap-1.5 text-white/60 text-xs font-medium">
-                    <svg className="w-3.5 h-3.5 text-[#B8EE40] flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    {badge}
-                  </span>
-                ))}
               </div>
             </div>
             {/* Right: Survey */}
