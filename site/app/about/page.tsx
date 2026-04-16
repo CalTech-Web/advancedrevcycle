@@ -46,9 +46,19 @@ const differentiators = [
   "Tech-enabled with AI, automation, and proprietary workflow technology",
 ];
 
-const personSchema = {
+const aboutSchema = {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://advancedrevcycle.com/about/#page",
+      url: "https://advancedrevcycle.com/about",
+      name: "About Advanced RevCycle",
+      description:
+        "Advanced RevCycle is a New Orleans-based, tech-enabled revenue cycle management company exclusively serving hospice, palliative care, and home health agencies nationwide.",
+      isPartOf: { "@id": "https://advancedrevcycle.com/#website" },
+      about: { "@id": "https://advancedrevcycle.com/#organization" },
+    },
     {
       "@type": "Person",
       "@id": "https://advancedrevcycle.com/about/#delaine-henry",
@@ -73,12 +83,33 @@ const personSchema = {
   ],
 };
 
+const featuredPosts = [
+  {
+    title: "Transitioning from In-House to Outsourced Billing: What to Expect",
+    href: "/blog/outsourced-billing-transition",
+    category: "Operations",
+    excerpt: "How the billing handoff works, what a pre-transition audit covers, and why the first 30 days determine whether collections stay intact.",
+  },
+  {
+    title: "Medicare Advantage Billing for Hospice and Home Health",
+    href: "/blog/medicare-advantage-billing-post-acute",
+    category: "Operations",
+    excerpt: "How MA billing differs from traditional Medicare, why prior authorization changes the billing workflow, and how to build an MA-ready operation.",
+  },
+  {
+    title: "Hospice Accounts Receivable Management: How to Keep Your AR Under Control",
+    href: "/blog/hospice-accounts-receivable-management",
+    category: "Operations",
+    excerpt: "How to read a hospice AR aging report, what each bucket signals, and the proactive follow-up process that keeps AR from compounding.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
       {/* Hero */}
       <section className="bg-[#26303A] py-20">
@@ -169,6 +200,33 @@ export default function AboutPage() {
                   </blockquote>
                 )}
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* From Our Blog */}
+      <section className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">From Our Blog</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#26303A]">What Our Billers Know</h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              The knowledge that ARC&apos;s billers apply every day, explained in plain language for agency leaders who want to understand the billing they depend on.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {featuredPosts.map((post) => (
+              <Link
+                key={post.href}
+                href={post.href}
+                className="block bg-[#F8F5F2] rounded-xl p-7 border border-gray-100 hover:shadow-md transition-shadow group"
+              >
+                <span className="inline-block text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-3">{post.category}</span>
+                <h3 className="font-bold text-[#26303A] mb-3 group-hover:text-[#0B7A84] transition-colors leading-snug">{post.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                <p className="text-[#0B7A84] text-sm font-semibold">Read more &rarr;</p>
+              </Link>
             ))}
           </div>
         </div>

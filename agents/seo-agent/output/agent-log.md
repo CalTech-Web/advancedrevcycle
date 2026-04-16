@@ -121,3 +121,33 @@ Changes made:
 | CollectionPage schema (blog listing) | Google understands /blog as a structured article collection — improves blog indexing signals |
 | Event schema (webinars — 4 events) | 4 upcoming webinar topics eligible for Event rich results in SERPs |
 | "From Our Blog" sections (6 service pages) | 18 new internal links from service pages to blog posts — improves crawl depth and topical authority signals |
+**SEO Run #4 complete.** Here's what shipped to `main`:
+
+| Change | Impact |
+|---|---|
+| **2 new blog posts** (8 total) | "Palliative Care Billing: Multi-Payer Complexity" + "Post-Acute Credentialing: Avoiding Gaps" — 1,000+ words each, targeting the two previously uncovered service pages, with BlogPosting schema and relatedService callouts |
+| **sitemap.ts** — 2 missing pages | `/privacy-policy` and `/terms-of-service` now included (priority 0.5) — all 18 pages + 8 blog posts now in sitemap |
+| **CollectionPage schema** (blog listing) | Google understands `/blog` as a structured article collection with 8 posts — improves blog indexing signals |
+| **Event schema** (webinars — 4 events) | All 4 upcoming webinar topics now have `@type: Event` schema (EventScheduled, OnlineEventAttendanceMode) — eligible for Event rich results |
+| **"From Our Blog" sections** (6 service pages) | 18 new internal links from every service page to relevant blog posts — improves crawl depth and topical authority clustering |
+[2026-04-15 17:52:05] Run #4 finished
+[2026-04-15 17:52:10] Run #5 starting (model: sonnet)
+[2026-04-15] SEO Run #5 complete.
+Changes made:
+- blog/data.ts: Added 2 new 1,000+ word blog posts (10 total):
+  - "Medicare Advantage Billing for Hospice and Home Health: What Every Agency Needs to Know" (August 2025, Operations, relatedService: Hospice Billing)
+  - "Hospice Accounts Receivable Management: How to Keep Your AR Under Control" (July 2025, Operations, relatedService: Hospice Billing)
+- careers/page.tsx: Expanded title to include keyword "Post-Acute Billing Jobs"; added 4-item "What We Look For" section; added 6-item FAQPage JSON-LD schema; added WebPage (AboutPage equivalent) JSON-LD schema; replaced plain white CTA with teal section for visual consistency
+- about/page.tsx: Replaced personSchema with expanded aboutSchema including AboutPage @type WebPage entry; added "From Our Blog" section with 3 internal links to Operations-category posts (outsourced billing transition, MA billing, AR management)
+- regulatory-resources/page.tsx: Added relatedPosts array and "Further Reading From the ARC Blog" section with 3 internal links to compliance/regulatory blog posts (NOE timing, wage index, home health NOA)
+- sitemap.ts: No changes needed — already dynamically generates blog entries from posts array; new posts automatically included
+- TypeScript typecheck: passes (exit 0)
+
+| Change | Impact |
+|---|---|
+| 2 new blog posts (10 total) | Medicare Advantage billing and Hospice AR management target high-value operational queries; each 1,000+ words with BlogPosting schema and relatedService callouts |
+| Careers page expansion | Added "What We Look For" + 6-question FAQPage JSON-LD (eligible for rich results) + WebPage schema; page now targets "hospice billing jobs remote" and related career queries |
+| About page AboutPage schema | WebPage @type: AboutPage entity now explicitly declared — clearer entity signal to Google for the company's about page |
+| About page "From Our Blog" | 3 new internal links from About to Operations blog posts — improves topical authority clustering and crawl depth |
+| Regulatory Resources blog links | 3 new internal links from Regulatory Resources to compliance/regulatory posts — connects the reference hub to educational content |
+[2026-04-15] Run #5 finished

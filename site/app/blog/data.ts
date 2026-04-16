@@ -609,4 +609,164 @@ For agencies whose denial rates are driven by authorization and eligibility issu
 ARC manages the full authorization lifecycle as part of its authorization and eligibility service, including initial verification, prior authorization submission, re-authorization tracking, and appeals management for denials that result from eligibility or authorization issues.
     `.trim(),
   },
+  {
+    slug: "medicare-advantage-billing-post-acute",
+    title: "Medicare Advantage Billing for Hospice and Home Health: What Every Agency Needs to Know",
+    category: "Operations",
+    dateISO: "2025-08-01",
+    excerpt:
+      "Medicare Advantage plans now cover more than half of Medicare beneficiaries in many markets, and their billing rules bear little resemblance to traditional Medicare. Prior authorization, network requirements, plan-specific claim formats, and variable timely filing windows make MA billing one of the most denial-prone areas for post-acute agencies that are not prepared.",
+    date: "August 2025",
+    image: "/assets/gallery/careers-blog.jpg",
+    relatedService: { title: "Hospice Billing", href: "/hospice-billing" },
+    content: `
+Medicare Advantage enrollment has grown steadily for more than a decade. In many metropolitan markets, more than half of Medicare-eligible patients are now enrolled in a Medicare Advantage plan rather than traditional Medicare fee-for-service. For hospice, home health, and palliative care agencies, this shift changes the billing picture materially. Traditional Medicare is a single payer with a single claims process. Medicare Advantage is hundreds of separate plans, each with its own rules.
+
+## How Medicare Advantage Billing Differs From Traditional Medicare
+
+The most fundamental difference is authorization. Traditional Medicare does not require prior authorization for hospice services or home health services that meet coverage criteria. A patient who elects the hospice benefit under traditional Medicare, or who meets the homebound and skilled care criteria for home health, is covered without any pre-approval step.
+
+Medicare Advantage plans are not subject to the same restriction. The Centers for Medicare and Medicaid Services regulates Medicare Advantage plans and requires them to cover all traditional Medicare-covered benefits, but it allows plans to require prior authorization as a cost management tool. Most Medicare Advantage plans exercise this authority for post-acute services.
+
+The authorization requirement alone creates a significant operational difference. An agency billing traditional Medicare can focus on clean claim submission. An agency billing Medicare Advantage must first identify that the patient is in an MA plan, determine which plan it is, verify that the agency is in-network with that plan, and obtain authorization for the services before they begin. All of this must happen before the first visit.
+
+## Network Participation: The Prerequisite for Billing
+
+Traditional Medicare covers services from any Medicare-enrolled provider. Medicare Advantage plans maintain their own provider networks, and most plans only cover services from in-network providers except in emergency or urgent care situations.
+
+For post-acute agencies, this means that being enrolled with Medicare is not enough. An agency must be separately credentialed and contracted with each Medicare Advantage plan whose patients it wants to serve. A patient enrolled in UnitedHealthcare's Medicare Advantage plan who is admitted to a hospice that is not in UnitedHealthcare's network will create a claim problem that cannot be resolved on the billing side.
+
+The practical implication is that an agency's credentialing and contracting work must stay ahead of its patient mix. As Medicare Advantage enrollment grows in the agency's geographic market, the agency must be building its MA plan network participation in parallel. Waiting until a non-covered patient is admitted to start the credentialing process means delivering care before billing access is confirmed.
+
+## Prior Authorization: Process and Timeline
+
+Each Medicare Advantage plan has its own authorization process, documentation requirements, and response timeline. There is no standardized format across plans. A process that works for Humana's authorization team may not work for Aetna's. The forms are different. The clinical documentation requirements are different. The turnaround times are different.
+
+For hospice services specifically, most plans require authorization before the patient begins receiving hospice services. This creates a timing challenge for agencies that admit patients on short notice. A patient referred for hospice admission on a Friday afternoon, when the plan's authorization team may not be available until Monday, creates a gap that must be managed carefully to avoid delivering services without coverage confirmation.
+
+The most effective approach is to begin the authorization process as early in the referral intake as possible, confirm the plan and the authorization requirements before admission, and have a documented protocol for emergency admissions where authorization cannot be obtained in advance. Some plans allow a 24-hour or 48-hour window for emergency admission notification. Knowing each plan's rules before an emergency occurs is the only way to apply them correctly when one happens.
+
+## Timely Filing: A Plan-by-Plan Variable
+
+Traditional Medicare has a one-year timely filing window. Claims must be submitted within one year of the date of service. Medicare Advantage plans are not bound to the same window. Most plans have shorter timely filing windows, typically 90 to 180 days, though some plans allow only 60 days.
+
+A billing team that applies Medicare's one-year window as a default for Medicare Advantage claims will periodically find that claims are denied as untimely. The denial is not a billing error in the claim itself. It is a deadline management failure.
+
+Managing timely filing across multiple Medicare Advantage plans requires a tracking system that identifies the filing deadline for each plan and flags claims that are approaching the deadline without a payment or a denial. For agencies with high Medicare Advantage volume, this is a material operational requirement.
+
+## Appeal Rights Under Medicare Advantage
+
+When a Medicare Advantage plan denies a claim, the agency's appeal rights are different from those under traditional Medicare. Traditional Medicare denials go through a structured appeal process: redetermination, reconsideration, Administrative Law Judge hearing, and Medicare Appeals Council review.
+
+Medicare Advantage appeals go to the plan first, then to an independent review entity if the plan's internal appeal is unsuccessful. The timelines and documentation requirements vary by plan and by denial type. Some plans have faster internal appeal processes than traditional Medicare redeterminations. Others are slower, and their processes are less transparent.
+
+Authorization denials deserve particular attention. A claim denied because services were provided without required authorization has a limited appeal pathway. Plans generally do not cover non-authorized services on appeal unless the agency can demonstrate that it attempted to obtain authorization and the delay was caused by the plan, or that the services were required on an emergency basis and could not wait for authorization.
+
+## The Explanation of Benefits Coordination Problem
+
+A patient covered by a Medicare Advantage plan as primary may also have secondary coverage, such as employer-sponsored supplemental insurance or Medicaid. When the MA plan adjudicates the primary claim, the agency receives an explanation of benefits from the plan. The secondary claim is then filed with the secondary payer, attaching the primary EOB.
+
+The challenge is that different Medicare Advantage plans produce explanations of benefits in different formats. Some EOBs map clearly to the secondary payer's coordination of benefits requirements. Others require translation. The secondary payer needs specific information from the primary EOB, and if that information is not presented in the expected format, the secondary claim may be rejected.
+
+Billing teams that handle high Medicare Advantage volume develop plan-specific EOB handling procedures over time. This knowledge is not documented anywhere. It is accumulated through repeated transactions with each plan and is one of the practical reasons why experience with specific Medicare Advantage plans is a meaningful differentiator in post-acute billing.
+
+## Building an MA-Ready Billing Operation
+
+An agency that wants to bill Medicare Advantage effectively, rather than reactively, needs:
+
+**Up-to-date network participation with the major plans in its markets.** This means knowing which Medicare Advantage plans are active in the counties the agency serves, verifying current network participation status, and initiating credentialing for any plans where the agency is not yet participating.
+
+**Plan-specific authorization protocols.** A reference document for each major MA plan that covers authorization requirements, submission process, typical turnaround time, and emergency admission procedures.
+
+**Timely filing tracking by plan.** A system that flags each MA claim with the applicable timely filing deadline and surfaces claims that are approaching the deadline without resolution.
+
+**Dedicated appeal management.** Medicare Advantage appeals require plan-specific processes. Treating them as generic denial follow-up produces lower recovery rates than plan-specific appeal management.
+
+ARC's billing team works with Medicare Advantage plans across all markets and lines of care. As Medicare Advantage enrollment continues to grow, the proportion of claims requiring MA-specific billing management will continue to increase for most agencies. Building that capability proactively, rather than discovering its gaps through denied claims, produces better collections and fewer administrative crises.
+    `.trim(),
+  },
+  {
+    slug: "hospice-accounts-receivable-management",
+    title: "Hospice Accounts Receivable Management: How to Keep Your AR Under Control",
+    category: "Operations",
+    dateISO: "2025-07-01",
+    excerpt:
+      "Accounts receivable aging is the most direct measure of how well a hospice billing operation is functioning. An AR report that is clean at 30 days and deteriorating at 60 and 90 tells a specific story about where the billing workflow is breaking down. Knowing how to read that story, and how to act on it, is how agencies prevent AR problems from compounding into revenue crises.",
+    date: "July 2025",
+    image: "/assets/gallery/careers-1.jpg",
+    relatedService: { title: "Hospice Billing", href: "/hospice-billing" },
+    content: `
+Hospice accounts receivable management is the ongoing process of tracking every claim from submission to payment, identifying claims that have not been resolved on expected timelines, and taking specific action to move those claims to resolution. Most hospice financial executives review their AR aging report regularly. Fewer have a systematic process for acting on what it shows.
+
+## Reading a Hospice AR Aging Report
+
+A hospice AR aging report organizes outstanding claims by payer and by the number of days since the claim was submitted. The standard aging buckets are 0 to 30 days, 31 to 60 days, 61 to 90 days, and over 90 days. Each bucket tells a different story.
+
+**0 to 30 days.** This is normal processing time. Medicare typically pays clean claims within 14 to 21 days. Medicaid and commercial payers vary, but most claims in this bucket are simply in process. An unusually high balance in the current bucket relative to prior months may indicate a spike in new admissions or a batch submission backlog.
+
+**31 to 60 days.** Claims that have not been paid by day 31 warrant review. Some will still be in the payer's normal processing cycle. Others may have been rejected or pended for additional information without generating a denial notice that the billing team has seen. A review of the 31-to-60 bucket should identify whether each open claim has been adjudicated and, if not, why not.
+
+**61 to 90 days.** Claims in this range are overdue. A Medicare claim that has not been paid or denied by day 61 is likely stuck. It may have been submitted with an error that the MAC did not reject clearly. It may be in an automated review queue. It may have been denied and the denial was not caught. Every claim in the 61-to-90 bucket should have a specific status: adjudicated but unpaid, denied and in appeal, rejected and corrected, or pending investigation.
+
+**Over 90 days.** This bucket should be shrinking. An over-90 balance that grows from month to month indicates that the billing team is not clearing claims faster than they are aging into this range. This is the most direct indicator of a systemic billing problem.
+
+## The Claim Lifecycle Hospice Billing Teams Must Track
+
+Every hospice claim follows a predictable lifecycle. Understanding where claims are in that lifecycle at any point is what enables proactive AR management rather than reactive follow-up.
+
+**Notice of Election filing.** The NOE must be filed and accepted before the first claim for a period of care can be processed. An accepted NOE is the foundation of a clean billing cycle. Rejections or late filings delay the entire claim sequence.
+
+**Claim submission.** The claim must be submitted clean, meaning all required fields completed correctly, all supporting documents attached where required, and the submitted amounts matching the agency's contracted rates for the applicable payer.
+
+**Acknowledgment and acceptance.** Electronic claim submission produces an acknowledgment within days. An accepted acknowledgment means the claim is in the payer's system. A rejected acknowledgment means the claim was not accepted and must be corrected and resubmitted. Rejected acknowledgments that are not caught and corrected quickly are a common source of timely filing problems.
+
+**Adjudication.** The payer reviews the claim and either pays it, denies it, or requests additional information. Medicare typically adjudicates hospice claims within 14 to 21 days. Commercial payers vary.
+
+**Payment posting.** When payment arrives, it must be posted to the correct account with the correct adjustments. Unposted payments or payments applied to the wrong account create false aging that distorts the AR picture.
+
+**Denial and appeal.** Denied claims enter a secondary workflow. The denial reason determines the appeal type, the documentation required, and the deadline for filing the appeal.
+
+## The Payer Mix Problem in Hospice AR
+
+Hospice payer mix creates specific AR management challenges. Medicare hospice pays on a per-diem basis, which means each claim represents multiple days of care rather than a single visit. A denied Medicare claim affects a larger dollar amount than a typical physician claim denial.
+
+Medicaid hospice billing varies by state. Some states use the same per-diem model as Medicare. Others use a different claims process, different billing codes, and different timely filing windows. Managing Medicaid AR requires state-specific knowledge that cannot be generalized across states.
+
+Commercial insurance hospice coverage is written at the plan level, which means the coverage terms, billing requirements, and appeal processes are unique to each commercial plan. An agency that receives hospice commercial payments from more than a handful of plans is managing a patchwork of billing rules.
+
+VA hospice billing adds a layer of complexity specific to Veterans Affairs authorization and claims processing. VA-covered patients often require authorization that must be tracked separately from Medicare or Medicaid coverage.
+
+## Proactive Follow-Up: The Difference Between a Working AR and an Aging One
+
+The single most important variable in hospice AR management is whether the billing team follows up on open claims before the payer's deadlines expire. Reactive follow-up, meaning waiting for a denial notice before taking action, leaves claims unresolved for weeks that could have been resolved in days.
+
+Proactive follow-up requires:
+
+**Daily claim status monitoring.** Medicare provides a claim status inquiry tool through the MAC portals. A billing team that checks claim status daily can identify pending claims, rejected submissions, and processing delays before they age into problem territory.
+
+**Denial queue management.** Every denied claim should enter a workflow that assigns it to a specific biller, identifies the denial reason, and sets a deadline for appeal submission. Denials that are logged but not assigned do not get appealed.
+
+**Payer-specific follow-up timelines.** Different payers have different follow-up windows. Medicare appeals must be filed within 120 days of the denial date. Some commercial plans require appeals within 60 days. Managing these deadlines by payer, not by a single generalized deadline, prevents appeal window closures.
+
+**Over-90 escalation.** Claims that reach 90 days without resolution should escalate to a senior biller or billing manager for review. Some over-90 claims are simply complex. Others are falling out of the workflow. Escalation creates accountability.
+
+## What a Healthy Hospice AR Report Looks Like
+
+A well-managed hospice AR report has most of its balance concentrated in the 0-to-30 bucket, a smaller balance in the 31-to-60 bucket representing claims still in process with slower payers, and a declining over-90 balance that reflects active resolution of older claims.
+
+The over-90 percentage is the most watched number in the report. Industry benchmarks for hospice AR typically place a healthy over-90 balance at less than 15 to 20% of total outstanding AR. An over-90 percentage above 25% indicates systemic follow-up problems.
+
+**Payer mix in the over-90 bucket** matters as much as the overall percentage. Medicare claims over 90 days are unusual in a well-run operation because Medicare is a predictable payer. A heavy Medicare concentration in the over-90 bucket points to a claims submission or follow-up process failure. Medicaid and commercial concentrations in the over-90 bucket may reflect payer-specific issues that require dedicated attention.
+
+## The Cost of Deferred AR Management
+
+Many hospice organizations that discover they have an AR problem delayed acting on it because the monthly cash flow appeared adequate. Revenue was coming in, the agency was solvent, and the AR report showed a growing over-90 balance that was treated as a normal feature of the billing cycle.
+
+AR problems compound. A claim that could have been resolved in 45 days through a simple appeal may be uncollectible at day 200 if the appeal window has closed. A pattern of late NOE filings creates non-billable periods that accumulate silently in the AR report as claims that were submitted for fewer days than the care delivered. Systemic underpayment from incorrect wage index rates or misconfigured payer contracts shows as a correct payment that is actually lower than entitled.
+
+None of these problems resolve themselves. They require an AR review that goes beyond the aging report to the underlying claim detail, the denial log, and the payer-specific payment analysis.
+
+ARC's billing team runs daily 60-day payer reports as standard practice, follows every claim actively rather than waiting for denial notices, and maintains a zero-backlog policy on denial appeals. For agencies that want to understand the current state of their AR before making any billing changes, the starting point is an AR audit that identifies where collections are leaking and quantifies the recoverable amount.
+    `.trim(),
+  },
 ];

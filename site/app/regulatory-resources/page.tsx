@@ -1,6 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const relatedPosts = [
+  {
+    title: "NOE Timing: The Five-Day Window That Protects Your First Payment",
+    href: "/blog/noe-timing-five-day-window",
+    category: "Compliance",
+    excerpt: "What the five-day NOE rule requires, where agencies lose the window, and the same-day filing protocol that eliminates the risk.",
+  },
+  {
+    title: "Understanding the 2025 Hospice Wage Index Changes",
+    href: "/blog/2025-hospice-wage-index-changes",
+    category: "Regulatory Update",
+    excerpt: "How the annual wage index update works, what changed in 2025, and how to verify your agency is billing at the correct adjusted rates.",
+  },
+  {
+    title: "Home Health NOA Filing: How the Five-Day Rule Affects Your First Payment",
+    href: "/blog/home-health-noa-five-day-rule",
+    category: "Compliance",
+    excerpt: "The NOA requirement, why agencies miss the five-day window, and the operational protocol that prevents permanent non-billable periods.",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Regulatory Resources",
   description:
@@ -135,6 +156,27 @@ export default function RegulatoryResourcesPage() {
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
                 <p className="text-[#0B7A84] text-sm font-semibold">Contact ARC for access &rarr;</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Blog Posts */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-[#26303A] mb-8">Further Reading From the ARC Blog</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {relatedPosts.map((post) => (
+              <Link
+                key={post.href}
+                href={post.href}
+                className="block bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow group"
+              >
+                <span className="inline-block text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-3">{post.category}</span>
+                <h3 className="font-bold text-[#26303A] mb-3 group-hover:text-[#0B7A84] transition-colors leading-snug">{post.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                <p className="text-[#0B7A84] text-sm font-semibold">Read more &rarr;</p>
+              </Link>
             ))}
           </div>
         </div>
