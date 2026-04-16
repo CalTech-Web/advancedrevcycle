@@ -83,20 +83,20 @@ export default function ServicePage({ badge, title, intro, features, whySection,
       {whySection && (
         <section className="bg-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-[#26303A] mb-8">{whySection.title}</h2>
-              <ul className="space-y-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-[#26303A] mb-10">{whySection.title}</h2>
+              <div className="grid sm:grid-cols-2 gap-4">
                 {whySection.points.map((p, i) => (
-                  <li key={i} className="flex gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-[#B8EE40] rounded-full flex items-center justify-center mt-0.5">
-                      <svg className="w-3 h-3 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  <ScrollReveal key={i} delay={i * 70}>
+                    <div className="flex gap-4 bg-[#F8F5F2] rounded-xl p-5 border border-gray-100 h-full">
+                      <div className="flex-shrink-0 w-8 h-8 bg-[#B8EE40] rounded-full flex items-center justify-center font-bold text-[#26303A] text-sm">
+                        {i + 1}
+                      </div>
+                      <p className="text-gray-600 leading-relaxed text-sm pt-1">{p}</p>
                     </div>
-                    <p className="text-gray-600 leading-relaxed">{p}</p>
-                  </li>
+                  </ScrollReveal>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </section>
