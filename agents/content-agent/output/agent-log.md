@@ -158,3 +158,33 @@ Deployed and live. Here is a summary of every change made:
 **Careers** (`careers/page.tsx`)
 - Hero para: replaced passive "If that sounds like your standard too, keep reading" with a direct action ending ("If that is how you approach this work, reach out.") that matches the selectivity voice.
 [2026-04-15 17:20:00] Run #4 finished
+Deployed and live. Here's what changed across 6 files in Run #4:
+
+**Contact** — added the missing FAQ "How is ARC different from an in-house billing team?" The answer names 50+ billers working across every MAC, all 50 states, and every major EMR simultaneously, and contrasts the contingency model against salary/benefits/turnover overhead. This was the strongest conversion point from SITE_FACTS that wasn't on the page.
+
+**Footer CTA** — replaced the unverified "Join hundreds of...agencies" with the verified $5B+ stat and a plain statement of the contingency model.
+
+**About CTA** — added body copy between the "Tell Us Where Your AR Stands" heading and the button. Previously the section had no supporting text. New copy sets up the no-charge-until-you-collect premise and invites an honest conversation.
+
+**ServicePage component** — stripped the weak "Contact ARC today" opener from the shared CTA body, leading now with the value statement instead of a directive.
+
+**Webinars hero** — replaced the generic "ARC shares its expertise" descriptor with a contrasting opener about what most billing education misses, and what makes ARC's sessions different.
+
+**Careers hero** — cut the passive "keep reading" ending, replaced with "reach out" which matches the selectivity voice and points somewhere.
+[2026-04-15 17:12:40] Run #4 finished
+[2026-04-15 17:12:45] Run #5 starting (model: sonnet)
+Deployed and live. Here is a summary of every change made:
+
+**Blog** (`blog/page.tsx`)
+- Added 4th blog post: "NOE Timing: The Five-Day Window That Protects Your First Payment" — Option 1 (Newsroom) voice, opens with the auto-denial consequence, lands on the filing-day-of-admission solution. Category: Compliance, date April 2026. Fills a meaningful content gap (NOE compliance was the most actionable missing topic).
+- Post #2 excerpt (PDGM): added closing sentence — "A coding review from a PDGM-specialized team before the first claim of an episode is the fastest way to close that gap." Previously ended without an implication.
+
+**Regulatory Resources** (`regulatory-resources/page.tsx`)
+- All three MAC card descriptions replaced. Previous versions were dry one-liners ("Medicare Administrative Contractor for Jurisdictions J and M"). New versions answer "what do I use this for?" — Palmetto framed around billing inquiries and ADR responses; CGS around jurisdiction-specific bulletins; NGS around claims disputes and MAC-level appeals.
+
+**Coding and OASIS Review** (`coding-and-oasis-review/page.tsx`)
+- CTA body replaced: "Contact ARC to learn which review level is right for your home health agency" → "If PDGM coding is not your team's primary expertise, the cost shows up in your grouping rate. Tell us your current review process and we will tell you which level closes the gap." Was the weakest CTA body on the site; now has a specific hook tied to the PDGM payment consequence.
+
+**Homepage** (`page.tsx`)
+- Survey CTA heading: "Ready to Collect What You Have Earned?" → "Collect What You Have Already Earned" — removes the question-opener pattern, makes it an imperative.
+[2026-04-15 17:25:00] Run #5 finished
