@@ -41,6 +41,7 @@ export default function Nav() {
               width={200}
               height={41}
               priority
+              unoptimized
             />
           </Link>
 
