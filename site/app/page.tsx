@@ -190,10 +190,10 @@ export default function HomePage() {
               Your Agency Is Losing<br />Revenue It Already Earned
             </h1>
             <p className="hero-fade-2 text-[#B8EE40] font-semibold text-base sm:text-lg mb-6">
-              Claims aging in AR cost post-acute agencies thousands every month.
+              ARC has a 100% track record of reducing AR for every post-acute agency we serve.
             </p>
             <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-7 leading-relaxed">
-              ARC&apos;s 50+ U.S.-based billers work exclusively in hospice, home health, and palliative care. We have collected over $5 billion for agencies nationwide, we follow every claim until it is paid, and you pay nothing until we collect.
+              Every day claims age in AR, your agency loses money it has already earned. ARC&apos;s 50+ U.S.-based billers work exclusively in hospice, home health, and palliative care, have collected over $5 billion for agencies nationwide, and follow every claim until it is paid. You pay nothing until we collect.
             </p>
             {/* Inline stat cluster */}
             <div className="hero-fade-3 flex flex-wrap items-center gap-x-6 gap-y-4 mb-8 bg-white/5 border border-white/10 rounded-xl px-5 py-4">
@@ -213,11 +213,11 @@ export default function HomePage() {
               </div>
               <div className="w-px h-8 bg-white/15 hidden sm:block" aria-hidden="true" />
               <div>
-                <p className="text-2xl font-bold text-white leading-none">All 50</p>
-                <p className="text-xs text-gray-400 mt-0.5">States Served</p>
+                <p className="text-2xl font-bold text-white leading-none">20+</p>
+                <p className="text-xs text-gray-400 mt-0.5">Yrs Avg. Biller Exp.</p>
               </div>
             </div>
-            <div className="hero-fade-4 flex flex-col sm:flex-row items-start gap-4 mb-2">
+            <div className="hero-fade-4 flex flex-col sm:flex-row items-start gap-4 mb-6">
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center w-full sm:w-auto"
@@ -231,17 +231,7 @@ export default function HomePage() {
                 See How We Work
               </a>
             </div>
-            <p className="hero-fade-4 text-xs text-white/40 mb-6">
-              No flat fees. No retainers. You pay only when we collect. Transition in as few as 30 days.
-            </p>
-            <p className="hero-fade-4 text-sm text-gray-400 mb-10">
-              Not ready to talk?{" "}
-              <a href="#surveyForm" className="text-[#B8EE40] hover:underline font-medium">
-                Take our 2-minute billing survey
-              </a>{" "}
-              and we&apos;ll identify where your revenue is slipping.
-            </p>
-            <div className="hero-fade-4 max-w-xl bg-white/10 border border-white/15 rounded-xl p-5 flex gap-4 items-start">
+            <div className="hero-fade-4 max-w-xl bg-white/10 border border-white/15 rounded-xl p-5 flex gap-4 items-start mb-5">
               <svg className="w-8 h-8 text-[#B8EE40] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
               </svg>
@@ -252,6 +242,22 @@ export default function HomePage() {
                 <p className="text-[#B8EE40] text-xs font-semibold">Hospice CEO, Western U.S.</p>
               </div>
             </div>
+            <p className="hero-fade-4 text-xs text-white/40 mb-2">
+              No flat fees. No retainers. You pay only when we collect. Transition in as few as 30 days.
+            </p>
+            <p className="hero-fade-4 text-xs text-white/50 mb-6">
+              Prefer to call?{" "}
+              <a href="tel:+18887373585" className="text-white/70 hover:text-white font-medium transition-colors">
+                (888) 737-3585
+              </a>
+            </p>
+            <p className="hero-fade-4 text-sm text-gray-400 mb-10">
+              Not ready to talk?{" "}
+              <a href="#surveyForm" className="text-[#B8EE40] hover:underline font-medium">
+                Take our 2-minute billing survey
+              </a>{" "}
+              and we&apos;ll identify where your revenue is slipping.
+            </p>
           </div>
           <div className="hero-fade-4 mt-10 flex flex-wrap gap-x-8 gap-y-2">
             {[
