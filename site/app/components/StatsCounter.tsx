@@ -34,7 +34,8 @@ function easeOutExpo(t: number): number {
 
 function AnimatedStat({ stat, triggered }: { stat: Stat; triggered: boolean }) {
   const config = parseStat(stat.value);
-  const [display, setDisplay] = useState("0");
+  const finalDisplay = config.decimals > 0 ? config.target.toFixed(config.decimals) : config.target.toString();
+  const [display, setDisplay] = useState(finalDisplay);
   const rafRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const duration = 1800;

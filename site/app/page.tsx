@@ -343,17 +343,18 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="relative">
+            <div className="relative hidden lg:block">
               <Image
                 src="/assets/gallery/how-we-do-it.png"
                 alt="ARC billing team at work"
                 width={600}
                 height={480}
                 className="rounded-2xl w-full h-auto object-cover"
+                loading="eager"
               />
               <div className="absolute -bottom-6 -left-6 bg-[#B8EE40] rounded-xl p-5 shadow-lg">
                 <p className="text-2xl font-bold text-[#26303A]">100%</p>
-                <p className="text-sm text-[#26303A] font-medium">Contingency Pricing</p>
+                <p className="text-sm text-[#26303A] font-medium">Aligned Incentives</p>
               </div>
             </div>
           </div>
