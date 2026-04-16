@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ContactForm from "../components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -78,116 +79,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-14">
             {/* Form */}
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-              <h2 className="text-2xl font-bold text-[#26303A] mb-6">Send Us a Message</h2>
-              <form
-                action="https://forms.caltechweb.com/api/submit"
-                method="POST"
-                className="space-y-5"
-              >
-                <input type="hidden" name="site" value="advancedrevcycle.com" />
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-[#26303A] mb-1.5">
-                      First Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      required
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B7A84] focus:border-transparent"
-                      placeholder="Jane"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-[#26303A] mb-1.5">
-                      Last Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      required
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B7A84] focus:border-transparent"
-                      placeholder="Smith"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[#26303A] mb-1.5">
-                    Email <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B7A84] focus:border-transparent"
-                    placeholder="jane@agency.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-[#26303A] mb-1.5">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B7A84] focus:border-transparent"
-                    placeholder="(555) 000-0000"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="agencyName" className="block text-sm font-medium text-[#26303A] mb-1.5">
-                    Agency Name
-                  </label>
-                  <input
-                    type="text"
-                    id="agencyName"
-                    name="agencyName"
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B7A84] focus:border-transparent"
-                    placeholder="Your Hospice Agency"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="lineOfCare" className="block text-sm font-medium text-[#26303A] mb-1.5">
-                    Line of Care
-                  </label>
-                  <select
-                    id="lineOfCare"
-                    name="lineOfCare"
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B7A84] focus:border-transparent bg-white"
-                  >
-                    <option value="">Select one</option>
-                    <option value="hospice">Hospice</option>
-                    <option value="home-health">Home Health</option>
-                    <option value="palliative-care">Palliative Care</option>
-                    <option value="multiple">Multiple Lines</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-[#26303A] mb-1.5">
-                    Message <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B7A84] focus:border-transparent resize-none"
-                    placeholder="Tell us about your agency and what you are looking for..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-[#FF5B04] text-white font-semibold py-4 rounded-lg hover:bg-orange-600 transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
+            <ContactForm />
 
             {/* Info */}
             <div className="space-y-8">

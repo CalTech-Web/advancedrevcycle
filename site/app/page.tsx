@@ -317,7 +317,7 @@ export default function HomePage() {
           {/* Edge fades */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F8F5F2] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F8F5F2] to-transparent" />
-          {/* Scrolling track — logos duplicated for seamless loop */}
+          {/* Scrolling track, logos duplicated for seamless loop */}
           <div className="flex items-center gap-12 marquee-track w-max">
             {[...emrLogos, ...emrLogos].map((emr, i) => (
               <div
