@@ -79,3 +79,49 @@ Deployed and live. Here is a summary of every change made:
 **Contracting and Credentialing** (`contracting-and-credentialing/page.tsx`)
 - CTA title: "Get Contracted and Credentialed Faster" → "Open Every Payer Door Before Your First Claim"
 [2026-04-15 17:15:00] Run #2 finished
+Deployed and live. Here's what changed across 9 files:
+
+**About** — fixed colon violation in differentiators, sharpened Delaine and Matt's bios away from vague corporate framing, replaced generic CTA heading with "Tell Us Where Your AR Stands"
+
+**Blog** — hero intro now names what CMS and MACs actually do rather than listing content categories; post 1 excerpt ends on a specific implication instead of "here is what you need to know"
+
+**Webinars** — coming soon section now names actual session topics (PDGM primary diagnosis, NOE timing); YouTube section describes what the channel covers instead of asking people to "visit for the latest videos"
+
+**Resources** — hero intro reframed as ARC's own team's bookmarks, not a generic library description
+
+**Case Studies** — CTA replaced "Write Your Own Success Story" cliché with "Your Agency's Numbers Are Not Fixed" + two concrete client outcomes from the actual case data
+
+**Careers** — open positions CTA shed the hedging ("always looking") and matches the 1-in-50 selectivity voice
+
+**Three service CTA titles** — Home Health ("Improve Today" → "Get Every Dollar You Have Earned"), Palliative Care (passive → "ARC Handles the Payer Complexity. You Handle the Care."), Contracting ("Faster" → "Open Every Payer Door Before Your First Claim")
+[2026-04-15 17:02:55] Run #2 finished
+[2026-04-15 17:03:00] Run #3 starting (model: sonnet)
+Deployed and live. Here is a summary of every change made:
+
+**Homepage** (`page.tsx`)
+- 6 service card descriptions: replaced dry feature lists with voice-driven copy
+  - Hospice: "The only line of care we work in. Every NOE, every MAC jurisdiction, and every claim followed until paid."
+  - Home Health: "PDGM-aware billing from NOA filing through final payment. Every episode tracked, every discrepancy resolved."
+  - Palliative: opened with the multi-payer reality on the same patient
+  - Authorization: "Most denials start before services begin"
+  - Contracting: "You cannot bill a payer you are not credentialed with"
+  - Coding: "Under PDGM, the primary diagnosis sets your payment rate"
+
+**Blog** (`blog/page.tsx`)
+- Post #3 excerpt: replaced vague "significant decision" opener with the real problem, the handoff
+- CTA heading: "Stay Current on Post-Acute Billing" → "The Rules Change. The Collections Do Not Have To."
+- CTA body: replaced generic "discuss how changes affect you" with specific CMS/MAC framing
+
+**Regulatory Resources** (`regulatory-resources/page.tsx`)
+- Hero intro: replaced list-style descriptor with newsroom three-sentence opener naming the MACs and framing the page's purpose
+- CTA heading: "Have a Regulatory or Billing Question?" → "Your Next Billing Question"
+- CTA body: "billers do not use these links to look things up, they know what they say"
+
+**Resources** (`resources/page.tsx`)
+- CTA heading: "Need Specific Regulatory Guidance?" → "These Links Are a Starting Point"
+- CTA body: positioned ARC as the faster answer when documents are too slow
+
+**Contact** (`contact/page.tsx`)
+- FAQ Q5 (onboarding): removed hedge opener "Transition timelines vary," led with the 30-day record, added "Revenue does not wait during a transition"
+- FAQ Q6 (multi-state): added four-state expansion example (AZ, UT, CA, TX) to replace generic "clients have grown" claim
+[2026-04-15 17:15:00] Run #3 finished
