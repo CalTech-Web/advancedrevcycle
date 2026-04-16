@@ -186,13 +186,38 @@ export default function HomePage() {
               <span className="w-2 h-2 rounded-full bg-[#B8EE40]" aria-hidden="true" />
               Exclusively Post-Acute: Hospice, Home Health &amp; Palliative Care
             </p>
-            <h1 className="hero-fade-2 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
-              Your Agency Is Owed<br />More Than It&apos;s Collecting
+            <h1 className="hero-fade-2 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-4">
+              Your Agency Is Losing<br />Revenue It Already Earned
             </h1>
-            <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-8 leading-relaxed">
-              ARC&apos;s 50+ U.S.-based billers have collected over $5 billion for post-acute agencies nationwide, with a 99%+ collection rate. We follow every claim until it is paid, and we only earn when you do.
+            <p className="hero-fade-2 text-[#B8EE40] font-semibold text-base sm:text-lg mb-6">
+              Claims aging in AR cost post-acute agencies thousands every month.
             </p>
-            <div className="hero-fade-4 flex flex-col sm:flex-row items-start gap-4 mb-4">
+            <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-7 leading-relaxed">
+              ARC&apos;s 50+ U.S.-based billers work exclusively in hospice, home health, and palliative care. We have collected over $5 billion for agencies nationwide, we follow every claim until it is paid, and you pay nothing until we collect.
+            </p>
+            {/* Inline stat cluster */}
+            <div className="hero-fade-3 flex flex-wrap items-center gap-x-6 gap-y-4 mb-8 bg-white/5 border border-white/10 rounded-xl px-5 py-4">
+              <div>
+                <p className="text-2xl font-bold text-white leading-none">99%+</p>
+                <p className="text-xs text-gray-400 mt-0.5">Collection Rate</p>
+              </div>
+              <div className="w-px h-8 bg-white/15 hidden sm:block" aria-hidden="true" />
+              <div>
+                <p className="text-2xl font-bold text-white leading-none">$5B+</p>
+                <p className="text-xs text-gray-400 mt-0.5">Collected for Agencies</p>
+              </div>
+              <div className="w-px h-8 bg-white/15 hidden sm:block" aria-hidden="true" />
+              <div>
+                <p className="text-2xl font-bold text-white leading-none">100%</p>
+                <p className="text-xs text-gray-400 mt-0.5">Contingency Pricing</p>
+              </div>
+              <div className="w-px h-8 bg-white/15 hidden sm:block" aria-hidden="true" />
+              <div>
+                <p className="text-2xl font-bold text-white leading-none">All 50</p>
+                <p className="text-xs text-gray-400 mt-0.5">States Served</p>
+              </div>
+            </div>
+            <div className="hero-fade-4 flex flex-col sm:flex-row items-start gap-4 mb-2">
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center w-full sm:w-auto"
@@ -206,6 +231,9 @@ export default function HomePage() {
                 See How We Work
               </a>
             </div>
+            <p className="hero-fade-4 text-xs text-white/40 mb-6">
+              No flat fees. No retainers. You pay only when we collect. Transition in as few as 30 days.
+            </p>
             <p className="hero-fade-4 text-sm text-gray-400 mb-10">
               Not ready to talk?{" "}
               <a href="#surveyForm" className="text-[#B8EE40] hover:underline font-medium">
