@@ -132,11 +132,11 @@ export default function CareersPage() {
           </svg>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Join Our Team</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
+          <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Join Our Team</p>
+          <h1 className="hero-fade-2 text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
             Careers at Advanced RevCycle
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
+          <p className="hero-fade-3 text-gray-300 text-lg max-w-2xl leading-relaxed">
             ARC hires 1 biller for every 50 applicants. The bar is not a filter for its own sake. Every agency we serve is counting on the person reviewing their claims to already know what most billers are still figuring out. If that is how you approach this work, reach out.
           </p>
         </div>

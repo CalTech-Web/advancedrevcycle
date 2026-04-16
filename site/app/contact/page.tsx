@@ -78,11 +78,11 @@ export default function ContactPage() {
           </svg>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get in Touch</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
+          <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get in Touch</p>
+          <h1 className="hero-fade-2 text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
             Contact Advanced RevCycle
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
+          <p className="hero-fade-3 text-gray-300 text-lg max-w-2xl leading-relaxed">
             Most agencies that contact ARC have a billing problem they have been trying to solve on their own. Our team responds quickly and will tell you honestly whether we are the right fit.
           </p>
         </div>

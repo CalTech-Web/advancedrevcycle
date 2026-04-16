@@ -107,11 +107,11 @@ export default function WebinarsPage() {
           </svg>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Webinars</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
+          <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Webinars</p>
+          <h1 className="hero-fade-2 text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
             Post-Acute Billing Education
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
+          <p className="hero-fade-3 text-gray-300 text-lg max-w-2xl leading-relaxed">
             Most billing education covers theory. ARC&apos;s sessions are built by the billers who work these claims daily, focused on the documentation calls, payer patterns, and CMS specifics that determine what post-acute agencies actually collect.
           </p>
         </div>

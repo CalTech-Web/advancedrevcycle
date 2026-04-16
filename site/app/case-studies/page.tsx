@@ -117,11 +117,11 @@ export default function CaseStudiesPage() {
           </svg>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Results</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
+          <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Results</p>
+          <h1 className="hero-fade-2 text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
             Real Results for Post-Acute Agencies
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
+          <p className="hero-fade-3 text-gray-300 text-lg max-w-2xl leading-relaxed">
             A non-profit in Savannah was writing off 10% of AR annually, roughly $1 million. A western hospice had claims stalled during a state billing system transition. These are not outliers. This is what billing looks like when it falls behind regulation, and what the numbers looked like after ARC took over.
           </p>
         </div>

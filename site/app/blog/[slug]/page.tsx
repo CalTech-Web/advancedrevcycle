@@ -106,17 +106,17 @@ export default async function BlogPostPage({
           </svg>
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-5">
+          <div className="hero-fade-1 flex items-center gap-3 mb-5">
             <Link href="/blog" className="text-gray-400 text-sm hover:text-white transition-colors">
               Blog
             </Link>
             <span className="text-gray-600">/</span>
             <span className="text-[#B8EE40] text-sm font-semibold">{post.category}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">
+          <h1 className="hero-fade-2 text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">
             {post.title}
           </h1>
-          <p className="text-gray-400 text-sm">{post.date} &middot; Advanced RevCycle</p>
+          <p className="hero-fade-3 text-gray-400 text-sm">{post.date} &middot; Advanced RevCycle</p>
         </div>
       </section>
 
