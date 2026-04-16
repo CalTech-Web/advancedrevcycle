@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms of Service for Advanced RevCycle, LLC.",
+  description:
+    "Terms of Service for Advanced RevCycle, LLC. Review the terms governing use of advancedrevcycle.com and our post-acute revenue cycle management services.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/terms-of-service",
+  },
 };
 
 export default function TermsOfServicePage() {

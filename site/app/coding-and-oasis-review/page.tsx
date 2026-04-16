@@ -2,12 +2,37 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Coding and OASIS Review",
+  title: "ICD-10 Coding and OASIS Review Services",
   description:
-    "ICD-10 coding, PDGM-aligned diagnosis selection, and four levels of OASIS review for home health agencies. Acquired through the RCO (Rapid Coding and OASIS Review) acquisition.",
+    "PDGM-aligned ICD-10 coding and four levels of OASIS review for home health agencies. Expert diagnosis selection and assessment accuracy to protect your clinical grouping and reimbursement rate.",
   alternates: {
     canonical: "https://advancedrevcycle.com/coding-and-oasis-review",
   },
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://advancedrevcycle.com/coding-and-oasis-review/#service",
+      name: "ICD-10 Coding and OASIS Review",
+      description:
+        "Four levels of OASIS review and PDGM-aligned ICD-10 coding for home health agencies, including primary diagnosis selection per CMS conventions, assessment accuracy validation, Plan of Care alignment, and homebound status verification.",
+      url: "https://advancedrevcycle.com/coding-and-oasis-review",
+      provider: { "@id": "https://advancedrevcycle.com/#organization" },
+      serviceType: "Medical Coding and OASIS Review",
+      areaServed: { "@type": "Country", name: "United States" },
+      audience: { "@type": "Audience", name: "Home Health Agencies" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://advancedrevcycle.com" },
+        { "@type": "ListItem", position: 2, name: "Coding and OASIS Review", item: "https://advancedrevcycle.com/coding-and-oasis-review" },
+      ],
+    },
+  ],
 };
 
 const levels = [
@@ -56,6 +81,11 @@ const levels = [
 export default function CodingAndOasisReviewPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
+
       {/* Hero */}
       <section className="bg-[#26303A] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,6 +164,41 @@ export default function CodingAndOasisReviewPage() {
                 <p className="text-4xl font-bold text-white mb-1">{s.value}</p>
                 <p className="text-[#B8EE40] text-sm font-medium">{s.label}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Services */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-[#26303A] mb-8">Related Services</h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Home Health Billing",
+                href: "/home-health-billing",
+                desc: "Complete home health billing from NOA filing through payment, covering all payers under PDGM.",
+              },
+              {
+                title: "Hospice Billing",
+                href: "/hospice-billing",
+                desc: "Full-cycle hospice billing with NOE filing, all-payer claims, and proactive follow-up.",
+              },
+              {
+                title: "Authorization and Eligibility",
+                href: "/authorization-and-eligibility",
+                desc: "Eligibility verification and prior authorization management to prevent denials before they happen.",
+              },
+            ].map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className="group bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
+              >
+                <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+              </Link>
             ))}
           </div>
         </div>

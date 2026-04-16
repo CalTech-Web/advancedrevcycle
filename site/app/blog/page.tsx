@@ -1,50 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { posts } from "./data";
 
 export const metadata: Metadata = {
   title: "Post-Acute Billing Blog",
   description:
-    "Billing insights, regulatory updates, and best practices for hospice, home health, and palliative care agencies from Advanced RevCycle.",
+    "Billing insights, regulatory updates, and compliance guidance for hospice, home health, and palliative care agencies from Advanced RevCycle's team of billing specialists.",
   alternates: {
     canonical: "https://advancedrevcycle.com/blog",
   },
 };
-
-const posts = [
-  {
-    title: "Understanding the 2025 Hospice Wage Index Changes",
-    category: "Regulatory Update",
-    excerpt:
-      "The 2025 Medicare hospice wage index update moved reimbursement rates for agencies in dozens of geographic areas. Agencies that missed the adjustment discovered the gap when claims came back short. The changes are not complicated, but they require action before the next billing period.",
-    date: "March 2026",
-    image: "/assets/gallery/careers-blog.jpg",
-  },
-  {
-    title: "Why PDGM Primary Diagnosis Selection Matters More Than Ever",
-    category: "Coding",
-    excerpt:
-      "Under the Patient-Driven Groupings Model, the primary diagnosis determines your clinical grouping and reimbursement rate. A suboptimal selection is not a minor issue, it is lost revenue on every episode. A coding review from a PDGM-specialized team before the first claim of an episode is the fastest way to close that gap.",
-    date: "February 2026",
-    image: "/assets/gallery/careers-eligibility.jpg",
-  },
-  {
-    title: "Transitioning from In-House to Outsourced Billing: What to Expect",
-    category: "Operations",
-    excerpt:
-      "The decision to outsource billing is one of the easier ones. The handoff is where agencies get into trouble. A poorly timed transition can stall AR for months. Getting the timing and the steps right keeps collections intact from day one.",
-    date: "January 2026",
-    image: "/assets/gallery/about-team.png",
-  },
-  {
-    title: "NOE Timing: The Five-Day Window That Protects Your First Payment",
-    category: "Compliance",
-    excerpt:
-      "A late Notice of Election does not trigger a warning. It triggers an automatic denial. Medicare requires the NOE to be filed within five days of a hospice patient's admission, and agencies that miss that window face a non-billable period starting from day one. The day count starts on the admission date, not on the day someone finds the paperwork. Filing on admission day removes the risk entirely.",
-    date: "April 2026",
-    image: "/assets/gallery/careers-1.jpg",
-  },
-];
 
 export default function BlogPage() {
   return (
@@ -67,7 +33,11 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <div key={post.title} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              >
                 <div className="relative h-48">
                   <Image
                     src={post.image}
@@ -83,10 +53,11 @@ export default function BlogPage() {
                     </span>
                     <span className="text-xs text-gray-400">{post.date}</span>
                   </div>
-                  <h2 className="font-bold text-[#26303A] mb-3 leading-snug">{post.title}</h2>
-                  <p className="text-gray-600 text-sm leading-relaxed">{post.excerpt}</p>
+                  <h2 className="font-bold text-[#26303A] mb-3 leading-snug group-hover:text-[#0B7A84] transition-colors">{post.title}</h2>
+                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
+                  <p className="text-[#0B7A84] text-sm font-semibold mt-4">Read article &rarr;</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Advanced RevCycle, LLC.",
+  description:
+    "Privacy Policy for Advanced RevCycle, LLC. Learn how we collect, use, and protect your information when you contact our post-acute billing team or use advancedrevcycle.com.",
+  alternates: {
+    canonical: "https://advancedrevcycle.com/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

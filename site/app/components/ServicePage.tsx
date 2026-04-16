@@ -5,6 +5,12 @@ interface ServiceFeature {
   desc: string;
 }
 
+interface RelatedService {
+  title: string;
+  href: string;
+  desc: string;
+}
+
 interface ServicePageProps {
   badge: string;
   title: string;
@@ -15,9 +21,10 @@ interface ServicePageProps {
     points: string[];
   };
   ctaTitle?: string;
+  relatedServices?: RelatedService[];
 }
 
-export default function ServicePage({ badge, title, intro, features, whySection, ctaTitle }: ServicePageProps) {
+export default function ServicePage({ badge, title, intro, features, whySection, ctaTitle, relatedServices }: ServicePageProps) {
   return (
     <>
       {/* Hero */}
@@ -89,6 +96,27 @@ export default function ServicePage({ badge, title, intro, features, whySection,
           </div>
         </div>
       </section>
+
+      {/* Related Services */}
+      {relatedServices && relatedServices.length > 0 && (
+        <section className="bg-white py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-[#26303A] mb-8">Related Services</h2>
+            <div className="grid sm:grid-cols-3 gap-6">
+              {relatedServices.map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="group bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
+                >
+                  <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="bg-[#F8F5F2] py-16">
