@@ -96,7 +96,7 @@ export default function ServicePage({ badge, title, intro, features, whySection,
           <h2 className="text-3xl font-bold text-[#26303A] mb-5">
             {ctaTitle || "Ready to Improve Your Collections?"}
           </h2>
-          <p className="text-gray-600 mb-8">Contact ARC today. No flat fees, no retainers. We only earn when you collect.</p>
+          <p className="text-gray-600 mb-8">No flat fees. No retainers. ARC earns only when you collect.</p>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Contact Us
           </Link>

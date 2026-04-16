@@ -45,7 +45,7 @@ export default function CareersPage() {
             Careers at Advanced RevCycle
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            ARC hires 1 biller for every 50 applicants. The bar is intentional. Every agency we serve depends on our billers being the best people available for this work. If that sounds like your standard too, keep reading.
+            ARC hires 1 biller for every 50 applicants. The bar is not a filter for its own sake. Every agency we serve is counting on the person reviewing their claims to already know what most billers are still figuring out. If that is how you approach this work, reach out.
           </p>
         </div>
       </section>

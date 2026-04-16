@@ -144,6 +144,9 @@ export default function AboutPage() {
       <section className="bg-[#0B7A84] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-5">Tell Us Where Your AR Stands</h2>
+          <p className="text-teal-100 mb-8">
+            ARC charges nothing until you collect. Tell us your line of care, your current AR position, and what has been falling through the cracks. We will be direct about whether we can help.
+          </p>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Contact Us
           </Link>

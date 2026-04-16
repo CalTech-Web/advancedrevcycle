@@ -18,7 +18,7 @@ export default function WebinarsPage() {
             Post-Acute Billing Education
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            ARC shares its billing and regulatory expertise through educational webinars for hospice, home health, and palliative care agencies.
+            Most billing education covers theory. ARC&apos;s sessions are built by the billers who work these claims daily, focused on the documentation calls, payer patterns, and CMS specifics that determine what post-acute agencies actually collect.
           </p>
         </div>
       </section>

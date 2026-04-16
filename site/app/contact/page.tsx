@@ -31,6 +31,10 @@ const faqs = [
     q: "Can ARC support our agency as we grow into new states?",
     a: "Yes. ARC serves agencies in all 50 states, Puerto Rico, Hawaii, and the U.S. Virgin Islands. One hospice startup expanded to four states across Arizona, Utah, California, and Texas without switching billing teams or disrupting operations.",
   },
+  {
+    q: "How is ARC different from an in-house billing team?",
+    a: "An in-house biller knows your system, your state, and your payer mix. That knowledge has limits. ARC's 50+ billers work simultaneously across every MAC, all 50 states, and every major EMR platform. They have seen the edge cases your in-house team is encountering for the first time. And because fees are contingency-based, there are no salaries, benefits, turnover costs, or training gaps.",
+  },
 ];
 
 export default function ContactPage() {
