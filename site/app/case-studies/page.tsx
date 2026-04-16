@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -21,6 +22,7 @@ const caseStudies = [
     badge: "Hospice",
     quote:
       "When ARC took over it was a complete 180. A breath of fresh air. Everything they said was proven with our collections.",
+    metric: { value: "$1M+", label: "Recovered in 7 Months" },
   },
   {
     industry: "Non-Profit Hospice, Savannah, GA",
@@ -32,6 +34,7 @@ const caseStudies = [
     badge: "Hospice",
     quote:
       "Working with ARCM is one of the easiest decisions I have ever made in my life.",
+    metric: { value: "10 hrs → 1 hr", label: "Weekly Billing Time" },
   },
   {
     industry: "Hospice Startup, Multi-State",
@@ -43,6 +46,7 @@ const caseStudies = [
     badge: "Hospice",
     quote:
       "Without ARC, we wouldn't have been able to grow as fast as we have. No matter how big we get, we will never leave them.",
+    metric: { value: "4 States", label: "Billed from Day One" },
   },
   {
     industry: "Hospice of Lansing, Michigan",
@@ -54,6 +58,7 @@ const caseStudies = [
     badge: "Hospice",
     quote:
       "They do it so well that we don't have to worry about our collections. Everything comes in every month.",
+    metric: { value: "3+ Years", label: "Consistent Clean AR" },
   },
   {
     industry: "Maryland Hospice",
@@ -65,6 +70,7 @@ const caseStudies = [
     badge: "Hospice",
     quote:
       "Instead of having us convert our health records system, they were able to use our existing system. Everyone here feels so fortunate.",
+    metric: { value: "30 Days", label: "Billing Takeover Complete" },
   },
 ];
 
@@ -126,33 +132,44 @@ export default function CaseStudiesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             {caseStudies.map((cs, i) => (
-              <div key={i} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-4">
+              <ScrollReveal key={i} delay={i * 80}>
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                  {/* Metric banner */}
+                  <div className="bg-[#26303A] px-8 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div className="flex items-center gap-3">
                       <span className="inline-block bg-[#0B7A84] text-white text-xs font-bold px-3 py-1 rounded-full">
                         {cs.badge}
                       </span>
-                      <span className="text-gray-400 text-sm">{cs.timeline}</span>
+                      <span className="text-white/50 text-sm">{cs.timeline}</span>
                     </div>
-                    <h2 className="text-xl font-bold text-[#26303A] mb-5">{cs.industry}</h2>
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <p className="text-xs font-semibold text-[#FF5B04] uppercase tracking-wide mb-2">The Challenge</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{cs.challenge}</p>
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-2">The Result</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{cs.result}</p>
-                      </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl font-bold text-[#B8EE40] leading-none">{cs.metric.value}</span>
+                      <span className="text-white/70 text-sm font-medium">{cs.metric.label}</span>
                     </div>
                   </div>
-                  <div className="lg:w-72 bg-[#F8F5F2] rounded-xl p-6 flex flex-col justify-center">
-                    <p className="text-[#26303A] text-sm leading-relaxed italic mb-4">&ldquo;{cs.quote}&rdquo;</p>
-                    <p className="text-[#0B7A84] text-xs font-semibold uppercase tracking-wide">{cs.industry}</p>
+                  <div className="p-8">
+                    <div className="flex flex-col lg:flex-row gap-8">
+                      <div className="flex-1">
+                        <h2 className="text-xl font-bold text-[#26303A] mb-5">{cs.industry}</h2>
+                        <div className="grid sm:grid-cols-2 gap-6">
+                          <div>
+                            <p className="text-xs font-semibold text-[#FF5B04] uppercase tracking-wide mb-2">The Challenge</p>
+                            <p className="text-gray-600 text-sm leading-relaxed">{cs.challenge}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-2">The Result</p>
+                            <p className="text-gray-600 text-sm leading-relaxed">{cs.result}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lg:w-72 bg-[#F8F5F2] rounded-xl p-6 flex flex-col justify-center">
+                        <p className="text-[#26303A] text-sm leading-relaxed italic mb-4">&ldquo;{cs.quote}&rdquo;</p>
+                        <p className="text-[#0B7A84] text-xs font-semibold uppercase tracking-wide">{cs.industry}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
