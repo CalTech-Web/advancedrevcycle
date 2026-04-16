@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Careers at Advanced RevCycle | Post-Acute Billing Jobs",
@@ -187,16 +188,18 @@ export default function CareersPage() {
             <h2 className="text-3xl sm:text-4xl font-bold text-[#26303A]">What It Means to Work at ARC</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v) => (
-              <div key={v.title} className="bg-white rounded-xl p-7 shadow-sm border border-gray-100">
-                <div className="w-10 h-10 bg-[#B8EE40] rounded-full flex items-center justify-center mb-5">
-                  <svg className="w-5 h-5 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
+            {values.map((v, i) => (
+              <ScrollReveal key={v.title} delay={i * 80}>
+                <div className="bg-white rounded-xl p-7 shadow-sm border border-gray-100 h-full">
+                  <div className="w-10 h-10 bg-[#B8EE40] rounded-full flex items-center justify-center mb-5">
+                    <svg className="w-5 h-5 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="font-bold text-[#26303A] mb-2">{v.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{v.desc}</p>
                 </div>
-                <h3 className="font-bold text-[#26303A] mb-2">{v.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{v.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -213,11 +216,13 @@ export default function CareersPage() {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-            {whatWeLookFor.map((item) => (
-              <div key={item.title} className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 flex flex-col min-h-[200px]">
-                <h3 className="font-bold text-[#26303A] mb-3">{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-              </div>
+            {whatWeLookFor.map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 80}>
+                <div className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 flex flex-col min-h-[200px]">
+                  <h3 className="font-bold text-[#26303A] mb-3">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
