@@ -19,7 +19,7 @@ const linesOfCare = [
 ];
 
 export default function HeroSurvey() {
-  const [rawVolume, setRawVolume] = useState("");
+  const [rawVolume, setRawVolume] = useState("300,000");
   const [collectionRate, setCollectionRate] = useState(88);
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState("");
