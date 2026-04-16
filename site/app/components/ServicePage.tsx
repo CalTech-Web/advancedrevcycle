@@ -1,4 +1,6 @@
 import Link from "next/link";
+import StatsCounter from "./StatsCounter";
+import ScrollReveal from "./ScrollReveal";
 
 interface ServiceFeature {
   title?: string;
@@ -61,15 +63,17 @@ export default function ServicePage({ badge, title, intro, features, whySection,
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
             {features.map((f, i) => (
-              <div key={i} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 w-full">
-                <div className="w-8 h-8 bg-[#0B7A84] rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
+              <ScrollReveal key={i} delay={i * 60} className="w-full">
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 h-full">
+                  <div className="w-8 h-8 bg-[#0B7A84] rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  {f.title && <h3 className="font-bold text-[#26303A] mb-2">{f.title}</h3>}
+                  <p className="text-gray-600 text-sm leading-relaxed">{f.desc}</p>
                 </div>
-                {f.title && <h3 className="font-bold text-[#26303A] mb-2">{f.title}</h3>}
-                <p className="text-gray-600 text-sm leading-relaxed">{f.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -101,19 +105,12 @@ export default function ServicePage({ badge, title, intro, features, whySection,
       {/* Stats */}
       <section className="bg-[#0B7A84] py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
-            {[
-              { value: "99%+", label: "Collection Rate" },
-              { value: "$5B+", label: "Collected for Agencies" },
-              { value: "50+", label: "U.S.-Based Billers" },
-              { value: "10+", label: "Years in Post-Acute" },
-            ].map((s) => (
-              <div key={s.label}>
-                <p className="text-4xl font-bold text-white mb-1">{s.value}</p>
-                <p className="text-[#B8EE40] text-sm font-medium leading-tight">{s.label}</p>
-              </div>
-            ))}
-          </div>
+          <StatsCounter stats={[
+            { value: "99%+", label: "Collection Rate" },
+            { value: "$5B+", label: "Collected for Agencies" },
+            { value: "50+", label: "U.S.-Based Billers" },
+            { value: "10+", label: "Years in Post-Acute" },
+          ]} />
         </div>
       </section>
 
