@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
 
 const relatedPosts = [
   {
@@ -119,18 +120,19 @@ export default function RegulatoryResourcesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-[#26303A] mb-8">Medicare Administrative Contractors</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {macResources.map((r) => (
-              <a
-                key={r.name}
-                href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group"
-              >
-                <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{r.name}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
-                <p className="text-[#0B7A84] text-sm font-semibold">Visit site &rarr;</p>
-              </a>
+            {macResources.map((r, i) => (
+              <ScrollReveal key={r.name} delay={i * 80}>
+                <a
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group"
+                >
+                  <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{r.name}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
+                  <p className="text-[#0B7A84] text-sm font-semibold">Visit site &rarr;</p>
+                </a>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -141,18 +143,19 @@ export default function RegulatoryResourcesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-[#26303A] mb-8">CMS Regulations and Guidance</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {cmsResources.map((r) => (
-              <a
-                key={r.name}
-                href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow group"
-              >
-                <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{r.name}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
-                <p className="text-[#0B7A84] text-sm font-semibold">View manual &rarr;</p>
-              </a>
+            {cmsResources.map((r, i) => (
+              <ScrollReveal key={r.name} delay={i * 80}>
+                <a
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow group"
+                >
+                  <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{r.name}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
+                  <p className="text-[#0B7A84] text-sm font-semibold">View manual &rarr;</p>
+                </a>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -169,17 +172,19 @@ export default function RegulatoryResourcesPage() {
             These tools are available exclusively to ARC clients. Request access by contacting the ARC team.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
-            {billingResources.map((r) => (
-              <div key={r.name} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                <div className="flex items-center gap-2 mb-3">
-                  <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                  <h3 className="font-bold text-[#26303A]">{r.name}</h3>
+            {billingResources.map((r, i) => (
+              <ScrollReveal key={r.name} delay={i * 80}>
+                <div className="h-full bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <div className="flex items-center gap-2 mb-3">
+                    <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <h3 className="font-bold text-[#26303A]">{r.name}</h3>
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
+                  <p className="text-[#0B7A84] text-sm font-semibold">Request access from ARC &rarr;</p>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
-                <p className="text-[#0B7A84] text-sm font-semibold">Request access from ARC &rarr;</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -190,32 +195,63 @@ export default function RegulatoryResourcesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-[#26303A] mb-8">Further Reading From the ARC Blog</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {relatedPosts.map((post) => (
-              <Link
-                key={post.href}
-                href={post.href}
-                className="block bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow group"
-              >
-                <span className="inline-block text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-3">{post.category}</span>
-                <h3 className="font-bold text-[#26303A] mb-3 group-hover:text-[#0B7A84] transition-colors leading-snug">{post.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{post.excerpt}</p>
-                <p className="text-[#0B7A84] text-sm font-semibold">Read more &rarr;</p>
-              </Link>
+            {relatedPosts.map((post, i) => (
+              <ScrollReveal key={post.href} delay={i * 80}>
+                <Link
+                  href={post.href}
+                  className="block h-full bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow group"
+                >
+                  <span className="inline-block text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-3">{post.category}</span>
+                  <h3 className="font-bold text-[#26303A] mb-3 group-hover:text-[#0B7A84] transition-colors leading-snug">{post.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                  <p className="text-[#0B7A84] text-sm font-semibold">Read more &rarr;</p>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0B7A84] py-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-5">Your Next Billing Question</h2>
-          <p className="text-teal-100 mb-8">
-            ARC&apos;s billers do not use these links to look things up. They know what they say. Call or message when you need someone who already has the answer.
-          </p>
-          <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
-            Contact Us
-          </Link>
+      <section className="relative bg-[#26303A] py-20 overflow-hidden">
+        {/* Lime-teal-lime accent line */}
+        <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "linear-gradient(90deg, #B8EE40, #0B7A84, #B8EE40)" }} />
+        {/* Hex grid overlay */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <pattern id="hex-cta-reg" x="0" y="0" width="56" height="100" patternUnits="userSpaceOnUse">
+              <polygon points="28,2 54,16 54,84 28,98 2,84 2,16" fill="none" stroke="#ffffff" strokeWidth="1"/>
+              <polygon points="28,52 54,66 54,134 28,148 2,134 2,66" fill="none" stroke="#ffffff" strokeWidth="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hex-cta-reg)"/>
+        </svg>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get Started</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5">Your Next Billing Question</h2>
+              <p className="text-gray-400 mb-8">
+                ARC&apos;s billers do not use these links to look things up. They know what they say. Call or message when you need someone who already has the answer.
+              </p>
+              <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
+                Contact Us
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 gap-5">
+              {[
+                { stat: "99%+", label: "Collection Rate" },
+                { stat: "$5B+", label: "Collected for Agencies" },
+                { stat: "100%", label: "Contingency Pricing" },
+                { stat: "50+", label: "U.S.-Based Billers" },
+              ].map((item) => (
+                <div key={item.label} className="bg-white/5 border border-white/10 rounded-xl p-5">
+                  <p className="text-2xl font-bold text-[#B8EE40] mb-1">{item.stat}</p>
+                  <p className="text-gray-400 text-sm">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
