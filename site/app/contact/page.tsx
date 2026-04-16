@@ -62,8 +62,21 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       {/* Hero */}
-      <section className="bg-[#26303A] py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20">
+        <div className="absolute inset-0 z-0" style={{
+          background: "linear-gradient(135deg, #26303A 0%, #0B7A84 45%, #26303A 100%)",
+        }}>
+          <svg className="absolute inset-0 w-full h-full opacity-[0.08]" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <pattern id="hex-contact" x="0" y="0" width="56" height="100" patternUnits="userSpaceOnUse">
+                <polygon points="28,2 54,16 54,84 28,98 2,84 2,16" fill="none" stroke="#ffffff" strokeWidth="1"/>
+                <polygon points="28,52 54,66 54,134 28,148 2,134 2,66" fill="none" stroke="#ffffff" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hex-contact)"/>
+          </svg>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get in Touch</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white max-w-3xl mb-6">
             Contact Advanced RevCycle

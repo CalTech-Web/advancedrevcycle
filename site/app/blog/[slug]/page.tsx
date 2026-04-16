@@ -91,8 +91,21 @@ export default async function BlogPostPage({
       />
 
       {/* Hero */}
-      <section className="bg-[#26303A] py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20">
+        <div className="absolute inset-0 z-0" style={{
+          background: "linear-gradient(135deg, #26303A 0%, #0B7A84 45%, #26303A 100%)",
+        }}>
+          <svg className="absolute inset-0 w-full h-full opacity-[0.08]" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <pattern id="hex-blog-post" x="0" y="0" width="56" height="100" patternUnits="userSpaceOnUse">
+                <polygon points="28,2 54,16 54,84 28,98 2,84 2,16" fill="none" stroke="#ffffff" strokeWidth="1"/>
+                <polygon points="28,52 54,66 54,134 28,148 2,134 2,66" fill="none" stroke="#ffffff" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hex-blog-post)"/>
+          </svg>
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-5">
             <Link href="/blog" className="text-gray-400 text-sm hover:text-white transition-colors">
               Blog
