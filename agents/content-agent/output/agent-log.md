@@ -125,3 +125,36 @@ Deployed and live. Here is a summary of every change made:
 - FAQ Q5 (onboarding): removed hedge opener "Transition timelines vary," led with the 30-day record, added "Revenue does not wait during a transition"
 - FAQ Q6 (multi-state): added four-state expansion example (AZ, UT, CA, TX) to replace generic "clients have grown" claim
 [2026-04-15 17:15:00] Run #3 finished
+Deployed and live. Here is what changed across 5 files:
+
+**Homepage service cards** — all 6 descriptions replaced. The old versions were feature bullets reading like a spec sheet. The new ones have a point of view: hospice framed around exclusive focus and MAC jurisdiction depth; home health around PDGM awareness; palliative around the multi-payer reality on one patient; auth around where denials actually start; contracting with a blunt one-liner; coding around the payment-rate consequence of a wrong primary diagnosis.
+
+**Blog** — post #3 excerpt now opens on the real problem (the handoff, not the decision). The CTA heading and body replaced generic "stay current" framing with a claim about what ARC tracks and why it matters.
+
+**Regulatory Resources** — hero intro replaced a link-category list with a three-sentence opener naming the three MACs and framing the page's value. The CTA reframed around ARC's billers knowing these documents rather than just "staying current."
+
+**Resources** — the bottom CTA shifted from "need guidance?" to positioning ARC as the faster answer when official documents aren't enough.
+
+**Contact FAQs** — Q5 dropped the hedge opener and added the "Revenue does not wait" line. Q6 replaced the abstract "clients have grown" claim with the four-state expansion story (AZ, UT, CA, TX) from the case study data.
+[2026-04-15 17:08:06] Run #3 finished
+[2026-04-15 17:08:11] Run #4 starting (model: sonnet)
+Deployed and live. Here is a summary of every change made:
+
+**Contact** (`contact/page.tsx`)
+- Added FAQ #7: "How is ARC different from an in-house billing team?" — covers the in-house comparison point from SITE_FACTS that was missing from the page. Answer names 50+ billers, every MAC, all 50 states, every EMR, and the absence of salary/benefits/turnover costs.
+
+**Footer** (`components/Footer.tsx`)
+- CTA copy: replaced unverified "Join hundreds of...agencies collecting more with ARC" with the verified $5B+ stat and a plain contingency statement.
+
+**About** (`about/page.tsx`)
+- CTA section: added body copy below the "Tell Us Where Your AR Stands" heading. Previously just a heading + button with no supporting context. New body sets up the no-charge-until-you-collect premise and invites the honest conversation.
+
+**ServicePage component** (`components/ServicePage.tsx`)
+- CTA body: replaced "Contact ARC today. No flat fees, no retainers. We only earn when you collect." with three short declarative sentences that lead with the value ("No flat fees. No retainers. ARC earns only when you collect.") rather than a directive opener.
+
+**Webinars** (`webinars/page.tsx`)
+- Hero intro: replaced generic "ARC shares its expertise through educational webinars" descriptor with a contrasting opener ("Most billing education covers theory") followed by what makes ARC's sessions different, grounded in who builds them and what they cover.
+
+**Careers** (`careers/page.tsx`)
+- Hero para: replaced passive "If that sounds like your standard too, keep reading" with a direct action ending ("If that is how you approach this work, reach out.") that matches the selectivity voice.
+[2026-04-15 17:20:00] Run #4 finished
