@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactForm from "../components/ContactForm";
+import FAQAccordion from "../components/FAQAccordion";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -154,14 +155,7 @@ export default function ContactPage() {
             <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
             <h2 className="text-3xl font-bold text-[#26303A]">Frequently Asked Questions</h2>
           </div>
-          <div className="space-y-6">
-            {faqs.map((faq, i) => (
-              <div key={i} className="border border-gray-100 rounded-xl p-6">
-                <h3 className="font-bold text-[#26303A] mb-3">{faq.q}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion faqs={faqs} />
         </div>
       </section>
     </>
