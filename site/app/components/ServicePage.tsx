@@ -46,9 +46,9 @@ export default function ServicePage({ badge, title, intro, features, whySection,
       {/* Features */}
       <section className="bg-[#F8F5F2] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
             {features.map((f, i) => (
-              <div key={i} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+              <div key={i} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 w-full">
                 <div className="w-8 h-8 bg-[#0B7A84] rounded-full flex items-center justify-center mb-4">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -88,16 +88,16 @@ export default function ServicePage({ badge, title, intro, features, whySection,
       {/* Stats */}
       <section className="bg-[#0B7A84] py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
             {[
               { value: "99%+", label: "Collection Rate" },
               { value: "$5B+", label: "Collected for Agencies" },
               { value: "50+", label: "U.S.-Based Billers" },
-              { value: "100%", label: "Contingency Pricing" },
+              { value: "10+", label: "Years in Post-Acute" },
             ].map((s) => (
               <div key={s.label}>
                 <p className="text-4xl font-bold text-white mb-1">{s.value}</p>
-                <p className="text-[#B8EE40] text-sm font-medium">{s.label}</p>
+                <p className="text-[#B8EE40] text-sm font-medium leading-tight">{s.label}</p>
               </div>
             ))}
           </div>
@@ -114,10 +114,16 @@ export default function ServicePage({ badge, title, intro, features, whySection,
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
+                  className="group bg-[#F8F5F2] rounded-xl p-6 border border-gray-200 hover:border-[#0B7A84] hover:shadow-md hover:bg-white transition-all"
                 >
                   <h3 className="font-bold text-[#26303A] mb-2 group-hover:text-[#0B7A84] transition-colors">{s.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{s.desc}</p>
+                  <p className="text-[#0B7A84] text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Learn more
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </p>
                 </Link>
               ))}
             </div>

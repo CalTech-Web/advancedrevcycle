@@ -75,7 +75,7 @@ function AnimatedStat({ stat, triggered }: { stat: Stat; triggered: boolean }) {
       <p className="text-4xl font-bold text-white mb-1 tabular-nums">
         {config.prefix}{display}{config.suffix}
       </p>
-      <p className="text-[#B8EE40] text-sm font-medium">{stat.label}</p>
+      <p className="text-[#B8EE40] text-sm font-medium leading-tight">{stat.label}</p>
     </div>
   );
 }
@@ -101,8 +101,8 @@ export default function StatsCounter({ stats }: { stats: Stat[] }) {
   }, []);
 
   return (
-    <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-      {stats.map((s, i) => (
+    <div ref={ref} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+      {stats.map((s) => (
         <AnimatedStat key={s.label} stat={s} triggered={triggered} />
       ))}
     </div>

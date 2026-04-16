@@ -17,7 +17,7 @@ const stats = [
   { value: "99%+", label: "Collection Rate" },
   { value: "$5B+", label: "Collected for Agencies" },
   { value: "50+", label: "U.S.-Based Billers" },
-  { value: "20+", label: "Years Avg Experience" },
+  { value: "10+", label: "Years in Post-Acute" },
 ];
 
 const ServiceIcons: Record<string, React.FC<{ className?: string }>> = {
@@ -186,16 +186,16 @@ export default function HomePage() {
           <p className="hero-fade-3 text-gray-200 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
             We work in one corner of healthcare, hospice, home health, and palliative care. That focus is not a limitation. It is why our 50+ billers have collected over $5 billion for agencies of all sizes, and why every one of them earns only when you do.
           </p>
-          <div className="hero-fade-4 flex flex-col sm:flex-row gap-4">
+          <div className="hero-fade-4 flex flex-col sm:flex-row items-center gap-4">
             <Link
               href="/contact"
-              className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors text-center"
+              className="inline-flex items-center justify-center bg-[#FF5B04] text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors text-center w-full sm:w-auto"
             >
               Contact Us
             </Link>
             <a
               href="#howWeDo"
-              className="inline-block bg-white/10 border border-white/30 text-white font-semibold px-8 py-4 rounded-lg hover:bg-white/20 transition-colors text-center"
+              className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/20 transition-colors text-center w-full sm:w-auto"
             >
               How We Do It
             </a>

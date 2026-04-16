@@ -133,12 +133,13 @@ export default function CareersPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {photos.map((photo, i) => (
-              <div key={i} className="relative h-56 rounded-xl overflow-hidden">
+              <div key={i} className="relative h-56 rounded-xl overflow-hidden" style={{ aspectRatio: 'auto' }}>
                 <Image
                   src={photo}
                   alt="ARC team members"
                   fill
-                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover object-center"
                 />
               </div>
             ))}
@@ -198,9 +199,9 @@ export default function CareersPage() {
               ARC billers are not learning hospice and home health billing on the job. They bring the knowledge and the discipline to apply it without supervision.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {whatWeLookFor.map((item) => (
-              <div key={item.title} className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100">
+              <div key={item.title} className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 flex flex-col min-h-[200px]">
                 <h3 className="font-bold text-[#26303A] mb-3">{item.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
               </div>
@@ -216,12 +217,21 @@ export default function CareersPage() {
             <p className="text-[#0B7A84] text-sm font-semibold uppercase tracking-widest mb-3">Frequently Asked</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#26303A]">Careers FAQ</h2>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {faqItems.map((item) => (
-              <div key={item.q} className="bg-white rounded-xl p-7 shadow-sm border border-gray-100">
-                <h3 className="font-bold text-[#26303A] mb-3">{item.q}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.a}</p>
-              </div>
+              <details key={item.q} className="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer p-7 list-none">
+                  <h3 className="font-bold text-[#26303A] text-base leading-snug">{item.q}</h3>
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#0B7A84]/10 flex items-center justify-center text-[#0B7A84] transition-transform group-open:rotate-180">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="px-7 pb-7">
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.a}</p>
+                </div>
+              </details>
             ))}
           </div>
         </div>

@@ -151,3 +151,15 @@ Changes made:
 | About page "From Our Blog" | 3 new internal links from About to Operations blog posts — improves topical authority clustering and crawl depth |
 | Regulatory Resources blog links | 3 new internal links from Regulatory Resources to compliance/regulatory posts — connects the reference hub to educational content |
 [2026-04-15] Run #5 finished
+**SEO Run #5 complete.** Here's what shipped to `main`:
+
+| Change | Impact |
+|---|---|
+| **2 new blog posts** (10 total) | "Medicare Advantage Billing for Post-Acute Agencies" (Aug 2025) + "Hospice AR Management" (Jul 2025) — 1,000+ words each, targeting high-value operational queries with BlogPosting schema and relatedService callouts |
+| **Careers page expansion** | Added "What We Look For" section, 6-question FAQPage JSON-LD (eligible for FAQ rich results in SERPs), and WebPage schema — now targets "hospice billing jobs remote" and related career queries |
+| **About page: AboupPage schema** | WebPage `@type: AboutPage` entity declared with isPartOf/about links — clearer entity signal for Google Knowledge Graph |
+| **About page: From Our Blog** | 3 new internal links from About to high-value Operations posts — improves topical authority clustering |
+| **Regulatory Resources: blog links** | 3 new internal links from the regulatory hub to compliance/regulatory blog posts — connects the reference page to educational content, improving crawl depth and time-on-site signals |
+| **Sitemap** | Automatically includes the 2 new blog posts (already dynamically generated from posts array) — now 10 blog entries |
+[2026-04-15 17:59:43] Run #5 finished
+[2026-04-15 17:59:43] Reached max loops (5). Stopping.

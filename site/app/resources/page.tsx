@@ -88,7 +88,7 @@ export default function ResourcesPage() {
             ARC&apos;s billers already know what these documents say. When a government manual cannot answer your question fast enough, that is why we exist.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/regulatory-resources" className="inline-block bg-[#0B7A84] text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-700 transition-colors">
+            <Link href="/regulatory-resources/" className="inline-block bg-[#0B7A84] text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-700 transition-colors">
               Regulatory Resources
             </Link>
             <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">

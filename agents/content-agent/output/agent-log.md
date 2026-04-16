@@ -188,3 +188,14 @@ Deployed and live. Here is a summary of every change made:
 **Homepage** (`page.tsx`)
 - Survey CTA heading: "Ready to Collect What You Have Earned?" → "Collect What You Have Already Earned" — removes the question-opener pattern, makes it an imperative.
 [2026-04-15 17:25:00] Run #5 finished
+Deployed and live. Here's what changed across 4 files in Run #5:
+
+**Blog** — Added a 4th post on NOE timing ("The Five-Day Window That Protects Your First Payment"). This was the most actionable compliance topic missing from the site: NOE auto-denial on a missed 5-day deadline is a real and common agency mistake. Also added a closing implication sentence to the PDGM post #2 excerpt, which previously ended without a next step.
+
+**Regulatory Resources** — Replaced all three MAC card descriptions. The old versions were dry jurisdiction labels. The new ones answer "what do I actually use this portal for?" — Palmetto framed around ADR responses, CGS around jurisdiction-specific policy bulletins, NGS around claims disputes and MAC-level appeals.
+
+**Coding & OASIS Review CTA** — Replaced the weakest CTA body on the site ("Contact ARC to learn which review level is right"). New copy ties directly to the PDGM payment consequence: "If PDGM coding is not your team's primary expertise, the cost shows up in your grouping rate."
+
+**Homepage** — Changed "Ready to Collect What You Have Earned?" to "Collect What You Have Already Earned" — drops the question opener, makes it an imperative.
+[2026-04-15 17:17:11] Run #5 finished
+[2026-04-15 17:17:11] Reached max loops (5). Stopping.

@@ -149,12 +149,23 @@ export default function RegulatoryResourcesPage() {
       <section className="bg-[#F8F5F2] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-[#26303A] mb-8">Billing Tools and References</h2>
+          <p className="text-gray-600 text-sm mb-6 flex items-center gap-2">
+            <svg className="w-4 h-4 text-[#0B7A84] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            These tools are available exclusively to ARC clients. Request access by contacting the ARC team.
+          </p>
           <div className="grid md:grid-cols-3 gap-6">
             {billingResources.map((r) => (
               <div key={r.name} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                <h3 className="font-bold text-[#26303A] mb-2">{r.name}</h3>
+                <div className="flex items-center gap-2 mb-3">
+                  <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  <h3 className="font-bold text-[#26303A]">{r.name}</h3>
+                </div>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{r.desc}</p>
-                <p className="text-[#0B7A84] text-sm font-semibold">Contact ARC for access &rarr;</p>
+                <p className="text-[#0B7A84] text-sm font-semibold">Request access from ARC &rarr;</p>
               </div>
             ))}
           </div>

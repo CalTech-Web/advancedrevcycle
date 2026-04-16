@@ -165,13 +165,13 @@ export default function AboutPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {differentiators.map((d, i) => (
-              <div key={i} className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100">
-                <div className="w-8 h-8 bg-[#B8EE40] rounded-full flex items-center justify-center mb-4">
+              <div key={i} className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 flex flex-col items-start">
+                <div className="w-8 h-8 bg-[#B8EE40] rounded-full flex items-center justify-center mb-4 flex-shrink-0">
                   <svg className="w-4 h-4 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <p className="text-sm text-[#26303A] leading-relaxed font-medium">{d}</p>
+                <p className="text-sm text-[#26303A] leading-relaxed font-medium text-left">{d}</p>
               </div>
             ))}
           </div>

@@ -3,6 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { posts } from "./data";
 
+const categoryColors: Record<string, { badge: string; dot: string }> = {
+  "Compliance":        { badge: "bg-purple-100 text-purple-700",  dot: "" },
+  "Regulatory Update": { badge: "bg-orange-100 text-orange-700",  dot: "" },
+  "Coding":            { badge: "bg-green-100 text-green-700",    dot: "" },
+  "Operations":        { badge: "bg-teal-100 text-[#0B7A84]",     dot: "" },
+};
+
 export const metadata: Metadata = {
   title: "Post-Acute Billing Blog",
   description:
@@ -53,34 +60,37 @@ export default function BlogPage() {
       {/* Posts */}
       <section className="bg-[#F8F5F2] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-semibold text-[#0B7A84] bg-[#0B7A84]/10 px-3 py-1 rounded-full">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-gray-400">{post.date}</span>
+          <div className="grid md:grid-cols-3 gap-8 justify-items-center">
+            {posts.map((post) => {
+              const colors = categoryColors[post.category] ?? { badge: "bg-[#0B7A84]/10 text-[#0B7A84]", dot: "" };
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full"
+                >
+                  <div className="relative h-48">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                  <h2 className="font-bold text-[#26303A] mb-3 leading-snug group-hover:text-[#0B7A84] transition-colors">{post.title}</h2>
-                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
-                  <p className="text-[#0B7A84] text-sm font-semibold mt-4">Read article &rarr;</p>
-                </div>
-              </Link>
-            ))}
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className={`text-xs font-semibold px-3 py-1 rounded-full ${colors.badge}`}>
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-gray-400">{post.date}</span>
+                    </div>
+                    <h2 className="font-bold text-[#26303A] mb-3 leading-snug group-hover:text-[#0B7A84] transition-colors">{post.title}</h2>
+                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
+                    <p className="text-[#0B7A84] text-sm font-semibold mt-4">Read article &rarr;</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
