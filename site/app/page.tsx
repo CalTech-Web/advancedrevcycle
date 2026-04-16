@@ -167,16 +167,18 @@ export default function HomePage() {
       />
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center" id="hero">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/assets/gallery/hero-bg.jpg"
-            alt="Healthcare professional caring for a patient"
-            fill
-            className="object-cover"
-            priority
-            fetchPriority="high"
-          />
-          <div className="absolute inset-0 bg-[#26303A]/75" />
+        <div className="absolute inset-0 z-0" style={{
+          background: "linear-gradient(135deg, #0B7A84 0%, #26303A 50%, #1a2530 100%)",
+        }}>
+          <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="hex" x="0" y="0" width="56" height="100" patternUnits="userSpaceOnUse">
+                <polygon points="28,2 54,16 54,84 28,98 2,84 2,16" fill="none" stroke="#ffffff" strokeWidth="1"/>
+                <polygon points="28,52 54,66 54,134 28,148 2,134 2,66" fill="none" stroke="#ffffff" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hex)"/>
+          </svg>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <p className="hero-fade-1 text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-4">Post-Acute Billing Specialists</p>
