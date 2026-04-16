@@ -197,7 +197,7 @@ export default function HomePage() {
               </p>
 
               {/* Pain-point grid */}
-              <div className="hero-fade-3 grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              <div className="hero-fade-3 grid grid-cols-1 gap-2.5 mb-8">
                 {/* Specialization */}
                 <div className="flex gap-3 bg-white/[0.07] border border-white/10 rounded-xl p-4">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#B8EE40]/20 flex items-center justify-center mt-0.5">
