@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "About Advanced RevCycle",
@@ -178,14 +179,16 @@ export default function AboutPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {differentiators.map((d, i) => (
-              <div key={i} className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 flex flex-col items-start">
-                <div className="w-8 h-8 bg-[#B8EE40] rounded-full flex items-center justify-center mb-4 flex-shrink-0">
-                  <svg className="w-4 h-4 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
+              <ScrollReveal key={i} delay={i * 70}>
+                <div className="bg-[#F8F5F2] rounded-xl p-6 border border-gray-100 flex flex-col items-start h-full">
+                  <div className="w-8 h-8 bg-[#B8EE40] rounded-full flex items-center justify-center mb-4 flex-shrink-0">
+                    <svg className="w-4 h-4 text-[#26303A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-sm text-[#26303A] leading-relaxed font-medium text-left">{d}</p>
                 </div>
-                <p className="text-sm text-[#26303A] leading-relaxed font-medium text-left">{d}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -199,20 +202,22 @@ export default function AboutPage() {
             <h2 className="text-3xl sm:text-4xl font-bold text-[#26303A]">Leadership</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {leadership.map((leader) => (
-              <div key={leader.name} className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 text-center">
-                <div className="w-20 h-20 bg-[#0B7A84] rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-5">
-                  {leader.name.charAt(0)}
+            {leadership.map((leader, i) => (
+              <ScrollReveal key={leader.name} delay={i * 100}>
+                <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 text-center">
+                  <div className="w-20 h-20 bg-[#0B7A84] rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-5">
+                    {leader.name.charAt(0)}
+                  </div>
+                  <h3 className="text-lg font-bold text-[#26303A] mb-1">{leader.name}</h3>
+                  <p className="text-[#0B7A84] text-sm font-semibold mb-4">{leader.title}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{leader.bio}</p>
+                  {leader.quote && (
+                    <blockquote className="border-l-2 border-[#B8EE40] pl-4 text-left mt-4">
+                      <p className="text-sm text-gray-600 italic">&ldquo;{leader.quote}&rdquo;</p>
+                    </blockquote>
+                  )}
                 </div>
-                <h3 className="text-lg font-bold text-[#26303A] mb-1">{leader.name}</h3>
-                <p className="text-[#0B7A84] text-sm font-semibold mb-4">{leader.title}</p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{leader.bio}</p>
-                {leader.quote && (
-                  <blockquote className="border-l-2 border-[#B8EE40] pl-4 text-left mt-4">
-                    <p className="text-sm text-gray-600 italic">&ldquo;{leader.quote}&rdquo;</p>
-                  </blockquote>
-                )}
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -229,17 +234,18 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {featuredPosts.map((post) => (
-              <Link
-                key={post.href}
-                href={post.href}
-                className="block bg-[#F8F5F2] rounded-xl p-7 border border-gray-100 hover:shadow-md transition-shadow group"
-              >
-                <span className="inline-block text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-3">{post.category}</span>
-                <h3 className="font-bold text-[#26303A] mb-3 group-hover:text-[#0B7A84] transition-colors leading-snug">{post.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{post.excerpt}</p>
-                <p className="text-[#0B7A84] text-sm font-semibold">Read more &rarr;</p>
-              </Link>
+            {featuredPosts.map((post, i) => (
+              <ScrollReveal key={post.href} delay={i * 100}>
+                <Link
+                  href={post.href}
+                  className="block bg-[#F8F5F2] rounded-xl p-7 border border-gray-100 hover:shadow-md transition-shadow group"
+                >
+                  <span className="inline-block text-xs font-semibold text-[#0B7A84] uppercase tracking-wide mb-3">{post.category}</span>
+                  <h3 className="font-bold text-[#26303A] mb-3 group-hover:text-[#0B7A84] transition-colors leading-snug">{post.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                  <p className="text-[#0B7A84] text-sm font-semibold">Read more &rarr;</p>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>

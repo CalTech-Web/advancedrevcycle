@@ -287,16 +287,18 @@ export default function HomePage() {
                   {/* Vertical connector line through the numbered circles */}
                   <div className="absolute left-5 top-5 bottom-5 w-px bg-gradient-to-b from-[#0B7A84] via-[#0B7A84]/60 to-[#0B7A84]/10" aria-hidden="true" />
                 {process.map((step, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="relative z-10 flex-shrink-0 w-10 h-10 bg-[#0B7A84] rounded-full flex items-center justify-center text-white font-bold text-sm ring-4 ring-white shadow-sm">
-                      {i + 1}
+                  <ScrollReveal key={i} delay={i * 80}>
+                    <div className="flex gap-4">
+                      <div className="relative z-10 flex-shrink-0 w-10 h-10 bg-[#0B7A84] rounded-full flex items-center justify-center text-white font-bold text-sm ring-4 ring-white shadow-sm">
+                        {i + 1}
+                      </div>
+                      <div className="pt-1.5">
+                        <p className="text-xs text-[#FF5B04] font-semibold uppercase tracking-wide mb-0.5">{step.phase}</p>
+                        <h3 className="font-bold text-[#26303A] mb-1">{step.title}</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                      </div>
                     </div>
-                    <div className="pt-1.5">
-                      <p className="text-xs text-[#FF5B04] font-semibold uppercase tracking-wide mb-0.5">{step.phase}</p>
-                      <h3 className="font-bold text-[#26303A] mb-1">{step.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
-                    </div>
-                  </div>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
