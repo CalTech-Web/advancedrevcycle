@@ -115,7 +115,7 @@ export default function CareersPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-[#26303A] mb-5">Interested in Joining the Team?</h2>
           <p className="text-gray-600 mb-8 leading-relaxed">
-            We are always looking for exceptional billers with post-acute experience. If you have deep hospice, home health, or palliative care billing expertise and want to work with a team that matches your standards, reach out.
+            The agencies we serve depend on our billers knowing post-acute care better than anyone else on the call. One accepted for every fifty who apply. If that standard sounds like yours, reach out.
           </p>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Get in Touch

@@ -49,7 +49,7 @@ export default function HomeHealthBillingPage() {
           "100% contingency pricing aligned with your agency's financial success",
         ],
       }}
-      ctaTitle="Improve Your Home Health Collections Today"
+      ctaTitle="Get Every Home Health Dollar You Have Earned"
     />
   );
 }

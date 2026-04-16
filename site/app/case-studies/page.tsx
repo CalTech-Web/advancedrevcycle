@@ -121,9 +121,9 @@ export default function CaseStudiesPage() {
       {/* CTA */}
       <section className="bg-[#0B7A84] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-5">Ready to Write Your Own Success Story?</h2>
+          <h2 className="text-3xl font-bold text-white mb-5">Your Agency&apos;s Numbers Are Not Fixed</h2>
           <p className="text-teal-100 mb-8">
-            Every agency that fully transitions billing to ARC sees the results. Contact us to find out what that looks like for your agency.
+            A Savannah non-profit cut annual write-offs in half over two and a half years. A startup billed four states clean from day one. Tell us where you are and we will tell you what is possible.
           </p>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Contact Us

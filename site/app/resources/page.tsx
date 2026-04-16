@@ -40,7 +40,7 @@ export default function ResourcesPage() {
             Billing and Regulatory Resources
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            Important links, regulatory guidance, and educational content for hospice, home health, and palliative care billing teams.
+            The pages and documents ARC&apos;s own team keeps bookmarked. MAC portals, CMS manuals, and the billing references that actually matter for post-acute care.
           </p>
         </div>
       </section>

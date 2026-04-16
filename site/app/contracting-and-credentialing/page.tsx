@@ -45,7 +45,7 @@ export default function ContractingAndCredentialingPage() {
           "Available as a standalone service or alongside full billing services",
         ],
       }}
-      ctaTitle="Get Contracted and Credentialed Faster"
+      ctaTitle="Open Every Payer Door Before Your First Claim"
     />
   );
 }

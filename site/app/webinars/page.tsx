@@ -34,7 +34,7 @@ export default function WebinarsPage() {
             </div>
             <h2 className="text-2xl font-bold text-[#26303A] mb-4">Webinars Coming Soon</h2>
             <p className="text-gray-600 leading-relaxed mb-8">
-              Advanced RevCycle is building an educational webinar library for post-acute care billing teams. Subscribe to be notified when new sessions are published.
+              ARC&apos;s billing team is recording its working knowledge of hospice and home health billing. The first sessions cover PDGM primary diagnosis selection and NOE timing requirements. Contact us if you want early access.
             </p>
             <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
               Get Notified
@@ -48,7 +48,7 @@ export default function WebinarsPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-5">Watch on YouTube</h2>
           <p className="text-teal-100 mb-8">
-            ARC has published billing and compliance content on YouTube. Visit our channel for the latest videos.
+            ARC&apos;s YouTube channel covers common billing errors, payer-specific quirks, and regulatory updates that affect collections. Short, specific, no sales pitch.
           </p>
           <a
             href="https://www.youtube.com/channel/UCXUFt6nvN3KgdpmbAEr5PCQ/featured"

@@ -13,7 +13,7 @@ const posts = [
     title: "Understanding the 2025 Hospice Wage Index Changes",
     category: "Regulatory Update",
     excerpt:
-      "The 2025 Medicare hospice wage index update impacts reimbursement rates for agencies in dozens of geographic areas. Here is what your billing team needs to know.",
+      "The 2025 Medicare hospice wage index update moved reimbursement rates for agencies in dozens of geographic areas. Agencies that missed the adjustment discovered the gap when claims came back short. The changes are not complicated, but they require action before the next billing period.",
     date: "March 2026",
     image: "/assets/gallery/careers-blog.jpg",
   },
@@ -46,7 +46,7 @@ export default function BlogPage() {
             Billing Insights for Post-Acute Care
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            Regulatory updates, coding guidance, and operational best practices from ARC&apos;s billing team.
+            CMS issues updates. MACs publish bulletins. Rules that governed hospice reimbursement last year may not apply the same way today. These are the billing topics ARC&apos;s team has been watching closely.
           </p>
         </div>
       </section>

@@ -49,7 +49,7 @@ export default function PalliativeCareBillingPage() {
           "Works with any EMR your palliative care program already uses, no conversion, no disruption",
         ],
       }}
-      ctaTitle="Let ARC Handle Your Palliative Care Billing"
+      ctaTitle="ARC Handles the Payer Complexity. You Handle the Care."
     />
   );
 }

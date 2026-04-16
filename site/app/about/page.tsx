@@ -12,14 +12,14 @@ const leadership = [
   {
     name: "Delaine Henry",
     title: "Chief Executive Officer",
-    bio: "Delaine founded what is now Advanced RevCycle over a decade ago, starting with a single biller and growing to 50+ billing professionals across the U.S. Her personal mission drives every aspect of the company.",
+    bio: "Delaine founded what is now Advanced RevCycle over a decade ago, starting with a single biller in New Orleans and building to 50+ billing professionals across the U.S. She is still in every conversation that matters.",
     quote: "At ARCM, our mission to serve you is truly personal.",
     image: null,
   },
   {
     name: "Matt Timmins",
     title: "President",
-    bio: "Matt brings 18+ years of revenue growth expertise and 15+ years in post-acute healthcare, EMR systems, and technology. Based in Traverse City, MI, he leads ARC's growth and client strategy.",
+    bio: "Matt brings 18+ years driving revenue in post-acute healthcare and 15+ years with EMR platforms and billing technology. Based in Traverse City, MI, he is the person most agencies talk to when they want to understand what ARC can actually do for them.",
     quote: null,
     image: null,
   },
@@ -33,7 +33,7 @@ const leadership = [
 ];
 
 const differentiators = [
-  "Exclusive post-acute focus: only hospice, home health, and palliative care",
+  "Exclusive post-acute focus, only hospice, home health, and palliative care",
   "99%+ collection rate and $5B+ collected for agencies of all sizes",
   "100% contingency pricing, fees scale with your collections",
   "U.S.-based billing team only, 1 hired for every 50 applicants",
@@ -143,7 +143,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="bg-[#0B7A84] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-5">Ready to See What ARC Can Do for Your Agency?</h2>
+          <h2 className="text-3xl font-bold text-white mb-5">Tell Us Where Your AR Stands</h2>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Contact Us
           </Link>
