@@ -142,7 +142,7 @@ export default function CodingAndOasisReviewPage() {
           <h2 className="text-3xl font-bold text-[#26303A] mb-5">
             Get Every Code Right From the First Episode
           </h2>
-          <p className="text-gray-600 mb-8">Contact ARC to learn which review level is right for your home health agency.</p>
+          <p className="text-gray-600 mb-8">If PDGM coding is not your team's primary expertise, the cost shows up in your grouping rate. Tell us your current review process and we will tell you which level closes the gap.</p>
           <Link href="/contact" className="inline-block bg-[#FF5B04] text-white font-semibold px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors">
             Contact Us
           </Link>

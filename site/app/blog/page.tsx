@@ -21,7 +21,7 @@ const posts = [
     title: "Why PDGM Primary Diagnosis Selection Matters More Than Ever",
     category: "Coding",
     excerpt:
-      "Under the Patient-Driven Groupings Model, the primary diagnosis determines your clinical grouping and reimbursement rate. A suboptimal selection is not a minor issue, it is lost revenue on every episode.",
+      "Under the Patient-Driven Groupings Model, the primary diagnosis determines your clinical grouping and reimbursement rate. A suboptimal selection is not a minor issue, it is lost revenue on every episode. A coding review from a PDGM-specialized team before the first claim of an episode is the fastest way to close that gap.",
     date: "February 2026",
     image: "/assets/gallery/careers-eligibility.jpg",
   },
@@ -32,6 +32,14 @@ const posts = [
       "The decision to outsource billing is one of the easier ones. The handoff is where agencies get into trouble. A poorly timed transition can stall AR for months. Getting the timing and the steps right keeps collections intact from day one.",
     date: "January 2026",
     image: "/assets/gallery/about-team.png",
+  },
+  {
+    title: "NOE Timing: The Five-Day Window That Protects Your First Payment",
+    category: "Compliance",
+    excerpt:
+      "A late Notice of Election does not trigger a warning. It triggers an automatic denial. Medicare requires the NOE to be filed within five days of a hospice patient's admission, and agencies that miss that window face a non-billable period starting from day one. The day count starts on the admission date, not on the day someone finds the paperwork. Filing on admission day removes the risk entirely.",
+    date: "April 2026",
+    image: "/assets/gallery/careers-1.jpg",
   },
 ];
 

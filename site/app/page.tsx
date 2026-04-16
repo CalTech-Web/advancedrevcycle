@@ -313,7 +313,7 @@ export default function HomePage() {
       <section className="bg-[#0B7A84] py-20" id="surveyForm">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[#B8EE40] text-sm font-semibold uppercase tracking-widest mb-3">Get Started</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Collect What You Have Earned?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Collect What You Have Already Earned</h2>
           <p className="text-teal-100 text-lg mb-10">
             ARC serves agencies in all 50 states, Puerto Rico, Hawaii, and the U.S. Virgin Islands. The fee is a percentage of collections, nothing else.
           </p>

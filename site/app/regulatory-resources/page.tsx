@@ -10,17 +10,17 @@ export const metadata: Metadata = {
 const macResources = [
   {
     name: "Palmetto GBA",
-    desc: "Medicare Administrative Contractor for Jurisdictions J and M.",
+    desc: "Processes Medicare hospice and home health claims for Jurisdictions J and M. The primary portal for billing inquiries, ADR responses, and coverage determinations in those regions.",
     url: "https://www.palmettogba.com/",
   },
   {
     name: "CGS (Celerian Group Company)",
-    desc: "Medicare Administrative Contractor for Jurisdictions 15 and H.",
+    desc: "Handles Medicare claim adjudication and coverage guidance for Jurisdictions 15 and H. CGS publishes jurisdiction-specific bulletins that directly affect hospice billing policy.",
     url: "https://www.cgsmedicare.com/",
   },
   {
     name: "National Government Services (NGS)",
-    desc: "Medicare Administrative Contractor for Jurisdictions 6 and K.",
+    desc: "Processes Medicare claims and issues Local Coverage Determinations for Jurisdictions 6 and K. The primary contact for claims disputes, medical review requests, and MAC-level appeals in those jurisdictions.",
     url: "https://www.ngsmedicare.com/",
   },
 ];
