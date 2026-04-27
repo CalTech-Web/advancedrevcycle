@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Claims Engine — Advanced RevCycle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #f1f5f9; }
+
+    /* Sidebar */
+    .sidebar { background: #0f172a; width: 240px; min-width: 240px; }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 8px; color: #94a3b8; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+    .nav-item:hover { background: rgba(255,255,255,0.06); color: #e2e8f0; }
+    .nav-item.active { background: rgba(26,86,219,0.2); color: #60a5fa; }
+    .nav-item svg { flex-shrink: 0; }
+
+    /* Stats bar */
+    .stats-bar { background: #0f172a; }
+    .stat-card { border-right: 1px solid rgba(255,255,255,0.08); }
+    .stat-card:last-child { border-right: none; }
+
+    /* Pipeline */
+    .pipeline-box { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px 16px; flex: 1; position: relative; transition: box-shadow 0.2s; }
+    .pipeline-box:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .pipeline-box.ai-stage { border-color: #7c3aed; box-shadow: 0 0 0 1px #7c3aed, 0 0 20px rgba(124,58,237,0.18), 0 0 40px rgba(124,58,237,0.08); }
+    .pipeline-arrow { display: flex; align-items: center; color: #94a3b8; flex-shrink: 0; margin: 0 4px; }
+
+    /* Confidence ring */
+    .confidence-ring { position: relative; width: 120px; height: 120px; }
+    .confidence-ring svg { transform: rotate(-90deg); }
+    .confidence-ring .ring-value { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+    /* Exception table */
+    .exc-row { transition: background 0.1s; }
+    .exc-row:hover { background: #f8fafc; }
+    .exc-row.selected { background: #eff6ff; border-left: 3px solid #1a56db; }
+
+    /* AI findings */
+    .findings-block { background: #0f172a; border-radius: 10px; padding: 20px; color: #e2e8f0; font-size: 13px; line-height: 1.7; }
+    .findings-block .resolution-item { background: rgba(124,58,237,0.12); border-left: 3px solid #7c3aed; padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 8px; }
+
+    /* Badges */
+    .badge-live { background: rgba(14,159,110,0.12); color: #0e9f6e; border: 1px solid rgba(14,159,110,0.3); border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .badge-live::before { content: ''; width: 7px; height: 7px; background: #0e9f6e; border-radius: 50%; animation: pulse-dot 1.8s infinite; flex-shrink: 0; }
+    @keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.6; transform:scale(1.3); } }
+
+    .badge-claude { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.35); border-radius: 6px; padding: 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; }
+
+    /* Chart container */
+    .chart-wrapper { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 24px; }
+
+    /* Filter pills */
+    .filter-pill { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1.5px solid #e2e8f0; color: #64748b; background: #fff; }
+    .filter-pill.active { background: #1a56db; color: #fff; border-color: #1a56db; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+    /* Action buttons */
+    .btn-approve { background: #0e9f6e; color: #fff; border: none; }
+    .btn-approve:hover { background: #059669; }
+    .btn-request { background: #1a56db; color: #fff; border: none; }
+    .btn-request:hover { background: #1d4ed8; }
+    .btn-deny { background: transparent; color: #ef4444; border: 1.5px solid #ef4444; }
+    .btn-deny:hover { background: rgba(239,68,68,0.06); }
+    .action-btn { padding: 8px 16px; border-radius: 7px; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+
+    /* Issue type badges */
+    .issue-missing-auth { background: #fef3c7; color: #92400e; }
+    .issue-eligibility { background: #fee2e2; color: #991b1b; }
+    .issue-timely { background: #fce7f3; color: #9d174d; }
+    .issue-payer { background: #ede9fe; color: #5b21b6; }
+    .issue-badge { padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+
+    /* Confidence colors */
+    .conf-high { color: #0e9f6e; font-weight: 600; }
+    .conf-mid { color: #f59e0b; font-weight: 600; }
+    .conf-low { color: #ef4444; font-weight: 600; }
+
+    /* Section headers */
+    .section-header { font-size: 15px; font-weight: 700; color: #0f172a; }
+    .section-sub { font-size: 12.5px; color: #64748b; }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="sidebar flex flex-col py-5 overflow-y-auto flex-shrink-0">
+    <!-- Logo -->
+    <div class="px-5 mb-7">
+      <div class="flex items-center">
+        <img src="../../assets/arc-logo.svg" alt="Advanced RevCycle" style="height:26px;" />
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="px-3 flex flex-col gap-1 flex-1">
+      <div class="text-xs text-slate-600 font-600 uppercase tracking-widest px-3 mb-2" style="font-weight:600;letter-spacing:0.08em;">Claims</div>
+      <div class="nav-item active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M9 12h6"/></svg>
+        Claims Engine
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Exception Queue
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Claim Analytics
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        EDI Transmissions
+      </div>
+
+      <div class="text-xs text-slate-600 font-600 uppercase tracking-widest px-3 mt-5 mb-2" style="font-weight:600;letter-spacing:0.08em;margin-top:20px;">Payer Rules</div>
+      <div class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Rules Library
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Denial Patterns
+      </div>
+
+      <div class="text-xs text-slate-600 font-600 uppercase tracking-widest px-3 mt-5 mb-2" style="font-weight:600;letter-spacing:0.08em;margin-top:20px;">Integrations</div>
+      <div class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        Source Systems
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Payer Connections
+      </div>
+
+      <div class="flex-1"></div>
+      <div class="nav-item mt-4">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+        Admin Settings
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+
+    <!-- Top header bar -->
+    <header class="bg-white border-b border-slate-200 flex items-center justify-between px-6 py-3 flex-shrink-0">
+      <div>
+        <h1 class="text-lg font-700 text-slate-900" style="font-weight:700;">AI Claims Engine</h1>
+        <p class="text-xs text-slate-500 mt-0.5">End-to-end automated medical billing · KanTime · Netsmart · WellSky</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="text-right">
+          <div class="text-xs text-slate-500">Last sync</div>
+          <div class="text-xs font-600 text-slate-700" style="font-weight:600;">2 min ago</div>
+        </div>
+        <div class="badge-live">Live Processing</div>
+        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-700" style="font-weight:700;">MA</div>
+      </div>
+    </header>
+
+    <!-- Stats bar -->
+    <div class="stats-bar flex-shrink-0">
+      <div class="flex">
+        <div class="stat-card flex-1 px-6 py-4">
+          <div class="text-slate-400 text-xs font-500 mb-1" style="font-weight:500;">Claims Processed Today</div>
+          <div class="text-white text-2xl font-800 leading-none" style="font-weight:800;font-size:26px;">847</div>
+          <div class="text-slate-500 text-xs mt-1">Apr 27, 2026</div>
+        </div>
+        <div class="stat-card flex-1 px-6 py-4">
+          <div class="text-slate-400 text-xs font-500 mb-1" style="font-weight:500;">Auto-Submitted</div>
+          <div class="text-2xl font-800 leading-none" style="font-weight:800;font-size:26px;color:#0e9f6e;">731</div>
+          <div class="text-xs mt-1" style="color:#0e9f6e;">86.3% auto-rate</div>
+        </div>
+        <div class="stat-card flex-1 px-6 py-4">
+          <div class="text-slate-400 text-xs font-500 mb-1" style="font-weight:500;">In Exception Queue</div>
+          <div class="text-2xl font-800 leading-none" style="font-weight:800;font-size:26px;color:#f59e0b;">116</div>
+          <div class="text-xs mt-1 text-slate-500">Needs review</div>
+        </div>
+        <div class="stat-card flex-1 px-6 py-4">
+          <div class="text-slate-400 text-xs font-500 mb-1" style="font-weight:500;">Avg Confidence Score</div>
+          <div class="text-2xl font-800 leading-none" style="font-weight:800;font-size:26px;color:#60a5fa;">94.2%</div>
+          <div class="text-xs mt-1 text-slate-500">Across all claims</div>
+        </div>
+        <div class="stat-card flex-1 px-6 py-4">
+          <div class="text-slate-400 text-xs font-500 mb-1" style="font-weight:500;">Denial Rate (30-day)</div>
+          <div class="text-2xl font-800 leading-none" style="font-weight:800;font-size:26px;color:#0e9f6e;">4.1%</div>
+          <div class="text-xs mt-1" style="color:#0e9f6e;">-2.3% vs prior period</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="flex-1 overflow-y-auto p-6" style="background:#f1f5f9;">
+
+      <!-- Pipeline Section -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 mb-6" style="box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <div class="section-header">Processing Pipeline</div>
+            <div class="section-sub mt-0.5">Real-time claim flow from ingestion to submission</div>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <div class="w-2 h-2 rounded-full bg-green-500" style="animation:pulse-dot 1.8s infinite;"></div>
+            All systems operational
+          </div>
+        </div>
+
+        <!-- Pipeline flow -->
+        <div class="flex items-stretch gap-1">
+
+          <!-- Stage 1: Data Ingestion -->
+          <div class="pipeline-box">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:rgba(26,86,219,0.1);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </div>
+              <span class="text-xs font-600 text-slate-400" style="font-weight:600;">01</span>
+            </div>
+            <div class="font-700 text-slate-800 text-sm mb-1" style="font-weight:700;">Data Ingestion</div>
+            <div class="text-xs text-slate-500 mb-3">Connected to 3 source systems</div>
+            <div class="text-2xl font-800" style="font-weight:800;color:#0f172a;">847</div>
+            <div class="text-xs text-slate-500">claims received</div>
+            <div class="flex gap-1 mt-3 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded" style="background:#f0f9ff;color:#0369a1;font-weight:500;">KanTime</span>
+              <span class="text-xs px-2 py-0.5 rounded" style="background:#f0fdf4;color:#166534;font-weight:500;">Netsmart</span>
+              <span class="text-xs px-2 py-0.5 rounded" style="background:#faf5ff;color:#6b21a8;font-weight:500;">WellSky</span>
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="pipeline-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+          </div>
+
+          <!-- Stage 2: Claim Enrichment -->
+          <div class="pipeline-box">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:rgba(26,86,219,0.1);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <span class="text-xs font-600 text-slate-400" style="font-weight:600;">02</span>
+            </div>
+            <div class="font-700 text-slate-800 text-sm mb-1" style="font-weight:700;">Claim Enrichment</div>
+            <div class="text-xs text-slate-500 mb-3">Eligibility &amp; payer lookup</div>
+            <div class="text-2xl font-800" style="font-weight:800;color:#0f172a;">847</div>
+            <div class="text-xs text-slate-500">enriched</div>
+            <div class="mt-3 text-xs" style="color:#0e9f6e;font-weight:500;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;margin-right:3px;"><polyline points="20 6 9 17 4 12"/></svg>
+              100% eligibility verified
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="pipeline-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+          </div>
+
+          <!-- Stage 3: Rules Engine -->
+          <div class="pipeline-box">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:rgba(26,86,219,0.1);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </div>
+              <span class="text-xs font-600 text-slate-400" style="font-weight:600;">03</span>
+            </div>
+            <div class="font-700 text-slate-800 text-sm mb-1" style="font-weight:700;">Rules Engine</div>
+            <div class="text-xs text-slate-500 mb-3">Medicare, Medicaid, Commercial</div>
+            <div class="text-2xl font-800" style="font-weight:800;color:#0f172a;">829</div>
+            <div class="text-xs text-slate-500">passed rules</div>
+            <div class="mt-3 text-xs text-slate-500"><span style="color:#f59e0b;font-weight:600;">18</span> flagged for review</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="pipeline-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+          </div>
+
+          <!-- Stage 4: AI Processing — HIGHLIGHT -->
+          <div class="pipeline-box ai-stage">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:rgba(124,58,237,0.15);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 010 2h-1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1H2a1 1 0 010-2h1a7 7 0 017-7h1V5.73A2 2 0 0110 4a2 2 0 012-2z"/><path d="M9 14h.01M15 14h.01M10 17a5 5 0 004 0"/></svg>
+              </div>
+              <span class="badge-claude">Claude-Powered</span>
+            </div>
+            <div class="font-700 text-sm mb-1" style="font-weight:700;color:#6d28d9;">AI Processing</div>
+            <div class="text-xs mb-3" style="color:#7c3aed;">Claude AI confidence scoring</div>
+            <div class="text-2xl font-800" style="font-weight:800;color:#6d28d9;">731</div>
+            <div class="text-xs" style="color:#7c3aed;">auto-approved</div>
+            <div class="mt-3 text-xs font-600" style="color:#7c3aed;font-weight:600;">98 scored below threshold</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="pipeline-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+          </div>
+
+          <!-- Stage 5: Submission -->
+          <div class="pipeline-box">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:rgba(14,159,110,0.1);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0e9f6e" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </div>
+              <span class="text-xs font-600 text-slate-400" style="font-weight:600;">05</span>
+            </div>
+            <div class="font-700 text-slate-800 text-sm mb-1" style="font-weight:700;">Submission</div>
+            <div class="text-xs text-slate-500 mb-3">EDI 837 transmitted</div>
+            <div class="text-2xl font-800" style="font-weight:800;color:#0e9f6e;">731</div>
+            <div class="text-xs text-slate-500">submitted</div>
+            <div class="mt-3 text-xs" style="color:#0e9f6e;font-weight:500;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;margin-right:3px;"><polyline points="20 6 9 17 4 12"/></svg>
+              Payer ACKs received
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exception Queue + AI Analysis -->
+      <div class="flex gap-6 mb-6">
+
+        <!-- Exception Queue (55%) -->
+        <div class="flex flex-col" style="flex:0 0 55%;">
+          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden" style="box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+            <!-- Header -->
+            <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+              <div>
+                <span class="section-header">Exception Queue</span>
+                <span class="ml-3 px-2.5 py-1 rounded-full text-xs font-700" style="background:#fef3c7;color:#92400e;font-weight:700;">116 pending</span>
+              </div>
+              <button class="text-xs text-blue-600 font-600 hover:underline" style="font-weight:600;">View all</button>
+            </div>
+            <!-- Filters -->
+            <div class="px-5 py-3 border-b border-slate-100 flex items-center gap-2">
+              <button class="filter-pill active">All</button>
+              <button class="filter-pill">Missing Auth</button>
+              <button class="filter-pill">Eligibility Issue</button>
+              <button class="filter-pill">Timely Filing</button>
+              <button class="filter-pill">Payer Rule</button>
+            </div>
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-slate-100" style="background:#f8fafc;">
+                    <th class="text-left px-5 py-3 text-xs font-600 text-slate-500 uppercase tracking-wide" style="font-weight:600;letter-spacing:0.05em;">Claim ID</th>
+                    <th class="text-left px-3 py-3 text-xs font-600 text-slate-500 uppercase tracking-wide" style="font-weight:600;letter-spacing:0.05em;">Patient</th>
+                    <th class="text-left px-3 py-3 text-xs font-600 text-slate-500 uppercase tracking-wide" style="font-weight:600;letter-spacing:0.05em;">Payer</th>
+                    <th class="text-left px-3 py-3 text-xs font-600 text-slate-500 uppercase tracking-wide" style="font-weight:600;letter-spacing:0.05em;">Issue</th>
+                    <th class="text-left px-3 py-3 text-xs font-600 text-slate-500 uppercase tracking-wide" style="font-weight:600;letter-spacing:0.05em;">Conf.</th>
+                    <th class="text-left px-3 py-3 text-xs font-600 text-slate-500 uppercase tracking-wide" style="font-weight:600;letter-spacing:0.05em;">Date</th>
+                    <th class="text-left px-3 py-3 text-xs font-600 text-slate-500 uppercase tracking-wide" style="font-weight:600;letter-spacing:0.05em;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="exc-row selected border-b border-slate-100">
+                    <td class="px-4 py-3 text-sm font-700 text-blue-700" style="font-weight:700;font-size:12.5px;">CLM-44821</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">R.M.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">Medicare</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-missing-auth">Missing Auth</span></td>
+                    <td class="px-3 py-3 text-sm conf-mid">67%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 26</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                  <tr class="exc-row border-b border-slate-100">
+                    <td class="px-4 py-3 text-sm font-600 text-slate-800" style="font-weight:600;font-size:12.5px;">CLM-44819</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">T.K.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">Medicaid</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-timely">Timely Filing</span></td>
+                    <td class="px-3 py-3 text-sm conf-mid">71%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 25</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                  <tr class="exc-row border-b border-slate-100">
+                    <td class="px-4 py-3 text-sm font-600 text-slate-800" style="font-weight:600;font-size:12.5px;">CLM-44815</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">S.J.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">Blue Shield</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-eligibility">Eligibility Issue</span></td>
+                    <td class="px-3 py-3 text-sm conf-low">58%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 25</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                  <tr class="exc-row border-b border-slate-100">
+                    <td class="px-4 py-3 text-sm font-600 text-slate-800" style="font-weight:600;font-size:12.5px;">CLM-44809</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">D.W.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">Medicare</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-missing-auth">Missing Auth</span></td>
+                    <td class="px-3 py-3 text-sm conf-low">63%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 24</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                  <tr class="exc-row border-b border-slate-100">
+                    <td class="px-4 py-3 text-sm font-600 text-slate-800" style="font-weight:600;font-size:12.5px;">CLM-44803</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">A.P.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">Medicare</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-payer">Payer Rule</span></td>
+                    <td class="px-3 py-3 text-sm conf-mid">74%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 24</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                  <tr class="exc-row border-b border-slate-100">
+                    <td class="px-4 py-3 text-sm font-600 text-slate-800" style="font-weight:600;font-size:12.5px;">CLM-44798</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">M.L.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">Medicaid</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-missing-auth">Missing Auth</span></td>
+                    <td class="px-3 py-3 text-sm conf-low">55%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 23</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                  <tr class="exc-row border-b border-slate-100">
+                    <td class="px-4 py-3 text-sm font-600 text-slate-800" style="font-weight:600;font-size:12.5px;">CLM-44791</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">C.R.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">United</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-eligibility">Eligibility Issue</span></td>
+                    <td class="px-3 py-3 text-sm conf-mid">69%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 23</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                  <tr class="exc-row">
+                    <td class="px-4 py-3 text-sm font-600 text-slate-800" style="font-weight:600;font-size:12.5px;">CLM-44784</td>
+                    <td class="px-3 py-3 text-sm font-600 text-slate-700" style="font-weight:600;font-size:13px;">B.H.</td>
+                    <td class="px-3 py-3 text-xs text-slate-600">Medicare</td>
+                    <td class="px-3 py-3"><span class="issue-badge issue-timely">Timely Filing</span></td>
+                    <td class="px-3 py-3 text-sm conf-mid">72%</td>
+                    <td class="px-3 py-3 text-xs text-slate-500">Apr 22</td>
+                    <td class="px-3 py-3"><button class="text-xs font-600 text-blue-600 hover:text-blue-800 px-3 py-1 rounded border border-blue-200 hover:bg-blue-50" style="font-weight:600;">Review</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Analysis Panel (45%) -->
+        <div class="flex-1 flex flex-col">
+          <div class="bg-white rounded-xl border border-slate-200 flex flex-col" style="box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+            <!-- Header -->
+            <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+              <div>
+                <div class="section-header flex items-center gap-2">
+                  CLM-44821
+                  <span class="text-slate-400 font-400" style="font-weight:400;">AI Analysis</span>
+                </div>
+              </div>
+              <span class="badge-claude" style="font-size:11px;">Claude AI</span>
+            </div>
+
+            <div class="p-5 flex flex-col gap-4">
+              <!-- Claim Summary -->
+              <div class="rounded-lg border border-slate-200 p-4" style="background:#f8fafc;">
+                <div class="text-xs font-700 text-slate-500 uppercase tracking-wide mb-3" style="font-weight:700;letter-spacing:0.06em;">Claim Summary</div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <div class="text-xs text-slate-400">Patient</div>
+                    <div class="text-sm font-600 text-slate-800" style="font-weight:600;">R.M.</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-400">Payer</div>
+                    <div class="text-sm font-600 text-slate-800" style="font-weight:600;">Medicare Part A</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-400">Service</div>
+                    <div class="text-sm font-600 text-slate-800" style="font-weight:600;">Hospice Routine Home Care</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-400">Billed</div>
+                    <div class="text-sm font-700 text-slate-900" style="font-weight:700;">$4,218.00</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-400">Period</div>
+                    <div class="text-sm font-600 text-slate-800" style="font-weight:600;">Apr 1–30, 2026</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-400">Source</div>
+                    <div class="text-sm font-600 text-slate-800" style="font-weight:600;">KanTime</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confidence Score -->
+              <div class="flex items-center gap-5">
+                <div class="confidence-ring flex-shrink-0">
+                  <svg width="120" height="120" viewBox="0 0 120 120">
+                    <!-- Background ring -->
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#f1f5f9" stroke-width="10"/>
+                    <!-- Progress ring — 67% of 314 = 210.4 -->
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#f59e0b" stroke-width="10"
+                      stroke-dasharray="314.16"
+                      stroke-dashoffset="103.7"
+                      stroke-linecap="round"/>
+                  </svg>
+                  <div class="ring-value">
+                    <span class="text-2xl font-800" style="font-weight:800;color:#f59e0b;font-size:24px;">67%</span>
+                    <span class="text-xs text-slate-500">confidence</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="text-sm font-700 text-slate-800 mb-1" style="font-weight:700;">Below Auto-Submit Threshold</div>
+                  <div class="text-xs text-slate-500 mb-3">Auto-submit requires 80%+ confidence. This claim needs human review before submission.</div>
+                  <div class="flex items-center gap-2">
+                    <div class="text-xs text-slate-500">Potential:</div>
+                    <div class="flex-1 h-2 rounded-full" style="background:#f1f5f9;">
+                      <div class="h-2 rounded-full" style="width:91%;background:linear-gradient(90deg,#f59e0b,#0e9f6e);"></div>
+                    </div>
+                    <div class="text-xs font-700" style="color:#0e9f6e;font-weight:700;">91%+</div>
+                  </div>
+                  <div class="text-xs text-slate-400 mt-1">with auth number confirmed</div>
+                </div>
+              </div>
+
+              <!-- AI Findings -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 010 2h-1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1H2a1 1 0 010-2h1a7 7 0 017-7h1V5.73A2 2 0 0110 4a2 2 0 012-2z"/></svg>
+                  <span class="text-xs font-700 text-purple-700 uppercase tracking-wide" style="font-weight:700;letter-spacing:0.06em;">AI Findings</span>
+                </div>
+                <div class="findings-block">
+                  <div class="mb-4">
+                    <div class="text-xs font-700 mb-2" style="color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Issue Identified: Missing Prior Authorization</div>
+                    <p class="text-xs" style="color:#cbd5e1;line-height:1.75;">The claim references CPT code <span style="color:#a78bfa;font-weight:600;">G0299</span> (direct skilled nursing services in a hospice setting) which requires prior authorization under the Medicare Advantage plan on file. The source system (KanTime) shows an auth number field that is blank.</p>
+                  </div>
+
+                  <div class="text-xs font-700 mb-2" style="color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Possible Resolutions</div>
+
+                  <div class="resolution-item">
+                    <div class="flex gap-2">
+                      <span style="color:#a78bfa;font-weight:700;flex-shrink:0;">1.</span>
+                      <p class="text-xs" style="color:#e2e8f0;line-height:1.7;">Authorization may exist — check KanTime auth log for Apr 1 entry under plan ID <span style="color:#a78bfa;font-weight:600;">MCA-2291</span>. System timeout may have prevented sync.</p>
+                    </div>
+                  </div>
+                  <div class="resolution-item">
+                    <div class="flex gap-2">
+                      <span style="color:#a78bfa;font-weight:700;flex-shrink:0;">2.</span>
+                      <p class="text-xs" style="color:#e2e8f0;line-height:1.7;">If auth was never obtained, submit retro-auth request to Medicare Advantage within <span style="color:#fbbf24;font-weight:600;">72 hours</span> to preserve timely filing.</p>
+                    </div>
+                  </div>
+                  <div class="resolution-item" style="margin-bottom:0;">
+                    <div class="flex gap-2">
+                      <span style="color:#a78bfa;font-weight:700;flex-shrink:0;">3.</span>
+                      <p class="text-xs" style="color:#e2e8f0;line-height:1.7;">If auth cannot be obtained, recode to <span style="color:#a78bfa;font-weight:600;">G0155</span> (clinical social worker services in hospice) which does not require auth under this plan.</p>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,0.08);">
+                    <div class="text-xs font-700 mb-1" style="color:#34d399;font-weight:700;">Recommended Action</div>
+                    <p class="text-xs" style="color:#a7f3d0;line-height:1.7;">Verify KanTime auth log before rerouting. Confidence can reach 91%+ with authorization number confirmed.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="flex gap-2 pt-1">
+                <button class="action-btn btn-approve flex-1">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;margin-right:5px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  Approve &amp; Submit
+                </button>
+                <button class="action-btn btn-request flex-1">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;margin-right:5px;"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                  Request Info
+                </button>
+                <button class="action-btn btn-deny">
+                  Deny Claim
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Volume Chart -->
+      <div class="chart-wrapper mb-6">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <div class="section-header">Claims Processed — Last 14 Days</div>
+            <div class="section-sub mt-0.5">Auto-submitted vs. exception queue breakdown</div>
+          </div>
+          <div class="flex items-center gap-5">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-sm" style="background:#1a56db;"></div>
+              <span class="text-xs text-slate-600">Auto-Submitted</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-sm" style="background:#f59e0b;"></div>
+              <span class="text-xs text-slate-600">Exception Queue</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-8 border-t-2 border-dashed" style="border-color:#94a3b8;"></div>
+              <span class="text-xs text-slate-600">Total</span>
+            </div>
+          </div>
+        </div>
+        <div style="height:220px;">
+          <canvas id="volumeChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center py-4 text-xs text-slate-400">
+        Advanced RevCycle AI Claims Engine &nbsp;·&nbsp; Powered by CalTech Web &nbsp;·&nbsp; Processing engine connected to KanTime, Netsmart, WellSky
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+    const labels = ['Apr 13','Apr 14','Apr 15','Apr 16','Apr 17','Apr 18','Apr 19','Apr 20','Apr 21','Apr 22','Apr 23','Apr 24','Apr 25','Apr 26'];
+    const autoData = [698,712,689,724,741,756,718,701,728,744,731,748,762,731];
+    const excData  = [124,118,131,109,102,98,114,121,108,104,116,102,97,116];
+    const totalData = autoData.map((v,i) => v + excData[i]);
+
+    const ctx = document.getElementById('volumeChart').getContext('2d');
+
+    const autoGrad = ctx.createLinearGradient(0, 0, 0, 220);
+    autoGrad.addColorStop(0, 'rgba(26,86,219,0.25)');
+    autoGrad.addColorStop(1, 'rgba(26,86,219,0.02)');
+
+    const excGrad = ctx.createLinearGradient(0, 0, 0, 220);
+    excGrad.addColorStop(0, 'rgba(245,158,11,0.3)');
+    excGrad.addColorStop(1, 'rgba(245,158,11,0.02)');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Auto-Submitted',
+            data: autoData,
+            backgroundColor: autoGrad,
+            borderColor: '#1a56db',
+            borderWidth: 1.5,
+            borderRadius: 4,
+            borderSkipped: 'bottom',
+            stack: 'stack',
+          },
+          {
+            label: 'Exception Queue',
+            data: excData,
+            backgroundColor: excGrad,
+            borderColor: '#f59e0b',
+            borderWidth: 1.5,
+            borderRadius: 4,
+            borderSkipped: 'bottom',
+            stack: 'stack',
+          },
+          {
+            label: 'Total',
+            data: totalData,
+            type: 'line',
+            borderColor: '#94a3b8',
+            borderWidth: 1.5,
+            borderDash: [5, 4],
+            pointRadius: 2.5,
+            pointBackgroundColor: '#94a3b8',
+            fill: false,
+            tension: 0.35,
+            stack: undefined,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0f172a',
+            titleColor: '#e2e8f0',
+            bodyColor: '#94a3b8',
+            borderColor: 'rgba(255,255,255,0.08)',
+            borderWidth: 1,
+            padding: 12,
+            titleFont: { size: 12, weight: '600' },
+            bodyFont: { size: 12 },
+            callbacks: {
+              footer: (items) => {
+                const auto = items.find(i => i.dataset.label === 'Auto-Submitted');
+                const exc  = items.find(i => i.dataset.label === 'Exception Queue');
+                if (auto && exc) {
+                  const rate = ((auto.raw / (auto.raw + exc.raw)) * 100).toFixed(1);
+                  return `Auto-rate: ${rate}%`;
+                }
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            grid: { display: false },
+            ticks: { color: '#94a3b8', font: { size: 11 } },
+            border: { display: false }
+          },
+          y: {
+            stacked: true,
+            grid: { color: 'rgba(0,0,0,0.05)', drawBorder: false },
+            ticks: { color: '#94a3b8', font: { size: 11 }, padding: 8 },
+            border: { display: false },
+            min: 0,
+            max: 1000
+          }
+        }
+      }
+    });
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
+    }); // end load
+  </script>
+</body>
+</html>

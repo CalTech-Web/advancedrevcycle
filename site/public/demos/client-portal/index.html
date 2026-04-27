@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Portal — Advanced RevCycle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background-color: #f8fafc; }
+    .nav-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05); }
+    .card-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.04); }
+    .card-shadow-hover:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06); transition: box-shadow 0.2s ease; }
+    .hero-gradient { background: linear-gradient(135deg, #1a3a6b 0%, #1a56db 45%, #3730a3 100%); }
+    .status-paid { background-color: #d1fae5; color: #065f46; }
+    .status-partial { background-color: #fef3c7; color: #92400e; }
+    .status-pending { background-color: #dbeafe; color: #1e40af; }
+    .status-review { background-color: #ede9fe; color: #5b21b6; }
+    .status-denied { background-color: #fee2e2; color: #991b1b; }
+    .donut-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: none;
+    }
+    .chart-container { position: relative; }
+    .nav-link { color: #4b5563; font-size: 0.875rem; font-weight: 500; padding: 0.375rem 0.75rem; border-radius: 0.375rem; transition: all 0.15s; cursor: pointer; }
+    .nav-link:hover { color: #1a56db; background-color: #eff6ff; }
+    .nav-link.active { color: #1a56db; background-color: #eff6ff; }
+    .doc-card:hover { background-color: #f0f9ff; transition: background 0.15s; }
+    .table-row:hover { background-color: #f8fafc; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAVIGATION -->
+<nav class="bg-white nav-shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="../../assets/arc-logo.svg" alt="Advanced RevCycle" style="height:28px; filter: brightness(0);" />
+      </div>
+
+      <!-- Nav Links -->
+      <div class="hidden md:flex items-center gap-1">
+        <span class="nav-link active">Dashboard</span>
+        <span class="nav-link">AR Aging</span>
+        <span class="nav-link">Claims</span>
+        <span class="nav-link">Documents</span>
+        <span class="nav-link">Contracts</span>
+        <span class="nav-link">Reports</span>
+      </div>
+
+      <!-- User Context -->
+      <div class="flex items-center gap-3">
+        <!-- HIPAA Badge -->
+        <div class="hidden md:flex items-center gap-1.5 bg-green-50 border border-green-200 rounded-full px-3 py-1">
+          <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-green-700 text-xs font-600" style="font-weight:600;">HIPAA Compliant</span>
+        </div>
+
+        <!-- Agency badge -->
+        <div class="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
+          <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-700" style="font-weight:700;">SH</div>
+          <div class="leading-tight">
+            <div class="text-gray-800 text-xs font-600" style="font-weight:600;">Sunrise Home Health Agency</div>
+            <div class="text-gray-400 text-xs">Agency Admin</div>
+          </div>
+          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- HERO BAND -->
+<div class="hero-gradient">
+  <div class="max-w-7xl mx-auto px-6 py-10">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-blue-200 text-sm font-medium">Client Portal</span>
+          <span class="text-blue-400">·</span>
+          <span class="text-blue-200 text-sm">AR Summary as of April 27, 2026</span>
+        </div>
+        <h1 class="text-white text-2xl md:text-3xl font-700 mb-1" style="font-weight:700;">Welcome back, Sunrise Home Health</h1>
+        <p class="text-blue-200 text-sm">Billing managed by Advanced RevCycle · California · Licensed &amp; Bonded</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 bg-white/10 backdrop-blur border border-white/20 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-white text-sm font-medium">HIPAA Compliant</span>
+        </div>
+        <div class="flex items-center gap-1.5 bg-white/10 backdrop-blur border border-white/20 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <span class="text-white text-sm font-medium">Azure AD SSO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="max-w-7xl mx-auto px-6 pb-16">
+
+  <!-- SECTION 1: AR SUMMARY CARDS -->
+  <div class="-mt-6 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+      <!-- Total AR -->
+      <div class="bg-white rounded-2xl card-shadow p-5 border-l-4 border-blue-600">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Total AR</p>
+            <p class="text-gray-900 text-3xl font-800 mt-1 leading-none" style="font-weight:800;">$284,441</p>
+          </div>
+          <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="text-gray-400 text-xs">All aging buckets combined</div>
+      </div>
+
+      <!-- Current 0-30 -->
+      <div class="bg-white rounded-2xl card-shadow p-5 border-l-4 border-green-500">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Current (0–30 Days)</p>
+            <p class="text-gray-900 text-3xl font-800 mt-1 leading-none" style="font-weight:800;">$198,214</p>
+          </div>
+          <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="bg-green-100 text-green-700 text-xs font-600 px-2 py-0.5 rounded-full" style="font-weight:600;">69.7% of AR</span>
+          <span class="text-gray-400 text-xs">In normal range</span>
+        </div>
+      </div>
+
+      <!-- 30-60 -->
+      <div class="bg-white rounded-2xl card-shadow p-5 border-l-4 border-amber-400">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">30–60 Days</p>
+            <p class="text-gray-900 text-3xl font-800 mt-1 leading-none" style="font-weight:800;">$52,180</p>
+          </div>
+          <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="bg-amber-100 text-amber-700 text-xs font-600 px-2 py-0.5 rounded-full" style="font-weight:600;">18.3% of AR</span>
+          <span class="text-gray-400 text-xs">Follow-up in progress</span>
+        </div>
+      </div>
+
+      <!-- 60-90 -->
+      <div class="bg-white rounded-2xl card-shadow p-5 border-l-4 border-red-400">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">60+ Days</p>
+            <p class="text-gray-900 text-3xl font-800 mt-1 leading-none" style="font-weight:800;">$34,047</p>
+          </div>
+          <div class="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="bg-red-100 text-red-700 text-xs font-600 px-2 py-0.5 rounded-full" style="font-weight:600;">12.0% of AR</span>
+          <span class="text-gray-400 text-xs">Escalated follow-up</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2: CHARTS -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+    <!-- Donut Chart -->
+    <div class="bg-white rounded-2xl card-shadow p-6">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-gray-900 text-base font-700" style="font-weight:700;">AR Aging Breakdown</h2>
+          <p class="text-gray-400 text-xs mt-0.5">As of April 27, 2026</p>
+        </div>
+        <span class="bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-lg">This Month</span>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="chart-container" style="width:260px; height:260px;">
+          <canvas id="agingDonut"></canvas>
+          <div class="donut-center">
+            <div class="text-gray-900 text-lg font-800 leading-tight" style="font-weight:800;">$284,441</div>
+            <div class="text-gray-400 text-xs mt-0.5">Total AR</div>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="grid grid-cols-2 gap-3 mt-5 w-full">
+          <div class="flex items-center gap-2.5 bg-gray-50 rounded-xl p-3">
+            <div class="w-3 h-3 rounded-full bg-blue-500 flex-shrink-0"></div>
+            <div>
+              <div class="text-gray-900 text-sm font-600" style="font-weight:600;">$198,214</div>
+              <div class="text-gray-400 text-xs">Current (69.7%)</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2.5 bg-gray-50 rounded-xl p-3">
+            <div class="w-3 h-3 rounded-full bg-amber-400 flex-shrink-0"></div>
+            <div>
+              <div class="text-gray-900 text-sm font-600" style="font-weight:600;">$52,180</div>
+              <div class="text-gray-400 text-xs">30–60 Days (18.3%)</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2.5 bg-gray-50 rounded-xl p-3">
+            <div class="w-3 h-3 rounded-full bg-orange-400 flex-shrink-0"></div>
+            <div>
+              <div class="text-gray-900 text-sm font-600" style="font-weight:600;">$21,340</div>
+              <div class="text-gray-400 text-xs">60–90 Days (7.5%)</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2.5 bg-gray-50 rounded-xl p-3">
+            <div class="w-3 h-3 rounded-full bg-red-500 flex-shrink-0"></div>
+            <div>
+              <div class="text-gray-900 text-sm font-600" style="font-weight:600;">$12,707</div>
+              <div class="text-gray-400 text-xs">90+ Days (4.5%)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="bg-white rounded-2xl card-shadow p-6">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-gray-900 text-base font-700" style="font-weight:700;">AR by Payer</h2>
+          <p class="text-gray-400 text-xs mt-0.5">Outstanding balance by payer</p>
+        </div>
+        <span class="bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-lg">All Time</span>
+      </div>
+      <div style="position:relative; height:300px;">
+        <canvas id="payerBar"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 3: ACCOUNT ACTIVITY TABLE -->
+  <div class="bg-white rounded-2xl card-shadow mb-8">
+    <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+      <div>
+        <h2 class="text-gray-900 text-base font-700" style="font-weight:700;">Account Activity</h2>
+        <p class="text-gray-400 text-xs mt-0.5">Recent claims and billing transactions</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button class="flex items-center gap-1.5 text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+          </svg>
+          Filter
+        </button>
+        <button class="flex items-center gap-1.5 text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Export
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-100">
+            <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-6 py-3" style="font-weight:600;">Patient ID</th>
+            <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Service Period</th>
+            <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Line of Care</th>
+            <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Payer</th>
+            <th class="text-right text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Billed</th>
+            <th class="text-right text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Paid</th>
+            <th class="text-right text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Balance</th>
+            <th class="text-center text-xs font-600 text-gray-500 uppercase tracking-wide px-6 py-3" style="font-weight:600;">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-50">
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2294</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Apr 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicare</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,840</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,840</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-paid text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Paid</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2291</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Apr 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicaid</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$2,916</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$2,916</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-paid text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Paid</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2288</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Mar 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Blue Shield</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$4,102</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,282</td>
+            <td class="px-4 py-3.5 text-sm font-500 text-amber-600 text-right" style="font-weight:500;">$820</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-partial text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Partial</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2285</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Mar 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicare</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,640</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-4 py-3.5 text-sm font-500 text-blue-600 text-right" style="font-weight:500;">$3,640</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-pending text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Pending</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2283</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Mar 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">UnitedHealthcare</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,218</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,218</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-paid text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Paid</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2279</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Feb 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicare</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$4,480</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$4,480</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-paid text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Paid</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2276</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Feb 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicaid</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$2,744</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$1,372</td>
+            <td class="px-4 py-3.5 text-sm font-500 text-amber-600 text-right" style="font-weight:500;">$1,372</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-partial text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Partial</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2274</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Feb 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Blue Shield</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,920</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-4 py-3.5 text-sm font-500 text-purple-600 text-right" style="font-weight:500;">$3,920</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-review text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">In Review</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2271</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Jan 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicare</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,840</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,840</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-paid text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Paid</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2268</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Jan 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicaid</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$2,916</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$2,916</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-paid text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Paid</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2264</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Jan 2026</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">Medicare</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$4,200</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-4 py-3.5 text-sm font-500 text-red-600 text-right" style="font-weight:500;">$4,200</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-denied text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Denied</span></td>
+          </tr>
+          <tr class="table-row">
+            <td class="px-6 py-3.5 text-sm font-600 text-gray-800" style="font-weight:600;">SHH-2261</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Dec 2025</td>
+            <td class="px-4 py-3.5 text-sm text-gray-600">Home Health</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700">UnitedHealthcare</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,500</td>
+            <td class="px-4 py-3.5 text-sm text-gray-700 text-right">$3,500</td>
+            <td class="px-4 py-3.5 text-sm text-gray-500 text-right">$0</td>
+            <td class="px-6 py-3.5 text-center"><span class="status-paid text-xs font-600 px-2.5 py-1 rounded-full" style="font-weight:600;">Paid</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+      <p class="text-gray-400 text-xs">Showing 12 of 312 transactions</p>
+      <button class="text-blue-600 text-sm font-medium hover:text-blue-700">View All Transactions →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: DOCUMENTS + CONTRACTS -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- Documents -->
+    <div class="bg-white rounded-2xl card-shadow">
+      <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+        <div>
+          <h2 class="text-gray-900 text-base font-700" style="font-weight:700;">Documents &amp; Remittances</h2>
+          <p class="text-gray-400 text-xs mt-0.5">Recent files shared by your billing team</p>
+        </div>
+        <button class="text-blue-600 text-sm font-medium hover:text-blue-700">View All →</button>
+      </div>
+
+      <div class="divide-y divide-gray-50">
+
+        <!-- Doc row -->
+        <div class="doc-card flex items-center gap-4 px-6 py-4">
+          <div class="w-9 h-9 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-gray-800 text-sm font-600 truncate" style="font-weight:600;">Medicare Remittance (ERA)</div>
+            <div class="text-gray-400 text-xs mt-0.5">Apr 22, 2026 · PDF</div>
+          </div>
+          <button class="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-xs font-medium bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Download
+          </button>
+        </div>
+
+        <div class="doc-card flex items-center gap-4 px-6 py-4">
+          <div class="w-9 h-9 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-gray-800 text-sm font-600 truncate" style="font-weight:600;">Medicaid EOB</div>
+            <div class="text-gray-400 text-xs mt-0.5">Apr 19, 2026 · PDF</div>
+          </div>
+          <button class="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-xs font-medium bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Download
+          </button>
+        </div>
+
+        <div class="doc-card flex items-center gap-4 px-6 py-4">
+          <div class="w-9 h-9 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-gray-800 text-sm font-600 truncate" style="font-weight:600;">Blue Shield EOB</div>
+            <div class="text-gray-400 text-xs mt-0.5">Apr 15, 2026 · PDF</div>
+          </div>
+          <button class="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-xs font-medium bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Download
+          </button>
+        </div>
+
+        <div class="doc-card flex items-center gap-4 px-6 py-4">
+          <div class="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-gray-800 text-sm font-600 truncate" style="font-weight:600;">ARC Monthly Summary</div>
+            <div class="text-gray-400 text-xs mt-0.5">Apr 1, 2026 · PDF</div>
+          </div>
+          <button class="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-xs font-medium bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Download
+          </button>
+        </div>
+
+        <div class="doc-card flex items-center gap-4 px-6 py-4">
+          <div class="w-9 h-9 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-gray-800 text-sm font-600 truncate" style="font-weight:600;">UnitedHealthcare Remittance</div>
+            <div class="text-gray-400 text-xs mt-0.5">Mar 31, 2026 · PDF</div>
+          </div>
+          <button class="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-xs font-medium bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Download
+          </button>
+        </div>
+
+        <div class="doc-card flex items-center gap-4 px-6 py-4">
+          <div class="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-gray-800 text-sm font-600 truncate" style="font-weight:600;">ARC Contract Renewal 2026</div>
+            <div class="text-gray-400 text-xs mt-0.5">Mar 15, 2026 · PDF</div>
+          </div>
+          <button class="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-xs font-medium bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Download
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Payer Contracts -->
+    <div class="bg-white rounded-2xl card-shadow">
+      <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+        <div>
+          <h2 class="text-gray-900 text-base font-700" style="font-weight:700;">Active Contracts &amp; Rates</h2>
+          <p class="text-gray-400 text-xs mt-0.5">Current payer agreements on file</p>
+        </div>
+        <span class="bg-green-50 text-green-700 text-xs font-600 px-2.5 py-1 rounded-lg" style="font-weight:600;">4 Active</span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-6 py-3" style="font-weight:600;">Payer</th>
+              <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Contract Rate</th>
+              <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Type</th>
+              <th class="text-left text-xs font-600 text-gray-500 uppercase tracking-wide px-4 py-3" style="font-weight:600;">Effective</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-50">
+            <tr class="table-row">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <span class="text-blue-700 text-xs font-700" style="font-weight:700;">M</span>
+                  </div>
+                  <div>
+                    <div class="text-gray-800 text-sm font-600" style="font-weight:600;">Medicare Part A</div>
+                    <div class="text-gray-400 text-xs">Home Health</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                <div class="text-gray-800 text-sm font-600" style="font-weight:600;">PPS Base Rate</div>
+                <div class="text-gray-400 text-xs">Per episode</div>
+              </td>
+              <td class="px-4 py-4">
+                <span class="bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-lg">Federal</span>
+              </td>
+              <td class="px-4 py-4 text-gray-600 text-sm">Jan 1, 2026</td>
+            </tr>
+            <tr class="table-row">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 bg-green-100 rounded-lg flex items-center justify-center">
+                    <span class="text-green-700 text-xs font-700" style="font-weight:700;">MC</span>
+                  </div>
+                  <div>
+                    <div class="text-gray-800 text-sm font-600" style="font-weight:600;">California Medicaid</div>
+                    <div class="text-gray-400 text-xs">Home Health</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                <div class="text-gray-800 text-sm font-600" style="font-weight:600;">$142.80/visit</div>
+                <div class="text-gray-400 text-xs">Per visit rate</div>
+              </td>
+              <td class="px-4 py-4">
+                <span class="bg-purple-50 text-purple-700 text-xs font-medium px-2.5 py-1 rounded-lg">State</span>
+              </td>
+              <td class="px-4 py-4 text-gray-600 text-sm">Jul 1, 2025</td>
+            </tr>
+            <tr class="table-row">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 bg-indigo-100 rounded-lg flex items-center justify-center">
+                    <span class="text-indigo-700 text-xs font-700" style="font-weight:700;">BS</span>
+                  </div>
+                  <div>
+                    <div class="text-gray-800 text-sm font-600" style="font-weight:600;">Blue Shield CA</div>
+                    <div class="text-gray-400 text-xs">Home Health</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                <div class="text-gray-800 text-sm font-600" style="font-weight:600;">$156.40/visit</div>
+                <div class="text-gray-400 text-xs">Per visit rate</div>
+              </td>
+              <td class="px-4 py-4">
+                <span class="bg-amber-50 text-amber-700 text-xs font-medium px-2.5 py-1 rounded-lg">Commercial</span>
+              </td>
+              <td class="px-4 py-4 text-gray-600 text-sm">Jan 1, 2026</td>
+            </tr>
+            <tr class="table-row">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <span class="text-orange-700 text-xs font-700" style="font-weight:700;">UH</span>
+                  </div>
+                  <div>
+                    <div class="text-gray-800 text-sm font-600" style="font-weight:600;">UnitedHealthcare</div>
+                    <div class="text-gray-400 text-xs">Home Health</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                <div class="text-gray-800 text-sm font-600" style="font-weight:600;">$161.20/visit</div>
+                <div class="text-gray-400 text-xs">Per visit rate</div>
+              </td>
+              <td class="px-4 py-4">
+                <span class="bg-amber-50 text-amber-700 text-xs font-medium px-2.5 py-1 rounded-lg">Commercial</span>
+              </td>
+              <td class="px-4 py-4 text-gray-600 text-sm">Oct 1, 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="px-6 py-4 border-t border-gray-100">
+        <div class="flex items-center gap-2 text-gray-400 text-xs">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+          </svg>
+          Contract details managed by Advanced RevCycle. Contact your account manager to request changes.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="border-t border-gray-100 bg-white mt-4">
+  <div class="max-w-7xl mx-auto px-6 py-5">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="#1a56db"/>
+          <path d="M6 22 Q16 6 26 22" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M10 22 Q16 12 22 22" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="16" cy="22" r="2" fill="white"/>
+        </svg>
+        <span class="text-gray-500 text-xs">Powered by <span class="font-600 text-gray-700" style="font-weight:600;">Advanced RevCycle</span></span>
+      </div>
+      <div class="flex items-center gap-4 text-gray-400 text-xs">
+        <span class="flex items-center gap-1">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+          </svg>
+          HIPAA Compliant
+        </span>
+        <span>·</span>
+        <span>Secured by Microsoft Azure AD</span>
+        <span>·</span>
+        <span>© 2026 Advanced RevCycle</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('load', function() {
+  // =============================================
+  // DONUT CHART — AR AGING BREAKDOWN
+  // =============================================
+  const donutCtx = document.getElementById('agingDonut').getContext('2d');
+  new Chart(donutCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Current (0–30)', '30–60 Days', '60–90 Days', '90+ Days'],
+      datasets: [{
+        data: [198214, 52180, 21340, 12707],
+        backgroundColor: ['#3b82f6', '#fbbf24', '#fb923c', '#ef4444'],
+        borderWidth: 0,
+        hoverBorderWidth: 3,
+        hoverBorderColor: '#ffffff',
+        borderRadius: 4,
+        spacing: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const val = context.parsed;
+              const total = context.dataset.data.reduce((a, b) => a + b, 0);
+              const pct = ((val / total) * 100).toFixed(1);
+              return ` $${val.toLocaleString()} (${pct}%)`;
+            }
+          },
+          backgroundColor: '#1e293b',
+          titleColor: '#94a3b8',
+          bodyColor: '#f1f5f9',
+          padding: 12,
+          cornerRadius: 8,
+          bodyFont: { family: 'Inter', size: 13, weight: '600' },
+          titleFont: { family: 'Inter', size: 11 }
+        }
+      },
+    }
+  });
+
+  // =============================================
+  // BAR CHART — AR BY PAYER
+  // =============================================
+  const barCtx = document.getElementById('payerBar').getContext('2d');
+  new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Medicare Part A', 'Medicaid', 'Blue Shield', 'UnitedHealthcare', 'Other Commercial'],
+      datasets: [{
+        label: 'AR Balance',
+        data: [142220, 78622, 31440, 18814, 13345],
+        backgroundColor: [
+          'rgba(59, 130, 246, 0.85)',
+          'rgba(16, 185, 129, 0.85)',
+          'rgba(99, 102, 241, 0.85)',
+          'rgba(245, 158, 11, 0.85)',
+          'rgba(156, 163, 175, 0.85)',
+        ],
+        borderRadius: 6,
+        borderSkipped: false,
+        barThickness: 28,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return ` $${context.parsed.x.toLocaleString()}`;
+            }
+          },
+          backgroundColor: '#1e293b',
+          titleColor: '#94a3b8',
+          bodyColor: '#f1f5f9',
+          padding: 12,
+          cornerRadius: 8,
+          bodyFont: { family: 'Inter', size: 13, weight: '600' },
+          titleFont: { family: 'Inter', size: 11 }
+        }
+      },
+      scales: {
+        x: {
+          grid: {
+            color: 'rgba(0,0,0,0.04)',
+            drawBorder: false,
+          },
+          border: { display: false },
+          ticks: {
+            font: { family: 'Inter', size: 11 },
+            color: '#9ca3af',
+            callback: function(value) {
+              if (value >= 1000) return '$' + (value / 1000).toFixed(0) + 'k';
+              return '$' + value;
+            }
+          }
+        },
+        y: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: {
+            font: { family: 'Inter', size: 12, weight: '500' },
+            color: '#374151',
+          }
+        }
+      }
+    }
+  });
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
+  }); // end load
+</script>
+
+</body>
+</html>

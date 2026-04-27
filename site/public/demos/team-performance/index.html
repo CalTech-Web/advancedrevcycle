@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Performance Dashboard — Advanced RevCycle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            primary: '#1a56db',
+            secondary: '#0e9f6e',
+            sidebar: '#0f172a',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .sidebar-link { transition: background 0.15s, color 0.15s; }
+    .sidebar-link:hover { background: rgba(255,255,255,0.08); }
+    .sidebar-link.active { background: rgba(26,86,219,0.3); border-left: 3px solid #1a56db; }
+    .kpi-card { transition: box-shadow 0.2s, transform 0.15s; }
+    .kpi-card:hover { box-shadow: 0 8px 32px rgba(26,86,219,0.12); transform: translateY(-2px); }
+    .team-row { transition: background 0.12s; }
+    .team-row:hover { background: #f0f6ff !important; }
+    .insights-card { transition: box-shadow 0.15s; }
+    .insights-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-gray-50" style="min-height:100vh;">
+
+<!-- Layout wrapper -->
+<div class="flex" style="min-height:100vh;">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="flex-shrink-0 flex flex-col" style="width:240px; background:#0f172a; min-height:100vh;">
+    <!-- Logo -->
+    <div class="px-5 py-6 border-b border-white/10">
+      <div class="flex items-center">
+        <img src="../../assets/arc-logo.svg" alt="Advanced RevCycle" style="height:28px;" />
+      </div>
+    </div>
+
+    <!-- Nav label -->
+    <div class="px-5 pt-5 pb-2">
+      <span class="text-xs font-600 uppercase tracking-widest text-slate-500" style="font-weight:600; letter-spacing:0.1em;">Operations</span>
+    </div>
+
+    <!-- Nav items -->
+    <nav class="flex-1 px-3 space-y-0.5">
+      <a href="#" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-white text-sm font-500" style="font-weight:500; border-left:3px solid #1a56db; padding-left:calc(0.75rem - 3px);">
+        <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Team Performance
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 text-sm font-400 hover:text-white">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        Claims Analytics
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 text-sm font-400 hover:text-white">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Denial Tracker
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 text-sm font-400 hover:text-white">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Payer Reports
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 text-sm font-400 hover:text-white">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Team Management
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 text-sm font-400 hover:text-white">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        AI Insights
+      </a>
+
+      <div class="pt-4 pb-2">
+        <span class="text-xs font-600 uppercase tracking-widest text-slate-500 px-3" style="font-weight:600; letter-spacing:0.1em;">Admin</span>
+      </div>
+      <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 text-sm font-400 hover:text-white">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+        Settings
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 text-sm font-400 hover:text-white">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Help
+      </a>
+    </nav>
+
+    <!-- Bottom user section -->
+    <div class="px-4 py-4 border-t border-white/10">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-700" style="font-weight:700;">MT</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-white text-xs font-600 truncate" style="font-weight:600;">Matt Timmins</div>
+          <div class="text-slate-400 text-xs truncate">President &amp; COO</div>
+        </div>
+        <svg class="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+
+    <!-- Top bar -->
+    <header class="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between flex-shrink-0">
+      <div>
+        <h1 class="text-xl font-700 text-gray-900 leading-tight" style="font-weight:700;">Team Performance Dashboard</h1>
+        <p class="text-sm text-gray-500 mt-0.5">April 2026 &nbsp;·&nbsp; 12 Teams &nbsp;·&nbsp; Hospice &amp; Home Health</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <!-- Live indicator -->
+        <div class="flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-3 py-1.5">
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse inline-block"></span>
+          <span class="text-xs font-500 text-green-700" style="font-weight:500;">Live Data</span>
+        </div>
+        <!-- Date range -->
+        <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
+          <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span class="text-xs font-500 text-gray-600" style="font-weight:500;">Apr 1 – Apr 27, 2026</span>
+          <svg class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+        </div>
+        <!-- Admin badge -->
+        <div class="flex items-center gap-2 bg-blue-600 rounded-lg px-3 py-1.5">
+          <svg class="w-3.5 h-3.5 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span class="text-xs font-600 text-white" style="font-weight:600;">Administrator View</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Scrollable content -->
+    <main class="flex-1 overflow-y-auto px-8 py-6 space-y-6">
+
+      <!-- ===================== KPI CARDS ===================== -->
+      <div class="grid grid-cols-4 gap-5">
+
+        <!-- Card 1: Claims Submitted -->
+        <div class="kpi-card bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="p-2 rounded-lg bg-blue-50">
+              <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <span class="flex items-center gap-1 text-xs font-600 text-green-600 bg-green-50 rounded-full px-2 py-1" style="font-weight:600;">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M5 15l7-7 7 7"/></svg>
+              +8.2%
+            </span>
+          </div>
+          <div class="text-3xl font-800 text-gray-900 leading-none mb-1" style="font-weight:800;">14,832</div>
+          <div class="text-sm font-500 text-gray-500 mb-1" style="font-weight:500;">Claims Submitted</div>
+          <div class="text-xs text-gray-400">Month to date</div>
+        </div>
+
+        <!-- Card 2: Clean Claim Rate -->
+        <div class="kpi-card bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="p-2 rounded-lg bg-green-50">
+              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="flex items-center gap-1 text-xs font-600 text-green-600 bg-green-50 rounded-full px-2 py-1" style="font-weight:600;">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M5 15l7-7 7 7"/></svg>
+              +1.1 pts
+            </span>
+          </div>
+          <div class="text-3xl font-800 text-gray-900 leading-none mb-1" style="font-weight:800;">91.4%</div>
+          <div class="text-sm font-500 text-gray-500 mb-1" style="font-weight:500;">Clean Claim Rate</div>
+          <div class="text-xs text-gray-400">Network average</div>
+        </div>
+
+        <!-- Card 3: Avg Denial Rate -->
+        <div class="kpi-card bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="p-2 rounded-lg bg-red-50">
+              <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <span class="flex items-center gap-1 text-xs font-600 text-green-600 bg-green-50 rounded-full px-2 py-1" style="font-weight:600;">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M19 9l-7 7-7-7"/></svg>
+              -0.9 pts
+            </span>
+          </div>
+          <div class="text-3xl font-800 text-gray-900 leading-none mb-1" style="font-weight:800;">6.8%</div>
+          <div class="text-sm font-500 text-gray-500 mb-1" style="font-weight:500;">Avg Denial Rate</div>
+          <div class="text-xs text-gray-400">Improving vs last month</div>
+        </div>
+
+        <!-- Card 4: Days to Reimbursement -->
+        <div class="kpi-card bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="p-2 rounded-lg" style="background:#eff6ff;">
+              <svg class="w-5 h-5" style="color:#1a56db;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="flex items-center gap-1 text-xs font-600 text-green-600 bg-green-50 rounded-full px-2 py-1" style="font-weight:600;">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M19 9l-7 7-7-7"/></svg>
+              -2.1 days
+            </span>
+          </div>
+          <div class="text-3xl font-800 text-gray-900 leading-none mb-1" style="font-weight:800;">18.3</div>
+          <div class="text-sm font-500 text-gray-500 mb-1" style="font-weight:500;">Avg Days to Reimbursement</div>
+          <div class="text-xs text-gray-400">Improving vs last month</div>
+        </div>
+
+      </div>
+
+      <!-- ===================== TEAM RANKINGS TABLE ===================== -->
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+          <div>
+            <h2 class="text-base font-700 text-gray-900" style="font-weight:700;">Team Rankings</h2>
+            <p class="text-xs text-gray-500 mt-0.5">All 12 billing teams &nbsp;·&nbsp; Sorted by clean claim rate</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5 text-xs text-gray-500">
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-green-500"></span> On Track
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400 ml-2"></span> Watch
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-500 ml-2"></span> At Risk
+            </div>
+            <button class="flex items-center gap-1.5 text-xs font-500 text-gray-500 border border-gray-200 rounded-lg px-3 py-1.5 hover:bg-gray-50" style="font-weight:500;">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              Export
+            </button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-100">
+                <th class="text-left px-6 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide w-12" style="font-weight:600; letter-spacing:0.05em;">Rank</th>
+                <th class="text-left px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Team</th>
+                <th class="text-left px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Line of Care</th>
+                <th class="text-right px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Claims</th>
+                <th class="text-right px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Clean Rate</th>
+                <th class="text-right px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Denial Rate</th>
+                <th class="text-right px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Days to Reimb.</th>
+                <th class="text-center px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Trend</th>
+                <th class="text-center px-4 py-3 text-xs font-600 text-gray-500 uppercase tracking-wide" style="font-weight:600; letter-spacing:0.05em;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rank 1 -->
+              <tr class="team-row border-b border-gray-50">
+                <td class="px-6 py-3.5">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white" style="background:#1a56db; font-weight:700;">1</div>
+                </td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-03</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,412</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-green-600" style="font-weight:600;">94.8%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">4.1%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">15.2 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-green-500 text-base font-700">↑</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-green-50 text-green-700 border border-green-200 rounded-full px-2.5 py-1" style="font-weight:600;">On Track</span></td>
+              </tr>
+              <!-- Rank 2 -->
+              <tr class="team-row border-b border-gray-50" style="background:#fafafa;">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-slate-600" style="font-weight:700;">2</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-07</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,389</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-green-600" style="font-weight:600;">93.6%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">5.0%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">16.1 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-green-500 text-base font-700">↑</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-green-50 text-green-700 border border-green-200 rounded-full px-2.5 py-1" style="font-weight:600;">On Track</span></td>
+              </tr>
+              <!-- Rank 3 -->
+              <tr class="team-row border-b border-gray-50">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-slate-600" style="font-weight:700;">3</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">HH-01</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-cyan-50 text-cyan-700 border border-cyan-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Home Health</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,201</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-green-600" style="font-weight:600;">93.1%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">5.4%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">17.0 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-gray-400 text-base font-700">→</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-green-50 text-green-700 border border-green-200 rounded-full px-2.5 py-1" style="font-weight:600;">On Track</span></td>
+              </tr>
+              <!-- Rank 4 -->
+              <tr class="team-row border-b border-gray-50" style="background:#fafafa;">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-slate-600" style="font-weight:700;">4</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-01</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,344</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-green-700" style="font-weight:600;">92.7%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">5.8%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">17.4 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-green-500 text-base font-700">↑</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-green-50 text-green-700 border border-green-200 rounded-full px-2.5 py-1" style="font-weight:600;">On Track</span></td>
+              </tr>
+              <!-- Rank 5 -->
+              <tr class="team-row border-b border-gray-50">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-slate-600" style="font-weight:700;">5</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-05</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,298</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-green-700" style="font-weight:600;">92.2%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">6.1%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">17.9 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-gray-400 text-base font-700">→</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-green-50 text-green-700 border border-green-200 rounded-full px-2.5 py-1" style="font-weight:600;">On Track</span></td>
+              </tr>
+              <!-- Rank 6 -->
+              <tr class="team-row border-b border-gray-50" style="background:#fafafa;">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-slate-600" style="font-weight:700;">6</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-09</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,267</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-gray-700" style="font-weight:600;">91.8%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">6.4%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">18.1 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-green-500 text-base font-700">↑</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-green-50 text-green-700 border border-green-200 rounded-full px-2.5 py-1" style="font-weight:600;">On Track</span></td>
+              </tr>
+              <!-- Rank 7 -->
+              <tr class="team-row border-b border-gray-50">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-amber-500" style="font-weight:700;">7</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">HH-02</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-cyan-50 text-cyan-700 border border-cyan-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Home Health</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,189</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-gray-700" style="font-weight:600;">91.0%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">7.1%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">18.8 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-red-400 text-base font-700">↓</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-amber-50 text-amber-700 border border-amber-200 rounded-full px-2.5 py-1" style="font-weight:600;">Watch</span></td>
+              </tr>
+              <!-- Rank 8 -->
+              <tr class="team-row border-b border-gray-50" style="background:#fafafa;">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-amber-500" style="font-weight:700;">8</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-02</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,356</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-amber-600" style="font-weight:600;">90.5%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">7.4%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">19.2 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-gray-400 text-base font-700">→</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-amber-50 text-amber-700 border border-amber-200 rounded-full px-2.5 py-1" style="font-weight:600;">Watch</span></td>
+              </tr>
+              <!-- Rank 9 -->
+              <tr class="team-row border-b border-gray-50">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-amber-500" style="font-weight:700;">9</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-06</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,287</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-amber-600" style="font-weight:600;">89.9%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">7.9%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">19.8 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-red-400 text-base font-700">↓</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-amber-50 text-amber-700 border border-amber-200 rounded-full px-2.5 py-1" style="font-weight:600;">Watch</span></td>
+              </tr>
+              <!-- Rank 10 -->
+              <tr class="team-row border-b border-gray-50" style="background:#fafafa;">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-red-500" style="font-weight:700;">10</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-04</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,321</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-red-600" style="font-weight:600;">88.7%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-red-600" style="font-weight:500;">9.1%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">21.3 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-red-400 text-base font-700">↓</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-red-50 text-red-700 border border-red-200 rounded-full px-2.5 py-1" style="font-weight:600;">At Risk</span></td>
+              </tr>
+              <!-- Rank 11 -->
+              <tr class="team-row border-b border-gray-50">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-red-500" style="font-weight:700;">11</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-08</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,244</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-600 text-red-600" style="font-weight:600;">87.2%</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-red-600" style="font-weight:500;">10.4%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-700" style="font-weight:500;">22.7 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-red-400 text-base font-700">↓</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-red-50 text-red-700 border border-red-200 rounded-full px-2.5 py-1" style="font-weight:600;">At Risk</span></td>
+              </tr>
+              <!-- Rank 12 -->
+              <tr class="team-row" style="background:#fafafa;">
+                <td class="px-6 py-3.5"><div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700 text-white bg-red-600" style="font-weight:700;">12</div></td>
+                <td class="px-4 py-3.5"><span class="font-600 text-gray-900" style="font-weight:600;">H-10</span></td>
+                <td class="px-4 py-3.5"><span class="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2.5 py-1 font-500" style="font-weight:500;">Hospice</span></td>
+                <td class="px-4 py-3.5 text-right font-500 text-gray-800" style="font-weight:500;">1,124</td>
+                <td class="px-4 py-3.5 text-right"><span class="font-700 text-red-700" style="font-weight:700;">85.6%</span></td>
+                <td class="px-4 py-3.5 text-right font-600 text-red-600" style="font-weight:600;">12.1%</td>
+                <td class="px-4 py-3.5 text-right font-500 text-red-600" style="font-weight:500;">25.4 days</td>
+                <td class="px-4 py-3.5 text-center"><span class="text-red-500 text-base font-700">↓</span></td>
+                <td class="px-4 py-3.5 text-center"><span class="text-xs font-600 bg-red-50 text-red-700 border border-red-200 rounded-full px-2.5 py-1" style="font-weight:600;">At Risk</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===================== CHART + AI INSIGHTS ===================== -->
+      <div class="grid gap-5 items-stretch" style="grid-template-columns: 2fr 1fr;">
+
+        <!-- Chart panel -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex flex-col">
+          <div class="flex items-start justify-between mb-5">
+            <div>
+              <h2 class="text-base font-700 text-gray-900" style="font-weight:700;">Clean Claim Rate — 8-Week Trend</h2>
+              <p class="text-xs text-gray-500 mt-0.5">Top 3 teams compared to network average</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="text-xs font-500 text-blue-600 border border-blue-200 bg-blue-50 rounded-lg px-3 py-1.5" style="font-weight:500;">Weekly</button>
+              <button class="text-xs font-500 text-gray-500 border border-gray-200 rounded-lg px-3 py-1.5 hover:bg-gray-50" style="font-weight:500;">Monthly</button>
+            </div>
+          </div>
+          <div class="flex-1" style="min-height:280px; position:relative;">
+            <canvas id="trendChart"></canvas>
+          </div>
+        </div>
+
+        <!-- AI Insights panel -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+          <!-- Header gradient -->
+          <div class="px-5 py-4 flex items-center gap-3" style="background: linear-gradient(135deg, #1a56db 0%, #4f46e5 100%);">
+            <!-- Sparkle/AI icon -->
+            <div class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4.5 h-4.5 text-white" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-white font-700 text-sm" style="font-weight:700;">AI Nightly Insights</div>
+              <div class="text-blue-200 text-xs">Updated Apr 27 at 2:00 AM</div>
+            </div>
+          </div>
+
+          <!-- Insight cards -->
+          <div class="p-4 space-y-3">
+
+            <!-- Insight 1: Green -->
+            <div class="insights-card rounded-lg border border-green-100 bg-green-50 p-3.5">
+              <div class="flex items-start gap-2.5">
+                <span class="text-base mt-0.5 flex-shrink-0">🟢</span>
+                <div>
+                  <div class="text-sm font-600 text-gray-900 mb-1" style="font-weight:600;">H-03 on a strong run</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Clean claim rate improved 2.7 points over 8 weeks, now leading all hospice teams. Primary driver: reduced missing-auth denials. Recommend sharing intake checklist with H-04.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Insight 2: Red -->
+            <div class="insights-card rounded-lg border border-red-100 bg-red-50 p-3.5">
+              <div class="flex items-start gap-2.5">
+                <span class="text-base mt-0.5 flex-shrink-0">🔴</span>
+                <div>
+                  <div class="text-sm font-600 text-gray-900 mb-1" style="font-weight:600;">H-10 needs attention</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Denial rate climbed to 12.1%, highest in the network. Pattern shows Medicare timely-filing denials concentrated in weeks 3 and 4 of the billing cycle. Escalation recommended.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Insight 3: Yellow -->
+            <div class="insights-card rounded-lg border border-amber-100 bg-amber-50 p-3.5">
+              <div class="flex items-start gap-2.5">
+                <span class="text-base mt-0.5 flex-shrink-0">🟡</span>
+                <div>
+                  <div class="text-sm font-600 text-gray-900 mb-1" style="font-weight:600;">HH-02 slipping</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Home health team 2 dropped 1.4 points on clean claim rate over the past 3 weeks. Correlation with two new biller onboardings suggests a training gap.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Insight 4: Blue -->
+            <div class="insights-card rounded-lg border border-blue-100 bg-blue-50 p-3.5">
+              <div class="flex items-start gap-2.5">
+                <span class="text-base mt-0.5 flex-shrink-0">🔵</span>
+                <div>
+                  <div class="text-sm font-600 text-gray-900 mb-1" style="font-weight:600;">Network milestone</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Overall clean claim rate crossed 91% for the first time this quarter. At current pace, the 93% annual target is achievable by Q3.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===================== FOOTER ===================== -->
+      <footer class="border-t border-gray-200 pt-4 pb-2 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-xs text-gray-400">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Data refreshed nightly at 2:00 AM &nbsp;·&nbsp; Advanced RevCycle Internal
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-gray-400">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Powered by CalTech Web
+        </div>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // Chart.js — Clean Claim Rate 8-Week Trend
+  window.addEventListener('load', function() {
+    const ctx = document.getElementById('trendChart').getContext('2d');
+
+    const labels = ['Mar 3', 'Mar 10', 'Mar 17', 'Mar 24', 'Mar 31', 'Apr 7', 'Apr 14', 'Apr 21'];
+
+    const datasets = [
+      {
+        label: 'H-03',
+        data: [92.1, 92.8, 93.2, 93.9, 94.1, 94.5, 94.7, 94.8],
+        borderColor: '#1a56db',
+        backgroundColor: 'rgba(26,86,219,0.08)',
+        borderWidth: 2.5,
+        tension: 0.45,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        pointBackgroundColor: '#1a56db',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        fill: false,
+      },
+      {
+        label: 'H-07',
+        data: [91.4, 91.9, 92.3, 92.8, 93.0, 93.3, 93.5, 93.6],
+        borderColor: '#0e9f6e',
+        backgroundColor: 'rgba(14,159,110,0.08)',
+        borderWidth: 2.5,
+        tension: 0.45,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        pointBackgroundColor: '#0e9f6e',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        fill: false,
+      },
+      {
+        label: 'HH-01',
+        data: [92.0, 92.4, 92.6, 92.9, 93.0, 93.1, 93.0, 93.1],
+        borderColor: '#7c3aed',
+        backgroundColor: 'rgba(124,58,237,0.08)',
+        borderWidth: 2.5,
+        tension: 0.45,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        pointBackgroundColor: '#7c3aed',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        fill: false,
+      },
+      {
+        label: 'Team Average',
+        data: [90.1, 90.4, 90.7, 91.0, 91.1, 91.3, 91.4, 91.4],
+        borderColor: '#94a3b8',
+        backgroundColor: 'rgba(148,163,184,0.05)',
+        borderWidth: 2,
+        borderDash: [5, 4],
+        tension: 0.45,
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        pointBackgroundColor: '#94a3b8',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        fill: false,
+      }
+    ];
+
+    new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'end',
+            labels: {
+              font: { family: 'Inter', size: 12, weight: '500' },
+              color: '#475569',
+              usePointStyle: true,
+              pointStyle: 'circle',
+              boxWidth: 8,
+              boxHeight: 8,
+              padding: 16,
+            }
+          },
+          tooltip: {
+            backgroundColor: '#0f172a',
+            titleColor: '#e2e8f0',
+            bodyColor: '#cbd5e1',
+            borderColor: '#1e293b',
+            borderWidth: 1,
+            padding: 10,
+            titleFont: { family: 'Inter', size: 12, weight: '600' },
+            bodyFont: { family: 'Inter', size: 12 },
+            callbacks: {
+              label: function(ctx) {
+                return ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(226,232,240,0.6)', drawBorder: false },
+            border: { display: false },
+            ticks: {
+              font: { family: 'Inter', size: 11 },
+              color: '#94a3b8',
+              padding: 8,
+            }
+          },
+          y: {
+            min: 88,
+            max: 96,
+            grid: { color: 'rgba(226,232,240,0.6)', drawBorder: false },
+            border: { display: false },
+            ticks: {
+              font: { family: 'Inter', size: 11 },
+              color: '#94a3b8',
+              padding: 8,
+              callback: function(value) { return value + '%'; }
+            }
+          }
+        }
+      }
+    });
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
+  }); // end load
+</script>
+</body>
+</html>
